@@ -1,8 +1,8 @@
 {
-    "name": "accard/accard",
+    "name": "accard/patient-repository",
     "license": "MIT",
     "type": "project",
-    "description": "The Accard Framework",
+    "description": "The Accard Patient Repository Application",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
