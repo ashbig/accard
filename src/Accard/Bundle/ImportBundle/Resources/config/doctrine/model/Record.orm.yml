@@ -1,0 +1,35 @@
+# This file is part of the Accard package.
+#
+# (c) University of Pennsylvania
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+Accard\Bundle\ImportBundle\Model\Record:
+    type: mappedSuperclass
+    table: meta_import_record
+    repositoryClass: Accard\Bundle\ImportBundle\Doctrine\ORM\ImportRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        data:
+            type: array
+            nullable: false
+        uniqueValue:
+            type: string
+            nullable: false
+            unique: true
+
+    manyToOne:
+        import:
+            targetEntity: Accard\Bundle\ImportBundle\Model\ImportInterface
+            inversedBy: records
+            joinColumn:
+                name: importId
+                referencedColumnName: id
+                nullable: false

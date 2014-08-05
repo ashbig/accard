@@ -1,0 +1,51 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
+{% macro list(patients) %}
+
+{% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
+{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
+
+{% if patients|length > 0 %}
+    <table class="patient table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="mrn">{{ accard_resource_sort('mrn', 'accard.form.patient.mrn'|trans) }}</th>
+                <th class="first-name">{{ accard_resource_sort('firstName', 'accard.form.patient.first_name'|trans) }}</th>
+                <th class="last-name">{{ accard_resource_sort('lastName', 'accard.form.patient.last_name'|trans) }}</th>
+                <th class="date-of-birth">{{ accard_resource_sort('dateOfBirth', 'accard.form.patient.date_of_birth'|trans) }}</th>
+                <th class="gender">{{ accard_resource_sort('gender', 'accard.form.patient.gender'|trans) }}</th>
+                <th class="deceased">{{ 'accard.form.patient.deceased'|trans }}</th>
+                <th class="actions"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for patient in patients %}
+            <tr id="{{ patient.id }}">
+                <td class="mrn">{{ patient.mrn }}</td>
+                <td class="first-name">{{ patient.firstName }}</td>
+                <td class="last-name">{{ patient.lastName }}</td>
+                <td class="date-of-birth">{{ patient.dateOfBirth|localizeddate('medium', 'none') }}</td>
+                <td class="gender text-center">{{ patient.gender }}</td>
+                <td class="deceased text-center text-success">{%- if patient.deceased %}{{ icon('fa fa-check') }}{% endif -%}</td>
+                <td class="actions">
+                    <div class="pull-right">
+                        {{ show(path('accard_frontend_patient_show', {'id': patient.id}), null, 'xs') }}
+                        {{ edit(path('accard_frontend_patient_update', {'id': patient.id}), null, 'xs') }}
+                        {{ delete(path('accard_frontend_patient_delete', {'id': patient.id}), null, 'xs') }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    {{ info('accard.patient.none_found'|trans) }}
+{% endif %}
+
+{% endmacro %}

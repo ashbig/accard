@@ -1,0 +1,36 @@
+# This file is part of the Accard package.
+#
+# (c) University of Pennsylvania
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+parameters:
+
+    accard.listener.import.prime_importer.class: Accard\Bundle\ImportBundle\EventListener\PrimeImportListener
+    accard.listener.import.prime_resolver.class: Accard\Bundle\ImportBundle\EventListener\PrimeResolverListener
+    accard.listener.import.create_default_builder.class: Accard\Bundle\ImportBundle\EventListener\CreateDefaultBuilderListener
+    accard.listener.import.create_default_import.class: Accard\Bundle\ImportBundle\EventListener\CreateDefaultImportListener
+
+services:
+
+#    accard.listener.import.prime_importer:
+#        class: %accard.listener.import.prime_importer.class%
+#        tags:
+#            - { name: kernel.event_listener, event: accard.import.pre_run, method: onPreRun, priority: 255 }
+#            - { name: kernel.event_listener, event: accard.import.post_run, method: onPostRun, priority: 255 }#
+
+#    accard.listener.import.prime_resolver:
+#        class: %accard.listener.import.prime_resolver.class%
+#        tags:
+#            - { name: kernel.event_listener, event: accard.import.pre_builder, method: primeResolver, priority: -255 }#
+
+#    accard.listener.import.create_default_builder:
+#        class: %accard.listener.import.create_default_builder.class%
+#        tags:
+#            - { name: kernel.event_listener, event: accard.import.pre_builder, method: onPreBuilder, priority: 0 }#
+
+#    accard.listener.import.create_default_import:
+#        class: %accard.listener.import.create_default_import.class%
+#        tags:
+#            - { name: kernel.event_listener, event: accard.import.pre_builder, method: createDefaultImport, priority: 1 }

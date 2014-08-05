@@ -1,0 +1,40 @@
+security:
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPERUSER: ROLE_ADMIN
+
+    providers:
+        development:
+            memory:
+                users:
+                    user:  { password: password, roles: ['ROLE_USER'] }
+                    admin: { password: password, roles: ['ROLE_ADMIN'] }
+                    super: { password: password, roles: ['ROLE_SUPERUSER'] }
+
+    firewalls:
+        login:
+            pattern: ^/login$
+            anonymous: ~
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js|assets)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: development
+                always_use_default_target_path: true
+                default_target_path: accard_frontend_homepage
+            anonymous: false
+            logout: ~
+            switch_user:
+                role: ROLE_SUPERUSER
+                parameter: _switch
+
+    access_control:
+        - { path: ^/administration, roles: ROLE_SUPERUSER }

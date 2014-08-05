@@ -1,0 +1,33 @@
+# This file is part of the Accard package.
+#
+# (c) University of Pennsylvania
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+accard_core:
+    driver: doctrine/orm
+    classes:
+        patient_phase:
+            model: Accard\Component\Core\Model\PatientPhase
+        diagnosis_phase:
+            model: Accard\Component\Core\Model\DiagnosisPhase
+
+accard_settings: ~
+#accard_import: ~
+
+accard_patient:
+    classes:
+        patient:
+            model: Accard\Component\Core\Model\Patient
+            controller: Accard\Bundle\CoreBundle\Controller\PatientController
+
+accard_diagnosis:
+    classes:
+        diagnosis:
+            model: Accard\Component\Core\Model\Diagnosis
+
+accard_phase:
+    classes:
+        phase:
+            model: Accard\Component\Core\Model\Phase

@@ -1,0 +1,100 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: @AccardCoreBundle/Resources/config/app/main.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: %kernel.root_dir%/config/routing.yml
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: false }
+    templating:      { engines: ['twig'] }
+    default_locale:  %locale%
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    form:
+        resources:
+            - 'form_div_layout.html.twig'
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ AccardWebBundle ]
+    filters:
+        cssrewrite: ~
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+            accard:
+                driver:   %accard_database_driver%
+                host:     %accard_database_host%
+                port:     %accard_database_port%
+                dbname:   %accard_database_name%
+                user:     %accard_database_user%
+                password: %accard_database_password%
+                charset:  AL32UTF8
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    AccardCoreBundle: ~
+                    AccardDiagnosisBundle: ~
+                    AccardOptionBundle: ~
+                    AccardFieldBundle: ~
+                    AccardFixturesBundle: ~
+                    #AccardImportBundle: ~
+                    AccardPatientBundle: ~
+                    AccardPhaseBundle: ~
+                    AccardResourceBundle: ~
+                    AccardSettingsBundle: ~
+                    AccardWebBundle: ~
+            accard:
+                connection: accard
+                mappings:
+                    AccardPDSBundle: ~
+#                    AccardVelosBundle: ~
+            pds:
+                connection: accard
+                mappings:
+                    AccardPDSBundle: ~
+#            velos:
+#                connection: accard
+#                mappings:
+#                    AccardVelosBundle: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }

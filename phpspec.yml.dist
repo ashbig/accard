@@ -1,0 +1,31 @@
+formatter.name: progress
+
+suites:
+
+    # Bundles
+
+    CoreBundle:      { namespace: Accard\Bundle\CoreBundle, spec_path: src/Accard/Bundle/CoreBundle }
+    DiagnosisBundle: { namespace: Accard\Bundle\DiagnosisBundle, spec_path: src/Accard/Bundle/DiagnosisBundle }
+    FieldBundle:     { namespace: Accard\Bundle\FieldBundle, spec_path: src/Accard/Bundle/FieldBundle }
+    FixturesBundle:  { namespace: Accard\Bundle\FixturesBundle, spec_path: src/Accard/Bundle/FixturesBundle }
+    ImportBundle:    { namespace: Accard\Bundle\ImportBundle, spec_path: src/Accard/Bundle/ImportBundle }
+    PatientBundle:   { namespace: Accard\Bundle\PatientBundle, spec_path: src/Accard/Bundle/PatientBundle }
+    PhaseBundle:     { namespace: Accard\Bundle\PhaseBundle, spec_path: src/Accard/Bundle/PhaseBundle }
+    ResourceBundle:  { namespace: Accard\Bundle\ResourceBundle, spec_path: src/Accard/Bundle/ResourceBundle }
+    SettingsBundle:  { namespace: Accard\Bundle\SettingsBundle, spec_path: src/Accard/Bundle/SettingsBundle }
+    WebBundle:       { namespace: Accard\Bundle\WebBundle, spec_path: src/Accard/Bundle/WebBundle }
+
+
+    # Components
+
+    Activity:        { namespace: Accard\Component\Activity, spec_path: src/Accard/Component/Activity }
+    Attribute:       { namespace: Accard\Component\Attribute, spec_path: src/Accard/Component/Attribute }
+    Behavior:        { namespace: Accard\Component\Behavior, spec_path: src/Accard/Component/Behavior }
+    Core:            { namespace: Accard\Component\Core, spec_path: src/Accard/Component/Core }
+    Diagnosis:       { namespace: Accard\Component\Diagnosis, spec_path: src/Accard/Component/Diagnosis }
+    Field:           { namespace: Accard\Component\Field, spec_path: src/Accard/Component/Field }
+    Patient:         { namespace: Accard\Component\Patient, spec_path: src/Accard/Component/Patient }
+    Phase:           { namespace: Accard\Component\Phase, spec_path: src/Accard/Component/Phase }
+    Regimen:         { namespace: Accard\Component\Regimen, spec_path: src/Accard/Component/Regimen }
+    Resource:        { namespace: Accard\Component\Resource, spec_path: src/Accard/Component/Resource }
+    Sample:          { namespace: Accard\Component\Sample, spec_path: src/Accard/Component/Sample }

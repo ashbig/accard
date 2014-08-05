@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * This file is part of the Accard package.
+ *
+ * (c) University of Pennsylvania
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+namespace Accard\Bundle\WebBundle\EventListener;
+
+use Knp\Menu\ItemInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Accard\Bundle\WebBundle\MenuEvents;
+use Accard\Bundle\WebBundle\Event\MenuBuilderEvent;
+
+/**
+ * Backend menu subscriber.
+ *
+ * Creates the default secondary menu structure for the backend menus.
+ *
+ * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ */
+class BackendMenuSubscriber implements EventSubscriberInterface
+{
+    /**
+     * Create secondary sidebar items.
+     *
+     * @param MenuBuilderEvent $event
+     */
+    public function createSidebarItems(MenuBuilderEvent $event)
+    {
+        $menu = $event->getMenu();
+
+        $design = $menu->getChild('design');
+        $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
+
+        if (false !== strpos($event->getRequest()->getUri(), 'patient/field')) {
+            $patient->setCurrent(true);
+        }
+
+        $settings = $menu->getChild('settings');
+        $this->createSimpleItem($event, $settings, 'general', "general_settings", 'general_settings');
+        $this->createSimpleItem($event, $settings, 'theme', "theme_settings", 'theme_settings');
+    }
+
+    /**
+     * Create simple menu item.
+     *
+     * @param MenuBuilderEvent $event
+     * @param ItemInterface $menu
+     * @param string $name
+     * @param string $route
+     * @param string $label
+     * @return ItemInterface
+     */
+    private function createSimpleItem(MenuBuilderEvent $event, ItemInterface $menu, $name, $route, $label)
+    {
+        $route = 'accard_backend_'.$route;
+        $label = 'accard.menu.backend.'.$label;
+
+        return $menu->addChild($name, array('route' => $route))->setLabel($event->translate($label));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return array(
+            MenuEvents::BACKEND_SIDEBAR => array('createSidebarItems', 999),
+        );
+    }
+}

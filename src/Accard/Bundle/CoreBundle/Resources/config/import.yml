@@ -1,0 +1,29 @@
+# This file is part of the Accard package.
+#
+# (c) University of Pennsylvania
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+parameters:
+
+    accard.import.resolver.patient.class: Accard\Bundle\CoreBundle\Import\PatientImportResolver
+    accard.import.converter.patient.class: Accard\Bundle\CoreBundle\Import\PatientRecordConverter
+
+services:
+
+#    accard.import.resolver.patient:
+#        class: %accard.import.resolver.patient.class%
+
+#    accard.import.converter.patient:
+#        class: %accard.import.converter.patient.class%
+#        calls:
+#            - ['setRepository', ['@accard.repository.patient']]
+
+#    accard.import.builder.patient:
+#        class: %accard.import.builder_factory.class%
+#        factory_service: accard.import.builder_factory
+#        factory_method: create
+#        arguments:
+#            - @accard.import.resolver.patient
+#            - @accard.import.converter.patient

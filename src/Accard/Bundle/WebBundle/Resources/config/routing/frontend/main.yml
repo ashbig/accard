@@ -1,0 +1,24 @@
+# This file is part of the Accard package.
+#
+# (c) University of Pennsylvania
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+accard_frontend_homepage:
+    path: /
+    defaults:
+        _controller: AccardWebBundle:Frontend:main
+
+accard_test:
+    path: /test
+    defaults:
+        _controller: AccardWebBundle:Frontend:test
+
+accard_frontend_patient:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/patient.yml
+    prefix: /patient
+
+accard_frontend_import:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/import.yml
+    prefix: /import
