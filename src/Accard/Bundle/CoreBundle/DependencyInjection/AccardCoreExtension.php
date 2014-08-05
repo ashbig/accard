@@ -25,6 +25,7 @@ class AccardCoreExtension extends AbstractResourceExtension implements PrependEx
      * @var array
      */
     protected $bundles = array(
+        'accard_resource',
         'accard_settings',
         'accard_field',
         'accard_option',

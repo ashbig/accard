@@ -28,6 +28,7 @@ class Registry extends ContainerAware
      */
     protected $importers;
 
+
     /**
      * Constructor.
      *
@@ -60,6 +61,10 @@ class Registry extends ContainerAware
      */
     public function hasImporter($name)
     {
+        if (is_object($name)) {
+            $name = $name->getName();
+        }
+
         return isset($this->importers[$name]);
     }
 

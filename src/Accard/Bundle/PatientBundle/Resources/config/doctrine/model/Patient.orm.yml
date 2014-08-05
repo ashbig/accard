@@ -45,7 +45,7 @@ Accard\Component\Patient\Model\Patient:
             targetEntity: Accard\Component\Option\Model\OptionValueInterface
             joinColumn:
                 name: raceId
-                nullable: false
+                nullable: true
 
     oneToMany:
         fields:

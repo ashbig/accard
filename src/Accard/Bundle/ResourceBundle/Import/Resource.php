@@ -140,7 +140,7 @@ class Resource implements ResourceInterface
      */
     private function getTypes()
     {
-        return array(self::SUBJECT, self::TARGET);
+        return array(self::SUBJECT, self::TARGET, self::NONE);
     }
 
 }

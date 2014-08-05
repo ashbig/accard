@@ -33,33 +33,60 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('accard_resource');
 
-        $this->addResourcesSection($rootNode);
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
+            ->end()
+        ;
+
+        $this->addClassesSection($rootNode);
+        $this->addValidationGroupsSection($rootNode);
 
         return $treeBuilder;
     }
 
     /**
-     * Adds `resources` section.
+     * Adds validation_groups section.
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addResourcesSection(ArrayNodeDefinition $node)
+    private function addValidationGroupsSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('resources')
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
-                            ->scalarNode('templates')->cannotBeEmpty()->end()
-                            ->arrayNode('classes')
-                                ->children()
-                                    ->scalarNode('model')->isRequired()->cannotBeEmpty()->end()
-                                    ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
-                                    ->scalarNode('repository')->end()
-                                    ->scalarNode('interface')->end()
-                                ->end()
+                ->arrayNode('validation_groups')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('import')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * Adds classes section.
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addClassesSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('classes')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('import')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('Accard\Component\Resource\Model\Import')->end()
+                                ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('repository')->defaultValue('Accard\Bundle\ResourceBundle\Doctrine\ORM\ImportRepository')->end()
+                                ->scalarNode('form')->defaultValue('Accard\Bundle\ImportBundle\Form\Type\ImportType')->end()
                             ->end()
                         ->end()
                     ->end()

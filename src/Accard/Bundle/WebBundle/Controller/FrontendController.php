@@ -33,8 +33,8 @@ class FrontendController extends Controller
         $runner = $this->get('accard.import.runner');
         $importer = new StaticImporter();
 
-        $runner->run($importer);
+        $records = $runner->run($importer);
 
-        die(var_dump($runner));
+        die(var_dump($records));
     }
 }

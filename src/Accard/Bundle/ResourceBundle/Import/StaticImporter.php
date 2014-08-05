@@ -10,26 +10,58 @@
  */
 namespace Accard\Bundle\ResourceBundle\Import;
 
-use Accard\Bundle\ResourceBundle\Import\ResourceInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Accard\Bundle\PatientBundle\Import\PatientImporter;
 
-class StaticImporter implements ImporterInterface
+/**
+ * Static patient importer (for testing only).
+ *
+ * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ */
+class StaticImporter extends PatientImporter
 {
-    public function run(OptionsResolverInterface $resolver = null)
+    /**
+     * {@inheritdoc}
+     */
+    public function run(OptionsResolverInterface $resolver, array $criteria)
+    {
+        return array(
+            $resolver->resolve(array(
+                'mrn' => '000000001',
+                'first_name' => 'Frank',
+                'last_name' => 'Bardon',
+                'date_of_birth' => '08/06/1984',
+                'gender' => 'Male',
+            )),
+            $resolver->resolve(array(
+                'mrn' => '000000002',
+                'first_name' => 'Morraine',
+                'last_name' => 'Sedai',
+                'date_of_birth' => '04/06/1963',
+                'gender' => 'Female',
+            ))
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCriteria(array $history)
     {
         return array();
     }
 
-    public function configureResolver(OptionsResolverInterface $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultCriteria()
     {
-        // Do some stuff!!!!
+        return array();
     }
 
-    public function getSubject()
-    {
-        return 'patient';
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'static';
