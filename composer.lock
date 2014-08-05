@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f0449cff3d28ec0ddc4929680cb215f4",
+    "hash": "55fe2137a1b4842fa8a80d3f7b40fd95",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1136,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "ca591b2fd7021c2608c22cfe5ad54eec66c1acee"
+                "reference": "5758d0026d7ed00c8dd4727e413918cf2dc74c1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/ca591b2fd7021c2608c22cfe5ad54eec66c1acee",
-                "reference": "ca591b2fd7021c2608c22cfe5ad54eec66c1acee",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/5758d0026d7ed00c8dd4727e413918cf2dc74c1a",
+                "reference": "5758d0026d7ed00c8dd4727e413918cf2dc74c1a",
                 "shasum": ""
             },
             "require": {
@@ -1178,7 +1178,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1192,7 +1192,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-07-18 10:01:56"
+            "time": "2014-08-01 09:50:16"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1201,16 +1201,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "e6a0756b80349f04023faaef4ae4d801cbd716df"
+                "reference": "bdfc95da5ff7e4e67f948aaa9ea5da835a3a9088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/e6a0756b80349f04023faaef4ae4d801cbd716df",
-                "reference": "e6a0756b80349f04023faaef4ae4d801cbd716df",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/bdfc95da5ff7e4e67f948aaa9ea5da835a3a9088",
+                "reference": "bdfc95da5ff7e4e67f948aaa9ea5da835a3a9088",
                 "shasum": ""
             },
             "require": {
-                "knplabs/knp-menu": "~2.0, >=2.0.0-beta1",
+                "knplabs/knp-menu": "~2.0",
                 "symfony/framework-bundle": "~2.0"
             },
             "type": "symfony-bundle",
@@ -1246,7 +1246,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2014-06-16 19:59:46"
+            "time": "2014-08-01 09:57:23"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1943,20 +1943,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/98e197da54df1f966dd5e8a4992135703569c987",
-                "reference": "98e197da54df1f966dd5e8a4992135703569c987",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
+                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
@@ -1987,7 +1988,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 10:06:38"
+            "time": "2014-07-25 09:58:17"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2370,12 +2371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle.git",
-                "reference": "8bac169e9839bb685a4b912f426600b3d7401ec3"
+                "reference": "a4a346f81737b38075868d86f6ca2ed114386995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberPagerfantaBundle/zipball/8bac169e9839bb685a4b912f426600b3d7401ec3",
-                "reference": "8bac169e9839bb685a4b912f426600b3d7401ec3",
+                "url": "https://api.github.com/repos/whiteoctober/WhiteOctoberPagerfantaBundle/zipball/a4a346f81737b38075868d86f6ca2ed114386995",
+                "reference": "a4a346f81737b38075868d86f6ca2ed114386995",
                 "shasum": ""
             },
             "require": {
@@ -2406,8 +2407,7 @@
             "authors": [
                 {
                     "name": "Pablo Díez",
-                    "email": "pablodip@gmail.com",
-                    "homepage": "http://github.com/pablodip"
+                    "email": "pablodip@gmail.com"
                 }
             ],
             "description": "Bundle to use Pagerfanta with Symfony2",
@@ -2415,7 +2415,7 @@
                 "page",
                 "paging"
             ],
-            "time": "2014-05-20 10:23:37"
+            "time": "2014-07-30 12:16:21"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
