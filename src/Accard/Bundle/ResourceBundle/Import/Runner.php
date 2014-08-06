@@ -104,11 +104,14 @@ class Runner
             'import_resource' => $this->import,
         ));
 
+        $resolver->setRequired(array('import_description'));
+
         $resolver->setAllowedTypes(array(
             'subject_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
             'target_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
             'option_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
             'import_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
+            'import_description' => 'string',
         ));
     }
 }

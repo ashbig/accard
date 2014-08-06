@@ -68,6 +68,7 @@ class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\ImportPatient')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('repository')->defaultValue('Accard\Bundle\CoreBundle\Doctrine\ORM\ImportPatientRepository')->end()
                                 ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\ImportPatientType')->end()
                             ->end()
                         ->end()

@@ -62,7 +62,7 @@ abstract class PatientImporter implements ImporterInterface
 
 
         $resolver->setRequired(array('mrn', 'first_name', 'last_name', 'date_of_birth'));
-        $resolver->setOptional(array('date_of_death', 'medications', 'diagnoses', 'tests', 'gender', 'race'));
+        $resolver->setOptional(array('date_of_death', 'gender', 'race'));
 
         $resolver->setDefaults(array(
             'gender' => 'unknown',
@@ -75,8 +75,6 @@ abstract class PatientImporter implements ImporterInterface
             'date_of_death' => array('DateTime', 'null'),
             'gender' => array('Accard\Component\Option\Model\OptionValueInterface'),
             'race' => array('string', 'null'),
-            'medications' => 'array',
-            'tests' => 'array',
         ));
 
         $resolver->setNormalizers(array(

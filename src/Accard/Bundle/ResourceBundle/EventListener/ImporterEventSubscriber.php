@@ -75,9 +75,11 @@ class ImporterEventSubscriber implements EventSubscriberInterface
         $records = $event->getRecords();
         $repo = $event->getTarget()->getRepository();
         $accessor = PropertyAccess::createPropertyAccessor();
+        $importer = $event->getImporter()->getName();
 
         foreach ($records as $key => $record) {
             $entity = $repo->createNew();
+            $entity->addDescription($importer, $record['import_description']);
             foreach ($record as $field => $value) {
                 if (!empty($value) && $accessor->isWritable($entity, $field)) {
                     $accessor->setValue($entity, $field, $value);

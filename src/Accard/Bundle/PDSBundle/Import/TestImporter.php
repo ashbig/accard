@@ -14,7 +14,6 @@ use DateTime;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\PatientBundle\Import\PatientImporter;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query;
 
 /**
  * Test importer.
@@ -72,13 +71,13 @@ class TestImporter extends PatientImporter
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $result['tests'] = array();
-            $result['tests'][] = sprintf('%s test on %s.', $result['result'], $result['result_date']);
+            $result['import_description'] = sprintf('%s test on %s.', $result['result'], $result['result_date']);
 
             unset($result['result'], $result['result_date']);
             $records[] = $resolver->resolve($result);
             unset($results[$key]);
         }
+
 
         return $records;
     }

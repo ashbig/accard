@@ -13,9 +13,3 @@ Accard\Component\Core\Model\ImportPatient:
         descriptions:
             type: array
             nullable: false
-
-    oneToOne:
-        subject:
-            targetEntity: Accard\Component\Patient\Model\PatientInterface
-            mappedBy: target
-            cascade: ["persist", "remove"]

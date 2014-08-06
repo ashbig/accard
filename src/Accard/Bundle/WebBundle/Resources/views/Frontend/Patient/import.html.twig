@@ -9,7 +9,7 @@
 
 {% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import create, design %}
 {% from 'AccardWebBundle:Common/Macros:misc.html.twig' import pagination, page_title %}
-{% from 'AccardWebBundle:Frontend/Patient:macros.html.twig' import list %}
+{% from 'AccardWebBundle:Frontend/Patient:macros.html.twig' import list, import_list %}
 {% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
 
 {% set designBtn = null %}
@@ -36,7 +36,7 @@
         </li>
     </ul>
 
-    {{ list(patients) }}
+    {{ import_list(patients) }}
     {{ pagination(patients) }}
 
 {% endblock %}

@@ -46,6 +46,36 @@ class PatientController extends ResourceController
     }
 
     /**
+     * Import patient index.
+     *
+     * @param Request $request
+     */
+    public function importAction(Request $request)
+    {
+        $criteria = $this->config->getCriteria();
+        $sorting = $this->config->getSorting();
+
+        $repository = $this->get('accard.repository.import_patient');
+
+        $resources = $this->resourceResolver->getResource(
+            $repository,
+            'createPaginator',
+            array($criteria, $sorting)
+        );
+        $resources->setCurrentPage($request->get('page', 1), true, true);
+        $resources->setMaxPerPage($this->config->getPaginationMaxPerPage());
+
+        $view = $this
+            ->view()
+            ->setTemplate($this->config->getTemplate('import.html'))
+            ->setTemplateVar($this->config->getPluralResourceName())
+            ->setData($resources)
+        ;
+
+        return $this->handleView($view);
+    }
+
+    /**
      * Get paginated list of all fields.
      *
      * @return Pagerfanta

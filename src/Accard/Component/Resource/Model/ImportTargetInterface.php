@@ -39,12 +39,67 @@ interface ImportTargetInterface
      */
     public function hasImportSubject();
 
+    /**
+     * Get all registered importers for descriptions.
+     *
+     * @return array
+     */
     public function getRegisteredImporters();
+
+    /**
+     * Test if importer has been registered.
+     *
+     * @param string $importerName
+     * @return boolean
+     */
     public function hasImporter($importerName);
+
+    /**
+     * Register importer for descriptions.
+     *
+     * @param string $importerName
+     * @return ImportTargetInterface
+     */
     public function registerImporter($importerName);
+
+    /**
+     * Unregister importer for descriptions.
+     *
+     * @param string $importerName
+     * @return ImportTargetInterface
+     */
     public function unregisterImporter($importerName);
+
+    /**
+     * Get all descriptions for importer.
+     *
+     * @param string $importerName
+     * @return array
+     */
     public function getDescriptions($importerName);
+
+    /**
+     * Test if descriptions exist for importer.
+     *
+     * @param string $importerName
+     * @return boolean
+     */
     public function hasDescriptions($importerName);
+
+    /**
+     * Add description for importer.
+     *
+     * @param string $importerName
+     * @param string $description
+     * @return ImportTargetInterface
+     */
     public function addDescription($importerName, $description);
+
+    /**
+     * Clear descriptions for importer.
+     *
+     * @param string $importerName
+     * @return ImportTargetInterface
+     */
     public function clearDescriptions($importerName);
 }
