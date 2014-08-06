@@ -27,4 +27,4 @@ services:
         arguments:
             - @accard.connection.pds
             - [160634, 9737003, 226931, 238030, 238073, 171942, 227931, 228756, 229955, 3535001, 3538001, 3441002, 4857459, 4860460, 4857596, 4861487, 4859619, 8952100, 9196023, 8951098]
-        tags: [{ name: accard.importer, alias: pds_test }]
+        tags: [{ name: accard.importer, importer: pds_test }]

@@ -70,8 +70,6 @@ doctrine:
                     AccardDiagnosisBundle: ~
                     AccardOptionBundle: ~
                     AccardFieldBundle: ~
-                    AccardFixturesBundle: ~
-                    #AccardImportBundle: ~
                     AccardPatientBundle: ~
                     AccardPhaseBundle: ~
                     AccardResourceBundle: ~
