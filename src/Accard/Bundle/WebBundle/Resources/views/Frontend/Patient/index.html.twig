@@ -36,7 +36,8 @@
         </li>
     </ul>
 
-    {{ list(patients) }}
-    {{ pagination(patients) }}
-
+    {% block patient_content %}
+        {{ list(patients) }}
+        {{ pagination(patients) }}
+    {% endblock %}
 {% endblock %}
