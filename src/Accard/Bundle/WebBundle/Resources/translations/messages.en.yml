@@ -103,6 +103,8 @@ accard:
             create: Create Option Value
             manage: Manage Option Values
         patient:
+            registered: Registered Patients
+            unregistered: Unregistered Patients
             count: %total% patients registered.
             fields: Patient Fields
             field_count: Collecting %total% patient fields.

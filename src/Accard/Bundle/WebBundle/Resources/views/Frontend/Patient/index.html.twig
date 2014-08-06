@@ -19,6 +19,7 @@
 
 {% block content %}
 
+    {% block patient_title %}
     {{ page_title(
         'accard.interface.frontend.titles.index_patient'|trans,
         [
@@ -26,15 +27,18 @@
             designBtn
         ]
     )}}
+    {% endblock %}
 
+    {% block patient_tabs %}
     <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
         <li class="{{ active_if_current('accard_frontend_patient_index') }}">
-            <a href="{{ path('accard_frontend_patient_index') }}">Registered Patients</a>
+            <a href="{{ path('accard_frontend_patient_index') }}">{{ 'accard.form.patient.registered'|trans }}</a>
         </li>
         <li class="{{ active_if_current('accard_frontend_patient_import') }}{{ active_if_current('accard_frontend_import_importer_records') }}">
-            <a href="{{ path('accard_frontend_patient_import') }}">Unregistered</a>
+            <a href="{{ path('accard_frontend_patient_import') }}">{{ 'accard.form.patient.unregistered'|trans }}</a>
         </li>
     </ul>
+    {% endblock %}
 
     {% block patient_content %}
         {{ list(patients) }}
