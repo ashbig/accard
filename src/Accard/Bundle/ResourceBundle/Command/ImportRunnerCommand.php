@@ -56,6 +56,7 @@ class ImportRunnerCommand extends ContainerAwareCommand
             $persister = new PersistImporterRecordsListener();
             // We should remove the SQL logger, it causes HUGE memory problems.
             $dispatcher->addListener(Events::FINISH, array($persister, 'disableSQLLog'));
+            $dispatcher->addListener(Events::FINISH, array($persister, 'persistImport'));
             $dispatcher->addListener(Events::FINISH, array($persister, 'persistRecords'));
         } else {
             $output->writeln('<comment>Performing dry run.</comment>');

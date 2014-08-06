@@ -41,8 +41,26 @@ class PersistImporterRecordsListener
     }
 
     /**
+     * Persist import to target entity manager.
+     *
+     * This assumes that the import table is on the same database as the target
+     * resource. This should be more flexible.
+     *
+     * @todo Allow seperate entity manager for import persistence.
+     * @param ImportEvent $event
+     */
+    public function persistImport(ImportEvent $event)
+    {
+        $om = $event->getTarget()->getManager();
+        $import = $event->getImport();
+        $import->setEndTimestamp();
+
+        $om->persist($import);
+    }
+
+    /**
      * Disable SQL logger.
-     * 
+     *
      * @param ImportEvent $event
      */
     public function disableSQLLog(ImportEvent $event)

@@ -28,7 +28,7 @@ class ImporterEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            Events::PRE_IMPORT => array('initializeCriteria', 255),
+            Events::PRE_IMPORT => array('initializeImport', 255),
             Events::CONVERT => array('convertRecords', -255),
         );
     }
@@ -40,7 +40,7 @@ class ImporterEventSubscriber implements EventSubscriberInterface
      *
      * @param ImportEvent $event
      */
-    public function initializeCriteria(ImportEvent $event)
+    public function initializeImport(ImportEvent $event)
     {
         $import = $event->getImport();
         $history = $event->getHistory();
@@ -55,6 +55,7 @@ class ImporterEventSubscriber implements EventSubscriberInterface
             $criteria = $importer->getCriteria($history);
         }
 
+        $import->setImporter($importer->getName());
         $import->setCriteria($criteria);
     }
 
