@@ -43,9 +43,7 @@ abstract class Kernel extends BaseKernel
             new \Accard\Bundle\CoreBundle\AccardCoreBundle(),
             new \Accard\Bundle\WebBundle\AccardWebBundle(),
             new \Accard\Bundle\ResourceBundle\AccardResourceBundle(),
-            //new \Accard\Bundle\FixturesBundle\AccardFixturesBundle(),
             new \Accard\Bundle\SettingsBundle\AccardSettingsBundle(),
-            //new \Accard\Bundle\ImportBundle\AccardImportBundle(),
 
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
