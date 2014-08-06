@@ -9,6 +9,11 @@ Accard\Component\Core\Model\ImportPatient:
     type: mappedSuperclass
     table: accard_import_patient
 
+    fields:
+        descriptions:
+            type: array
+            nullable: false
+
     oneToOne:
         subject:
             targetEntity: Accard\Component\Patient\Model\PatientInterface

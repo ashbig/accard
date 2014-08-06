@@ -38,4 +38,13 @@ interface ImportTargetInterface
      * @return boolean
      */
     public function hasImportSubject();
+
+    public function getRegisteredImporters();
+    public function hasImporter($importerName);
+    public function registerImporter($importerName);
+    public function unregisterImporter($importerName);
+    public function getDescriptions($importerName);
+    public function hasDescriptions($importerName);
+    public function addDescription($importerName, $description);
+    public function clearDescriptions($importerName);
 }

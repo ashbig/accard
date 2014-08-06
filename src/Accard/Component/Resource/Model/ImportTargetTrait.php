@@ -19,10 +19,17 @@ trait ImportTargetTrait
 {
 	/**
 	 * Import subject.
-	 * 
+	 *
 	 * @var ImportSubjectInterface|null
 	 */
 	protected $subject;
+
+    /**
+     * Importer descriptions.
+     *
+     * @var array
+     */
+    protected $descriptions = array();
 
 
     /**
@@ -49,5 +56,91 @@ trait ImportTargetTrait
     public function hasImportSubject()
     {
     	return $this->subject instanceof ImportSubjectInterface;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRegisteredImporters()
+    {
+        return array_keys($this->descriptions);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasImporter($importerName)
+    {
+        return isset($this->descriptions[$importerName]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function registerImporter($importerName)
+    {
+        if (!isset($this->descriptions[$importerName])) {
+            $this->descriptions[$importerName] = array();
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unregisterImporter($importerName)
+    {
+        unset($this->descriptions[$importerName]);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescriptions($importerName)
+    {
+        if ($this->hasImporter($importerName)) {
+            return $this->descriptions[$importerName];
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasDescriptions($importerName)
+    {
+        if ($this->hasImporter($importerName) && count($this->descriptions[$importerName])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addDescription($importerName, $description)
+    {
+        if (!$this->hasImporter($importerName)) {
+            $this->registerImporter($importerName);
+        }
+
+        $this->descriptions[$importerName][] = $description;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clearDescriptions($importerName)
+    {
+        if ($this->hasImporter($importerName)) {
+            $this->descriptions[$importerName] = array();
+        }
+
+        return $this;
     }
 }
