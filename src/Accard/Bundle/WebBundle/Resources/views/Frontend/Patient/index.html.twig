@@ -12,6 +12,7 @@
 {% from 'AccardWebBundle:Frontend/Patient:macros.html.twig' import list %}
 {% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
 
+{%- set settings = accard_settings('patient') -%}
 {% set designBtn = null %}
 {% if is_granted('ROLE_ADMIN') %}
     {% set designBtn = design(path('accard_backend_patient_design'), 'accard.form.patient.design'|trans) %}
@@ -30,6 +31,7 @@
     {% endblock %}
 
     {% block patient_tabs %}
+    {% if settings.import_enabled %}
     <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
         <li class="{{ active_if_current('accard_frontend_patient_index') }}">
             <a href="{{ path('accard_frontend_patient_index') }}">{{ 'accard.form.patient.registered'|trans }}</a>
@@ -38,6 +40,7 @@
             <a href="{{ path('accard_frontend_patient_import') }}">{{ 'accard.form.patient.unregistered'|trans }}</a>
         </li>
     </ul>
+    {% endif %}
     {% endblock %}
 
     {% block patient_content %}
