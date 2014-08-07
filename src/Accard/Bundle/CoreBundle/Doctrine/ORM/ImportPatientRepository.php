@@ -11,6 +11,7 @@
 namespace Accard\Bundle\CoreBundle\Doctrine\ORM;
 
 use Accard\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use Accard\Component\Resource\Model\ImportTargetInterface;
 
 /**
  * Accard import patient repository.
@@ -19,6 +20,21 @@ use Accard\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ImportPatientRepository extends EntityRepository
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function createActivePaginator(array $criteria = null, array $orderBy = null)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+        $queryBuilder->where('import_patient.status = :status');
+        $queryBuilder->setParameter('status', ImportTargetInterface::ACTIVE);
+
+        $this->applyCriteria($queryBuilder, $criteria);
+        $this->applySorting($queryBuilder, $orderBy);
+
+        return $this->getPaginator($queryBuilder);
+    }
+
     /**
      * {@inheritdoc}
      */

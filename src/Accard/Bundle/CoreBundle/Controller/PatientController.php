@@ -59,7 +59,7 @@ class PatientController extends ResourceController
 
         $resources = $this->resourceResolver->getResource(
             $repository,
-            'createPaginator',
+            'createActivePaginator',
             array($criteria, $sorting)
         );
         $resources->setCurrentPage($request->get('page', 1), true, true);

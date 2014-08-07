@@ -17,6 +17,25 @@ namespace Accard\Component\Resource\Model;
  */
 interface ImportTargetInterface
 {
+    const ACTIVE = 1;
+    const ACCEPTED = 2;
+    const DECLINED = 3;
+
+    /**
+     * Set status.
+     *
+     * @param integer $status
+     * @return ImportTargetInterface
+     */
+    public function setStatus($status);
+
+    /**
+     * Get status.
+     *
+     * @return integer
+     */
+    public function getStatus();
+
     /**
      * Set import subject.
      *

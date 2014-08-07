@@ -13,3 +13,6 @@ Accard\Component\Core\Model\ImportPatient:
         descriptions:
             type: array
             nullable: false
+        status:
+            type: integer
+            nullable: false

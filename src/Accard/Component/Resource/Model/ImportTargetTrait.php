@@ -17,6 +17,13 @@ namespace Accard\Component\Resource\Model;
  */
 trait ImportTargetTrait
 {
+    /**
+     * Import status.
+     *
+     * @var integer
+     */
+    protected $status = ImportTargetInterface::ACTIVE;
+
 	/**
 	 * Import subject.
 	 *
@@ -31,6 +38,24 @@ trait ImportTargetTrait
      */
     protected $descriptions = array();
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     /**
      * {@inheritdoc}

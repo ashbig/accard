@@ -14,3 +14,13 @@
     {{ import_list(patients) }}
     {{ pagination(patients) }}
 {% endblock %}
+
+{% block page_javascripts %}
+
+    {% javascripts output='assets/compiled/backend.js'
+            'bundles/accardimport/js/import.js'
+        %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}

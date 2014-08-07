@@ -50,7 +50,6 @@ class FrontendMenuBuilder extends AbstractMenuBuilder
 
         $this->attachTopLink($menu, 'home', 'accard_frontend_homepage', 'fa fa-home fa-fw');
         $this->attachTopItem($menu, 'repositories', 'fa fa-archive fa-fw');
-        $this->attachTopLink($menu, 'import', 'accard_frontend_import_dashboard', 'fa fa-inbox fa-fw');
 
         if ($this->securityContext->isGranted('ROLE_ADMIN')) {
             $admin = $this->attachTopLink($menu, 'admin', 'accard_backend_dashboard', 'fa fa-dashboard fa-fw');
