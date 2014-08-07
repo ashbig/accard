@@ -117,6 +117,8 @@ accard:
             end_date: End date
             none_found: No diagnoses made
         patient:
+            registered: Registered Patients
+            unregistered: Unregistered Patients
             count: %total% patients registered.
             fields: Patient Fields
             field_count: Collecting %total% patient fields.

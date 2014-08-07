@@ -13,6 +13,7 @@ accard_core:
         diagnosis_phase:
             model: Accard\Component\Core\Model\DiagnosisPhase
 
+accard_resource: ~
 accard_settings: ~
 #accard_import: ~
 

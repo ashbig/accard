@@ -13,9 +13,9 @@ Accard\Component\Core\Model\Patient:
     oneToOne:
         target:
             targetEntity: Accard\Component\Core\Model\ImportPatientInterface
-            inversedBy: subject
+            fetch: EXTRA_LAZY
             joinColumn:
-                importTargetId: ~
+                name: targetId
 
     oneToMany:
         diagnoses:

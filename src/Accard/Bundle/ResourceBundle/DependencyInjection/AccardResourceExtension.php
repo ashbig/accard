@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
  */
-
 namespace Accard\Bundle\ResourceBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -22,49 +21,18 @@ use Accard\Bundle\ResourceBundle\DependencyInjection\Driver\DatabaseDriverFactor
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class AccardResourceExtension extends Extension
+class AccardResourceExtension extends AbstractResourceExtension
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected $configFiles = array('services', 'twig');
+
     /**
      * {@inheritdoc}
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $config);
-
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
-        $loader->load('twig.yml');
-
-        $classes = isset($config['resources']) ? $config['resources'] : array();
-
-        $this->createResourceServices($classes, $container);
-
-        if ($container->hasParameter('accard.config.classes')) {
-            $classes = array_merge($classes, $container->getParameter('accard.config.classes'));
-        }
-
-        $container->setParameter('accard.config.classes', $classes);
-    }
-
-    /**
-     * Creates resources from defined service definitions.
-     *
-     * @param array $resources
-     * @param ContainerBuilder $container
-     */
-    private function createResourceServices(array $resources, ContainerBuilder $container)
-    {
-        foreach ($resources as $resource => $config) {
-            list($prefix, $resourceName) = explode('.', $resource);
-
-            DatabaseDriverFactory::get(
-                $config['driver'],
-                $container,
-                $prefix,
-                $resourceName,
-                array_key_exists('templates', $config) ? $config['templates'] : null
-            )->load($config['classes']);
-        }
+        $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
     }
 }

@@ -11,19 +11,16 @@
 namespace Accard\Bundle\PDSBundle\Import;
 
 use DateTime;
-use Accard\Bundle\ImportBundle\Import\Importer;
-use Accard\Bundle\ImportBundle\Import\ImportBuilderInterface;
-use Accard\Bundle\ImportBundle\Model\ImportInterface;
-use Accard\Bundle\CoreBundle\Import\PatientImporterInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Accard\Bundle\PatientBundle\Import\PatientImporter;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query;
 
 /**
  * Diagnosis importer.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class DiagnosisImporter extends Importer implements PatientImporterInterface
+class DiagnosisImporter extends PatientImporter
 {
     /**
      * PDS connection.
@@ -64,9 +61,9 @@ class DiagnosisImporter extends Importer implements PatientImporterInterface
     /**
      * {@inheritdoc}
      */
-    public function run(ImportBuilderInterface $builder)
+    public function run(OptionsResolverInterface $resolver, array $criteria)
     {
-        $criteria = $this->builder->getImport()->getCriteria();
+        $records = array();
         $stmt = $this->connection->prepare($this->getSQL());
         $stmt->execute(array(
             'mds' => $criteria['start_date']->format('m/d/Y'),
@@ -77,25 +74,26 @@ class DiagnosisImporter extends Importer implements PatientImporterInterface
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $result['diagnoses'] = array();
-            $result['diagnoses'][] = sprintf('%s diagnosis on %s.', $result['diagnosis'], $result['diagnosis_date']);
+            $result['import_description'] = sprintf('%s diagnosis on %s.', $result['diagnosis'], $result['diagnosis_date']);
 
             unset($result['diagnosis'], $result['diagnosis_date']);
-            $builder->addRecord($this, $result);
+            $records[] = $resolver->resolve($result);
             unset($results[$key]);
         }
+
+        return $records;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function createNewCriteria(ImportInterface $lastImport = null)
+    public function getCriteria(array $history)
     {
-        if ($lastImport) {
-            $criteria = $lastImport->getCriteria();
-        } else {
-            return null;
+        if (empty($history)) {
+            return;
         }
+
+        $criteria = $history[0]->getCriteria();
 
         return array(
             'start_date' => $criteria['end_date'],
@@ -123,14 +121,6 @@ class DiagnosisImporter extends Importer implements PatientImporterInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getRecordViewClass()
-    {
-        return 'Accard\Bundle\CoreBundle\Import\PatientRecordView';
-    }
-
-    /**
      * Get SQL statement.
      *
      * @return string
@@ -146,7 +136,7 @@ class DiagnosisImporter extends Importer implements PatientImporterInterface
                 FIRST_NAME,
                 LAST_NAME,
                 GENDER,
-                RACE,
+                /*RACE,*/
                 TO_CHAR(DATE_OF_BIRTH, 'mm/dd/yyyy') AS DATE_OF_BIRTH,
                 TO_CHAR(DATE_OF_DEATH, 'mm/dd/yyyy') AS DATE_OF_DEATH
             FROM (SELECT
@@ -156,7 +146,7 @@ class DiagnosisImporter extends Importer implements PatientImporterInterface
                     MP.PATIENT_FNAME AS FIRST_NAME,
                     MP.PATIENT_LNAME AS LAST_NAME,
                     MP.GENDER_CODE AS GENDER,
-                    MP.RACE_CODE AS RACE,
+                    /*MP.RACE_CODE AS RACE,*/
                     MP.BIRTH_DATE AS DATE_OF_BIRTH,
                     MP.DECEASED_DATE AS DATE_OF_DEATH,
                     ROW_NUMBER() OVER (PARTITION BY MP.HUP_MRN ORDER BY DX.CODING_DATE) AS ROW_NUM

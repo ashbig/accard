@@ -37,6 +37,28 @@ class ResourceResolvingFactory extends ContainerAware
     }
 
     /**
+     * Resolve subject.
+     *
+     * @param string $resource
+     * @return ResourceInterface
+     */
+    public function resolveSubject($resource)
+    {
+        return $this->resolveResource($resource, ResourceInterface::SUBJECT);
+    }
+
+    /**
+     * Resolve target.
+     *
+     * @param string $resource
+     * @return ResourceInterface
+     */
+    public function resolveTarget($resource)
+    {
+        return $this->resolveResource("import_{$resource}", ResourceInterface::TARGET);
+    }
+
+    /**
      * Get resource manager.
      *
      * @param string $resource

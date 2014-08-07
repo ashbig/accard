@@ -11,19 +11,16 @@
 namespace Accard\Bundle\PDSBundle\Import;
 
 use DateTime;
-use Accard\Bundle\ImportBundle\Import\Importer;
-use Accard\Bundle\ImportBundle\Import\ImportBuilderInterface;
-use Accard\Bundle\ImportBundle\Model\ImportInterface;
-use Accard\Bundle\CoreBundle\Import\PatientImporterInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Accard\Bundle\PatientBundle\Import\PatientImporter;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query;
 
 /**
  * Test importer.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class TestImporter extends Importer implements PatientImporterInterface
+class TestImporter extends PatientImporter
 {
     /**
      * PDS connection.
@@ -61,9 +58,9 @@ class TestImporter extends Importer implements PatientImporterInterface
     /**
      * {@inheritdoc}
      */
-    public function run(ImportBuilderInterface $builder)
+    public function run(OptionsResolverInterface $resolver, array $criteria)
     {
-        $criteria = $this->builder->getImport()->getCriteria();
+        $records = array();
         $stmt = $this->connection->prepare($this->getSQL());
         $stmt->execute(array(
             'mds' => $criteria['start_date']->format('m/d/Y'),
@@ -74,25 +71,27 @@ class TestImporter extends Importer implements PatientImporterInterface
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $result['tests'] = array();
-            $result['tests'][] = sprintf('%s test on %s.', $result['result'], $result['result_date']);
+            $result['import_description'] = sprintf('%s test on %s.', $result['result'], $result['result_date']);
 
             unset($result['result'], $result['result_date']);
-            $builder->addRecord($this, $result);
+            $records[] = $resolver->resolve($result);
             unset($results[$key]);
         }
+
+
+        return $records;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function createNewCriteria(ImportInterface $lastImport = null)
+    public function getCriteria(array $history)
     {
-        if ($lastImport) {
-            $criteria = $lastImport->getCriteria();
-        } else {
-            return null;
+        if (empty($history)) {
+            return;
         }
+
+        $criteria = $history[0]->getCriteria();
 
         return array(
             'start_date' => $criteria['end_date'],
@@ -119,14 +118,6 @@ class TestImporter extends Importer implements PatientImporterInterface
         return 'pds_test';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRecordViewClass()
-    {
-        return 'Accard\Bundle\CoreBundle\Import\PatientRecordView';
-    }
-
     private function getSQL()
     {
         $tests = implode(', ', $this->tests);
@@ -138,7 +129,7 @@ class TestImporter extends Importer implements PatientImporterInterface
                 FIRST_NAME,
                 LAST_NAME,
                 GENDER,
-                RACE,
+                /*RACE,*/
                 DATE_OF_BIRTH,
                 DATE_OF_DEATH
             FROM(

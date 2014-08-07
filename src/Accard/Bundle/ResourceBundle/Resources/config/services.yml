@@ -14,7 +14,9 @@ parameters:
     accard.event_subscriber.kernel_controller.class: Accard\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber
     accard.import.resource_factory.class: Accard\Bundle\ResourceBundle\Import\ResourceResolvingFactory
     accard.import.registry.class: Accard\Bundle\ResourceBundle\Import\Registry
+    accard.import.record_resolver.class: Accard\Bundle\ResourceBundle\Import\RecordResolver
     accard.import.runner.class: Accard\Bundle\ResourceBundle\Import\Runner
+    accard.import.event_subscriber.class: Accard\Bundle\ResourceBundle\EventListener\ImporterEventSubscriber
 
 services:
     accard.controller.configuration_factory:
@@ -50,9 +52,34 @@ services:
         class: %accard.import.resource_factory.class%
         calls: [["setContainer", ["@service_container"]]]
 
+    accard.import.record_resolver:
+        class: %accard.import.record_resolver.class%
+        arguments:
+            - @accard.import.resource_factory
+
     accard.import.runner:
         class: %accard.import.runner.class%
         arguments:
             - @event_dispatcher
             - @accard.import.resource_factory
             - @accard.import.registry
+
+    accard.import.event.post_import:
+        class: %accard.import.event_subscriber.class%
+        tags: [{ name: kernel.event_subscriber }]
+
+    accard.importer.static:
+        class: Accard\Bundle\ResourceBundle\Import\StaticImporter
+        tags:
+            - { name: accard.importer, importer: static }
+
+
+
+
+
+
+
+
+
+
+

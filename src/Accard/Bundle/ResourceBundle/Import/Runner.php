@@ -14,6 +14,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Accard\Bundle\ResourceBundle\Event\ImportEvent;
 use Accard\Bundle\ResourceBundle\Import\Events;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
@@ -26,7 +27,8 @@ class Runner
     protected $dispatcher;
     protected $factory;
     protected $registry;
-    protected $accessor;
+    protected $option;
+    protected $import;
 
     public function __construct(EventDispatcherInterface $dispatcher,
                                 ResourceResolvingFactory $factory,
@@ -35,10 +37,27 @@ class Runner
         $this->dispatcher = $dispatcher;
         $this->factory = $factory;
         $this->registry = $registry;
-        $this->accessor = PropertyAccess::createPropertyAccessor();
+
+        $this->option = $this->factory->resolveResource('option', ResourceInterface::NONE);
+        $this->import = $this->factory->resolveResource('import', ResourceInterface::NONE);
     }
 
+    /**
+     * Get event dispatcher.
+     *
+     * @return EventDispatcherInterface
+     */
+    public function getEventDispatcher()
+    {
+        return $this->dispatcher;
+    }
 
+    /**
+     * Run importer.
+     *
+     * @param ImporterInterface|string $importer
+     * @return array|ImportTargetInterface[]
+     */
     public function run($importer)
     {
         if (!$importer instanceof ImporterInterface) {
@@ -50,26 +69,49 @@ class Runner
         $subject = $this->factory->resolveResource($subjectName, ResourceInterface::SUBJECT);
         $target = $this->factory->resolveResource('import_'.$subjectName, ResourceInterface::TARGET);
         $event = new ImportEvent($subject, $target);
+        $resolver = new OptionsResolver();
+        $this->configureDefaultResolver($resolver, $subject, $target);
 
         $evd->dispatch(Events::INITIALIZE, $event);
         $event->setImporter($importer);
-
+        $event->setHistory($this->import->getRepository()->getAllFor($importer->getName()));
         $evd->dispatch(Events::PRE_IMPORT, $event);
-
-        $resolver = new OptionsResolver();
         $importer->configureResolver($resolver);
-        $records = $importer->run($resolver);
-
+        $event->setRecords($importer->run($resolver, $event->getImport()->getCriteria()));
+        $evd->dispatch(Events::CONVERT, $event);
         $evd->dispatch(Events::POST_IMPORT, $event);
-
         $event->setImporter(null);
         $evd->dispatch(Events::FINISH, $event);
+
+        return $event->getRecords();
     }
 
-    public function runAll()
+    /**
+     * Add default resolver values.
+     *
+     * @param OptionsResolverInterface $resolver
+     * @param ResourceInterface $subject
+     * @param ResourceInterface $target
+     */
+    private function configureDefaultResolver(OptionsResolverInterface $resolver,
+                                              ResourceInterface $subject,
+                                              ResourceInterface $target)
     {
-        foreach ($this->registry->getImporters() as $name => $importer) {
-            $this->run($importer);
-        }
+        $resolver->setDefaults(array(
+            'subject_resource' => $subject,
+            'target_resource' => $target,
+            'option_resource' => $this->option,
+            'import_resource' => $this->import,
+        ));
+
+        $resolver->setRequired(array('import_description'));
+
+        $resolver->setAllowedTypes(array(
+            'subject_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
+            'target_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
+            'option_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
+            'import_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
+            'import_description' => 'string',
+        ));
     }
 }

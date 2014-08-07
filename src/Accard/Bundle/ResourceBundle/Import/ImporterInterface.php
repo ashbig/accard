@@ -11,6 +11,8 @@
 namespace Accard\Bundle\ResourceBundle\Import;
 
 use Accard\Bundle\ResourceBundle\Import\ResourceInterface;
+use Accard\Bundle\ResourceBundle\Event\ImportEvent;
+use Accard\Component\Resource\Model\ImportTargetInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
@@ -25,8 +27,9 @@ interface ImporterInterface
      * Run importer.
      *
      * @param OptionsResolverInterface $resolver
+     * @param array $criteria
      */
-    public function run(OptionsResolverInterface $resolver = null);
+    public function run(OptionsResolverInterface $resolver, array $criteria);
 
     /**
      * Configure options resolver.
@@ -34,6 +37,20 @@ interface ImporterInterface
      * @param OptionsResolverInterface $resolver
      */
     public function configureResolver(OptionsResolverInterface $resolver);
+
+    /**
+     * Get criteria.
+     *
+     * @return array
+     */
+    public function getCriteria(array $history);
+
+    /**
+     * Get default criteria.
+     *
+     * @return array
+     */
+    public function getDefaultCriteria();
 
     /**
      * Get subject.

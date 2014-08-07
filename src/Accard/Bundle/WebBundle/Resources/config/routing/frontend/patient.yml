@@ -15,6 +15,16 @@ accard_frontend_patient_index:
             sortable: true
             paginate: 25
 
+accard_frontend_patient_import:
+    pattern: /import
+    methods: [GET]
+    defaults:
+        _controller: accard.controller.patient:importAction
+        _accard:
+            template: AccardWebBundle:Frontend/Patient:import.html.twig
+            sortable: true
+            paginate: 25
+
 accard_frontend_patient_show:
     pattern: /{id}
     methods: [GET]

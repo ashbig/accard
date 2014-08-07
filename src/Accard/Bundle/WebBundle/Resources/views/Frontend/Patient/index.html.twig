@@ -10,6 +10,7 @@
 {% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import create, design %}
 {% from 'AccardWebBundle:Common/Macros:misc.html.twig' import pagination, page_title %}
 {% from 'AccardWebBundle:Frontend/Patient:macros.html.twig' import list %}
+{% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
 
 {% set designBtn = null %}
 {% if is_granted('ROLE_ADMIN') %}
@@ -18,6 +19,7 @@
 
 {% block content %}
 
+    {% block patient_title %}
     {{ page_title(
         'accard.interface.frontend.titles.index_patient'|trans,
         [
@@ -25,8 +27,21 @@
             designBtn
         ]
     )}}
+    {% endblock %}
 
-    {{ list(patients) }}
-    {{ pagination(patients) }}
+    {% block patient_tabs %}
+    <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
+        <li class="{{ active_if_current('accard_frontend_patient_index') }}">
+            <a href="{{ path('accard_frontend_patient_index') }}">{{ 'accard.form.patient.registered'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_patient_import') }}{{ active_if_current('accard_frontend_import_importer_records') }}">
+            <a href="{{ path('accard_frontend_patient_import') }}">{{ 'accard.form.patient.unregistered'|trans }}</a>
+        </li>
+    </ul>
+    {% endblock %}
 
+    {% block patient_content %}
+        {{ list(patients) }}
+        {{ pagination(patients) }}
+    {% endblock %}
 {% endblock %}

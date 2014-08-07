@@ -19,6 +19,7 @@ class Events
 {
     const INITIALIZE = 'accard.import.initialize';
     const PRE_IMPORT = 'accard.import.pre_import';
-    const POST_IMPORT = 'accard.import.pre_import';
+    const CONVERT = 'accard.import.convert';
+    const POST_IMPORT = 'accard.import.post_import';
     const FINISH = 'accard.import.finish';
 }

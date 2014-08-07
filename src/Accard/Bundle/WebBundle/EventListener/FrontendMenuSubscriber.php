@@ -42,9 +42,6 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
 
         if ('patient' === $baseRoute) {
             $patient->setCurrent(true);
-        } elseif ('import' === $baseRoute) {
-            $import = $menu->getchild('import');
-            $import->setCurrent(true);
         }
 
         //Diagnosis Repository Item

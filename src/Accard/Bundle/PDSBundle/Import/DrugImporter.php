@@ -11,19 +11,16 @@
 namespace Accard\Bundle\PDSBundle\Import;
 
 use DateTime;
-use Accard\Bundle\ImportBundle\Import\Importer;
-use Accard\Bundle\ImportBundle\Import\ImportBuilderInterface;
-use Accard\Bundle\ImportBundle\Model\ImportInterface;
-use Accard\Bundle\CoreBundle\Import\PatientImporterInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Accard\Bundle\PatientBundle\Import\PatientImporter;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Query;
 
 /**
  * Drug importer.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class DrugImporter extends Importer implements PatientImporterInterface
+class DrugImporter extends PatientImporter
 {
     /**
      * PDS connection.
@@ -63,9 +60,9 @@ class DrugImporter extends Importer implements PatientImporterInterface
     /**
      * {@inheritdoc}
      */
-    public function run(ImportBuilderInterface $builder)
+    public function run(OptionsResolverInterface $resolver, array $criteria)
     {
-        $criteria = $this->builder->getImport()->getCriteria();
+        $records = array();
         $stmt = $this->connection->prepare($this->getSQL());
         $stmt->execute(array(
             'mds' => $criteria['start_date']->format('m/d/Y'),
@@ -76,25 +73,26 @@ class DrugImporter extends Importer implements PatientImporterInterface
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
-            $result['medications'] = array();
-            $result['medications'][] = sprintf('%s ordered on %s.', $result['medication'], $result['medication_date']);
+            $result['import_description'] = sprintf('%s ordered on %s.', $result['medication'], $result['medication_date']);
 
-            unset($result['medication'], $result['medication_date']);
-            $builder->addRecord($this, $result);
+            unset($result['diagnosis'], $result['diagnosis_date']);
+            $records[] = $resolver->resolve($result);
             unset($results[$key]);
         }
+
+        return $records;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function createNewCriteria(ImportInterface $lastImport = null)
+    public function getCriteria(array $history)
     {
-        if (!$lastImport) {
+        if (empty($history)) {
             return;
         }
 
-        $criteria = $lastImport->getCriteria();
+        $criteria = $history[0]->getCriteria();
 
         return array(
             'start_date' => $criteria['end_date'],
@@ -121,14 +119,6 @@ class DrugImporter extends Importer implements PatientImporterInterface
         return 'pds_drug';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRecordViewClass()
-    {
-        return 'Accard\Bundle\CoreBundle\Import\PatientRecordView';
-    }
-
     private function getSQL()
     {
         $drugs = implode(', ', $this->drugs);
@@ -140,7 +130,7 @@ class DrugImporter extends Importer implements PatientImporterInterface
             FIRST_NAME,
             LAST_NAME,
             GENDER,
-            RACE,
+            /*RACE,*/
             DATE_OF_BIRTH,
             DATE_OF_DEATH
         FROM (SELECT

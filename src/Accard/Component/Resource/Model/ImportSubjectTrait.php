@@ -21,7 +21,7 @@ trait ImportSubjectTrait
 {
 	/**
 	 * Import target.
-	 * 
+	 *
 	 * @var ImportTargetInterface|null
 	 */
 	protected $target;
@@ -36,7 +36,7 @@ trait ImportSubjectTrait
     		throw new ImportTargetAlreadySetException($target, $this);
     	}
 
-    	$target->setSubject($this);
+    	$target->setImportSubject($this);
     	$this->target = $target;
 
     	return $this;

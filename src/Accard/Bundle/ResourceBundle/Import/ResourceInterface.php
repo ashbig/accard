@@ -23,6 +23,7 @@ interface ResourceInterface
 {
     const SUBJECT = 0;
     const TARGET = 1;
+    const NONE = 2;
 
 
     /**

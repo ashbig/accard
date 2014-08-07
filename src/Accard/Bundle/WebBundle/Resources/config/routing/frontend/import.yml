@@ -5,67 +5,20 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-accard_frontend_import_dashboard:
-    pattern: /
+accard_frontend_import_accept:
+    pattern: /accept/{subject}/{id}
     methods: [GET]
+    requirements:
+        subject: '[a-z_-]{3,36}'
+        id: \d+
     defaults:
-        _controller: accard.controller.import:dashboardAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:dashboard.html.twig
+        _controller: accard.controller.import:acceptAction
 
-accard_frontend_import_importer:
-    pattern: /importers
+accard_frontend_import_decline:
+    pattern: /decline/{subject}/{id}
     methods: [GET]
+    requirements:
+        subject: '[a-z_-]{3,36}'
+        id: \d+
     defaults:
-        _controller: accard.controller.import:listImportersAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:listImporters.html.twig
-
-accard_frontend_import_importer_show:
-    pattern: /importer/{importer}
-    methods: [GET]
-    requirements: { importer: '[a-z_-]{3,36}' }
-    defaults:
-        _controller: accard.controller.import:showImporterAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:showImporter.html.twig
-
-accard_frontend_import_importer_records:
-    pattern: /importer/{importer}/records
-    methods: [GET]
-    requirements: { importer: '[a-z_-]{3,36}' }
-    defaults:
-        _controller: accard.controller.import:listRecordsByImporterAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:listRecords.html.twig
-
-accard_frontend_import_record:
-    pattern: /records
-    methods: [GET]
-    defaults:
-        _controller: accard.controller.import:listRecordsAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:listRecords.html.twig
-
-accard_frontend_import_record_show:
-    pattern: /record/{id}/show
-    methods: [GET]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.import:showRecordAction
-        _accard:
-            template: AccardWebBundle:Frontend\Import:showRecord.html.twig
-
-accard_frontend_import_record_accept:
-    pattern: /record/{id}/accept
-    methods: [GET]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.import:acceptRecordAction
-
-accard_frontend_import_record_decline:
-    pattern: /record/{id}/decline
-    methods: [GET]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.import:declineRecordAction
+        _controller: accard.controller.import:declineAction
