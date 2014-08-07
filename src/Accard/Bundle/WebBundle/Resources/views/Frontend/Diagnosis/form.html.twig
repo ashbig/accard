@@ -1,0 +1,34 @@
+
+    <div class="col-lg-3">
+        <h3>Select Patient</h3>
+        <p>Select the patient to apply the diagnosis to.</p>
+    </div>
+    <div class = 'col-lg-9'>
+        <div class = 'well'>
+            <div class="form-group{% if form.patient.vars.errors|length %} has-error{% endif %}">
+                {{ form_widget(form.patient, {
+                    widget_addon_append: { text: 'accard.form.patient.name'|trans },
+                    attr: {
+                        placeholder: 'accard.form.patient.name'|trans 
+                    }
+                }) }}
+                {% if form.patient.vars.errors|length %}
+                    {{ form_errors(form.patient) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <h3>Create Diagnosis</h3>
+        <p>Create the diagnosis.</p>
+    </div>
+    <div class = 'col-lg-9'>
+        <div class = 'well'>
+
+                {{form_row(form.startDate)}}
+                
+                {{form_row(form.endDate)}}
+ 
+        </div>
+    </div>

@@ -19,6 +19,10 @@ accard_frontend_patient:
     resource: @AccardWebBundle/Resources/config/routing/frontend/patient.yml
     prefix: /patient
 
+accard_frontend_diagnosis:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/diagnosis.yml
+    prefix: /diagnosis
+
 accard_frontend_import:
     resource: @AccardWebBundle/Resources/config/routing/frontend/import.yml
     prefix: /import

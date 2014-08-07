@@ -82,7 +82,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('model')->defaultValue('Accard\Component\Diagnosis\Model\Diagnosis')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\DiagnosisBundle\Doctrine\ORM\DiagnosisRepository')->end()
-                                ->scalarNode('form')->defaultValue('Accard\Bundle\DiagnosisBundle\Form\Type\DiagnosisType')->end()
+                                ->scalarNode('form')->end()
                             ->end()
                         ->end()
                     ->end()

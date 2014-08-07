@@ -161,6 +161,14 @@ class Patient implements PatientInterface
     /**
      * {@inheritdoc}
      */
+    public function getFullName()
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getDateOfBirth()
     {
         return $this->dateOfBirth;

@@ -72,6 +72,13 @@ interface PatientInterface extends FieldSubjectInterface
     public function setLastName($lastName);
 
     /**
+     * Get full name.
+     * 
+     * @return string
+     */
+    public function getFullName();
+
+    /**
      * Get date of birth.
      *
      * @return DateTime

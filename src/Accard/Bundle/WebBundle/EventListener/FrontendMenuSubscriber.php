@@ -36,10 +36,22 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
         $baseRoute = explode('_', $route)[0];
 
         $repositories = $menu->getChild('repositories');
+
+        //Patient Repository Item
         $patient = $this->createSimpleItem($event, $repositories, 'patient', 'patient_index', 'patients');
 
         if ('patient' === $baseRoute) {
             $patient->setCurrent(true);
+        } elseif ('import' === $baseRoute) {
+            $import = $menu->getchild('import');
+            $import->setCurrent(true);
+        }
+
+        //Diagnosis Repository Item
+        $diagnosis = $this->createSimpleItem($event, $repositories, 'diagnosis', 'diagnosis_index', 'diagnoses');
+
+        if ('diagnosis' === $baseRoute) {
+            $diagnosis->setCurrent(true);
         } elseif ('import' === $baseRoute) {
             $import = $menu->getchild('import');
             $import->setCurrent(true);

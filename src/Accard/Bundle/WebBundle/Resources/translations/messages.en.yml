@@ -36,11 +36,13 @@ accard:
             theme_settings: Theme
             users: Users
             design: Design
+            diagnosis: Diagnosis
             patient: Patient
             options: Options
         frontend:
             home: Home
             repositories: Repositories
+            diagnoses: Diagnoses
             patients: Patients
             import: Import
             admin: Admin Dashboard
@@ -62,6 +64,10 @@ accard:
                 update_option: Updating Option, %option%
         frontend:
             titles:
+                index_diagnosis: Browse Diagnoses
+                show_diagnosis: %diagnosis%
+                create_diagnosis: Creating a new Diagnosis
+                update_diagnosis: Updating Diagnosis, %diagnosis%
                 index_patient: Browse Patients
                 show_patient: %patient%
                 create_patient: Creating a New Patient
@@ -102,6 +108,13 @@ accard:
             option: Option
             create: Create Option Value
             manage: Manage Option Values
+        diagnosis:
+            design: Design Diagnosis
+            diagnosis: Diagnosis
+            counter: %total% diagnosese made
+            create: Create Diagnosis
+            start_date: Start date
+            end_date: End date
         patient:
             count: %total% patients registered.
             fields: Patient Fields
