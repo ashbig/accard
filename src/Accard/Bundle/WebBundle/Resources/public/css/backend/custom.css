@@ -26,6 +26,7 @@ body > .alert {
     z-index: 1050;
     width: 100%;
     border-radius: 0;
+    text-align: center;
 }
 
 
