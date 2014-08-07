@@ -119,6 +119,7 @@ accard:
         patient:
             registered: Registered Patients
             unregistered: Unregistered Patients
+            import_disabled: 'Patient import has been disabled, access denied.'
             count: %total% patients registered.
             fields: Patient Fields
             field_count: Collecting %total% patient fields.

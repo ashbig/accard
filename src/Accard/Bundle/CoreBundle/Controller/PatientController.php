@@ -11,6 +11,7 @@
 namespace Accard\Bundle\CoreBundle\Controller;
 
 use Accard\Bundle\ResourceBundle\Controller\ResourceController;
+use Accard\Bundle\SettingsBundle\Model\Settings;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 
@@ -52,6 +53,14 @@ class PatientController extends ResourceController
      */
     public function importAction(Request $request)
     {
+        $enabled = $this->getPatientSettings()->get('import_enabled');
+
+        if (!$enabled) {
+            throw $this->createAccessDeniedException(
+                $this->get('translator')->trans('accard.form.patient.import_disabled')
+            );
+        }
+
         $criteria = $this->config->getCriteria();
         $sorting = $this->config->getSorting();
 
@@ -73,6 +82,16 @@ class PatientController extends ResourceController
         ;
 
         return $this->handleView($view);
+    }
+
+    /**
+     * Get patient settings.
+     *
+     * @return Settings
+     */
+    private function getPatientSettings()
+    {
+        return $this->get('accard.settings.manager')->load('patient');
     }
 
     /**
