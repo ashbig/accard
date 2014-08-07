@@ -17,29 +17,23 @@
     <table class="diagnosis table table-bordered table-striped table-hover">
         <thead>
             <tr>
-                <th class="diagnosis">{{ accard_resource_sort('diagnosis', 'accard.form.diagnosis.diagnosis'|trans) }}</th>
-                <th class="patient">{{ accard.form.diagnosis.patientName|trans }}</th>
+                <th class="patient">{{ 'accard.form.patient.full_name'|trans }}</th>
                 <th class="start-date">{{ accard_resource_sort('startDate', 'accard.form.diagnosis.start_date'|trans) }}</th>
                 <th class='end-date'>{{ accard_resource_sort('endDate', 'accard.form.diagnosis.end_date'|trans )}}</th>
-                <th class="remissions">{{ accard_resource_sort('remissions', 'accard.form.patient.remissions'|trans) }}</th>
-                <th class="active">{{ 'accard.form.diagnosis.active'|trans }}</th>
                 <th class="actions"></th>
             </tr>
         </thead>
         <tbody>
         {% for diagnosis in diagnoses %}
-            <tr id="{{ patient.id }}">
-                <td class="name">{{ diagnosis.name }}</td>
-                <td class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</td>
+            <tr id="{{ diagnosis.id }}">
+                <td class="patient-name">{{ diagnosis.patient.fullName }}</td>
                 <td class="start-of-diagnosis">{{ diagnosis.startDate|localizeddate('medium', 'none') }}</td>
                 <td class='end-date'>{{ diagnosis.endDate|localizeddate('medium', 'none') }}
-                <td class='remissions-count'>{{ diagnosis.remissionsCount }}
-                <td class="active text-center text-success">{%- if diagnosis.active %}{{ icon('fa fa-check') }}{% endif -%}</td>
                 <td class="actions">
                     <div class="pull-right">
-                        {{ show(path('accard_frontend_diagnosis_show', {'id': patient.id}), null, 'xs') }}
-                        {{ edit(path('accard_frontend_diagnosis_update', {'id': patient.id}), null, 'xs') }}
-                        {{ delete(path('accard_frontend_diagnosis_delete', {'id': patient.id}), null, 'xs') }}
+                        {{ show(path('accard_frontend_diagnosis_show', {'id': diagnosis.id}), null, 'xs') }}
+                        {{ edit(path('accard_frontend_diagnosis_update', {'id': diagnosis.id}), null, 'xs') }}
+                        {{ delete(path('accard_frontend_diagnosis_delete', {'id': diagnosis.id}), null, 'xs') }}
                     </div>
                 </td>
             </tr>

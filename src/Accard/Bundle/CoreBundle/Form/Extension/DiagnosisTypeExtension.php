@@ -28,11 +28,11 @@ class DiagnosisTypeExtension extends AbstractTypeExtension
      */
     protected $patientClass;
 
-    // *
-    //  * Phase class FQCN.
-    //  *
-    //  * @var string
-     
+    /**
+     * Phase class FQCN.
+     *
+     * @var string
+    */
     // protected $phaseClass;
 
 
@@ -40,6 +40,7 @@ class DiagnosisTypeExtension extends AbstractTypeExtension
      * Constructor.
      *
      * @param string $patientClass
+     * @param string $phaseClass
      */
     public function __construct($patientClass /*, $phaseClass*/)
     {
