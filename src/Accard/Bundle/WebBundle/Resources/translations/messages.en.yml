@@ -43,7 +43,7 @@ accard:
             repositories: Repositories
             patients: Patients
             import: Import
-            admin: Admin Dashboard
+            admin: Administration
     interface:
         backend:
             title: Accard Administration
