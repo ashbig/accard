@@ -341,7 +341,7 @@ class Patient implements PatientInterface
     /**
      * {@inheritdoc}
      */
-    public function getFieldByNAme($fieldName)
+    public function getFieldByName($fieldName)
     {
         foreach ($this->fields as $field) {
             if ($field->getName() === $fieldName) {
