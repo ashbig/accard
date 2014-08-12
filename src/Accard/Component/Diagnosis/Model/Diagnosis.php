@@ -13,11 +13,14 @@ namespace Accard\Component\Diagnosis\Model;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Accard\Component\Field\Model\FieldValueInterface as BaseFieldValueInterface;
+use Accard\Component\Option\Model\OptionValueInterface;
 
 /**
  * Accard diagnosis model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce <piercedy@upenn.edu>
  */
 class Diagnosis implements DiagnosisInterface
 {
@@ -72,12 +75,21 @@ class Diagnosis implements DiagnosisInterface
 
 
     /**
+     * Fields
+     *
+     * @var Collection|FieldInterface[]
+     */
+    protected $fields;
+
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->recurrences = new ArrayCollection();
         $this->comorbidities = new ArrayCollection();
+        $this->fields = new ArrayCollection();
     }
 
     /**
@@ -242,5 +254,87 @@ class Diagnosis implements DiagnosisInterface
         }
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFields(Collection $fields)
+    {
+        foreach ($fields as $field) {
+            $this->addField($field);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addField(BaseFieldValueInterface $field)
+    {
+        if (!$this->hasField($field)) {
+            $field->setDiagnosis($this);
+            $this->fields->add($field);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeField(BaseFieldValueInterface $field)
+    {
+        if ($this->hasField($field)) {
+            $this->fields->removeElement($field);
+            $field->setDiagnosis(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasField(BaseFieldValueInterface $field)
+    {
+        return $this->fields->contains($field);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasFieldByName($fieldName)
+    {
+        foreach ($this->fields as $field) {
+            if ($field->getName() === $fieldName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFieldByName($fieldName)
+    {
+        foreach ($this->fields as $field) {
+            if ($field->getName() === $fieldName) {
+                return $field;
+            }
+        }
+
+        return null;
     }
 }
