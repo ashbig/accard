@@ -27,4 +27,15 @@ class DiagnosisRepository extends EntityRepository
     {
         return 'diagnosis';
     }
+
+    /**
+     * Get patient count.
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->getQueryBuilder()->select('COUNT(diagnosis.id)')->getQuery()->getSingleScalarResult();
+    }
+
 }

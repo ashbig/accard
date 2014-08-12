@@ -1,14 +1,21 @@
 accard:
     diagnosis:
+        title: Diagnosis
         form:
             start_date: Start Date
             end_date: End Date
             patient: Patient
-            fields: Diagnosis Fields
         action:
+            show: %diagnosis%
+            index: Browse Diagnosis
             create: Create Diagnosis
             design: Design Diagnosis
             manage: Manage Diagnoses
         message:
-            count: %total% patients registered.
-            count_fields: Collecting %total% patient fields.
+            count: %total% diagnoses registered.
+            count_fields: Collecting %total% diagnosis fields.
+        field:
+            title: Diagnosis Fields
+            create: Create Diagnosis Field
+            update: Update Diagnosis Field
+            none_found: No Diagnosis Fields found
