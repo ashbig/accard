@@ -37,6 +37,7 @@ accard:
             users: Users
             design: Design
             patient: Patient
+            diagnosis: Diagnosis
             options: Options
         frontend:
             home: Home
@@ -54,19 +55,11 @@ accard:
                 settings: Settings
                 general_settings: General Settings
                 theme_settings: Theme Settings
-                design_patient: Design Patient
-                list_patient_fields: Patient Fields
-                create_patient_field: Create a new patient field
-                update_patient_field: Update patient field
                 manage_options: Manage Options
                 create_option: Creating Option
                 update_option: Updating Option, %option%
         frontend:
             titles:
-                index_diagnosis: Browse Diagnoses
-                show_diagnosis: %diagnosis%
-                create_diagnosis: Creating a New Diagnosis
-                update_diagnosis: Updating Diagnosis, %diagnosis%
                 login: Accard Login
         nav:
             import:
