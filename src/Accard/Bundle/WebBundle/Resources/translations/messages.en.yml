@@ -44,6 +44,7 @@ accard:
             patients: Patients
             import: Import
             admin: Administration
+            diagnoses: Diagnoses
     interface:
         backend:
             title: Accard Administration
@@ -62,10 +63,10 @@ accard:
                 update_option: Updating Option, %option%
         frontend:
             titles:
-                index_patient: Browse Patients
-                show_patient: %patient%
-                create_patient: Creating a New Patient
-                update_patient: Updating Patient, %patient%
+                index_diagnosis: Browse Diagnoses
+                show_diagnosis: %diagnosis%
+                create_diagnosis: Creating a New Diagnosis
+                update_diagnosis: Updating Diagnosis, %diagnosis%
                 login: Accard Login
         nav:
             import:
@@ -102,35 +103,9 @@ accard:
             option: Option
             create: Create Option Value
             manage: Manage Option Values
-        patient:
-            registered: Registered Patients
-            unregistered: Unregistered Patients
-            import_disabled: 'Patient import has been disabled, access denied.'
-            count: %total% patients registered.
-            fields: Patient Fields
-            field_count: Collecting %total% patient fields.
-            none_found: No patients found.
-            mrn: MRN
-            mrn_extended: Medical Record Number
-            first_name: First Name
-            last_name: Last Name
-            date_of_birth: Date of Birth
-            is_deceased: Is this patient deceased?
-            deceased: Deceased
-            date_of_death: Date of Death
-            gender: Gender
-            update_gender: Update Gender Options
-            race: Race
-            update_race: Update Race Options
-            create: Create Patient
-            manage: Manage Patients
-            design: Design Patient
-        patient_type:
-            id: Id
-            name: Name
-            presentation: Presentation
-            type: Type
         login:
             username: Username
             password: Password
             login: Log-in
+    patient:
+        button:

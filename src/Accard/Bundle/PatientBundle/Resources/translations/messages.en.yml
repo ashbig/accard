@@ -1,0 +1,41 @@
+accard:
+    patient:
+        registered: Registered Patients
+        unregistered: Unregistered Patients
+        form:
+            mrn: MRN
+            mrn_extended: Medical Record Number
+            first_name: First Name
+            last_name: Last Name
+            full_name: Full Name
+            date_of_birth: Date of Birth
+            is_deceased: Is this patient deceased?
+            deceased: Deceased
+            date_of_death: Date of Death
+            gender: Gender
+            race: Race
+            fields: Patient Fields
+        action:
+            create: Create Patient
+            manage: Manage Patients
+            design: Design Patient
+            update: Update Patient
+            update_gender: Update Gender Options
+            update_race: Update Race Options
+        message:
+            count: %total% patients registered.
+            count_fields: Collecting %total% patient fields.
+            import_disabled: 'Patient import has been disabled, access denied.'
+            none_found: No patients found.
+            not_found: Patient %patient% not found.
+        title:
+            index: Browse Patients
+            show: %patient%
+            create: Creating a New Patient
+            update: Updating Patient, %patient%
+    patient_type:
+        form:
+            id: Id
+            name: Name
+            presentation: Presentation
+            type: Type

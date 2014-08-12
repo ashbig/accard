@@ -1,0 +1,14 @@
+accard:
+    diagnosis:
+        form:
+            start_date: Start Date
+            end_date: End Date
+            patient: Patient
+            fields: Diagnosis Fields
+        action:
+            create: Create Diagnosis
+            design: Design Diagnosis
+            manage: Manage Diagnoses
+        message:
+            count: %total% patients registered.
+            count_fields: Collecting %total% patient fields.
