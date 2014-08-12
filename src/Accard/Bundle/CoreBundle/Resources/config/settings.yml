@@ -10,6 +10,7 @@ parameters:
     accard.settings_schema.general.class: Accard\Bundle\CoreBundle\Settings\GeneralSettingsSchema
     accard.settings_schema.theme.class: Accard\Bundle\CoreBundle\Settings\ThemeSettingsSchema
     accard.settings_schema.patient.class: Accard\Bundle\CoreBundle\Settings\PatientSettingsSchema
+    accard.settings_schema.diagnosis.class: Accard\Bundle\CoreBundle\Settings\DiagnosisSettingsSchema
 
 services:
 
@@ -27,3 +28,8 @@ services:
         class: %accard.settings_schema.patient.class%
         tags:
             - { name: accard.settings_schema, namespace: patient }
+
+    accard.settings_schema.diagnosis:
+        class: %accard.settings_schema.diagnosis.class%
+        tags:
+            - { name: accard.settings_schema, namespace: diagnosis }

@@ -27,6 +27,7 @@ accard_diagnosis:
     classes:
         diagnosis:
             model: Accard\Component\Core\Model\Diagnosis
+            controller: Accard\Bundle\CoreBundle\Controller\DiagnosisController
 
 accard_phase:
     classes:

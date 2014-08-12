@@ -6,4 +6,15 @@
 # file that was distributed with this source code.
 
 parameters:
+
+    accard.form.extension.accard_diagnosis.class: Accard\Bundle\CoreBundle\Form\Extension\DiagnosisTypeExtension
+
 services:
+
+    accard.form.extension.accard_diagnosis:
+        class: %accard.form.extension.accard_diagnosis.class%
+        arguments:
+            - %accard.model.patient.class%
+            - %accard.model.phase.class%
+        tags:
+            - { name: form.type_extension, alias: accard_diagnosis }
