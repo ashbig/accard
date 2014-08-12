@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormFactoryInterface;
-use Accard\Component\Patient\Builder\DiagnosisBuilderInterface;
+use Accard\Component\Diagnosis\Builder\DiagnosisBuilderInterface;
 
 /**
  *
@@ -31,7 +31,7 @@ class DefaultDiagnosisFieldListener implements EventSubscriberInterface
     private $factory;
 
     /**
-     * Patient builder.
+     * Diagnosis builder.
      *
      * @var DiagnosisBuilderInterface
      */
@@ -44,7 +44,7 @@ class DefaultDiagnosisFieldListener implements EventSubscriberInterface
      * @param FormFactoryInterface $factory
      * @param DiagnosisBuilderInterface $builder
      */
-    public function __construct(FormFactoryInterface $factory, PatientBuilderInterface $builder)
+    public function __construct(FormFactoryInterface $factory, DiagnosisBuilderInterface $builder)
     {
         $this->factory = $factory;
         $this->builder = $builder;
@@ -59,21 +59,21 @@ class DefaultDiagnosisFieldListener implements EventSubscriberInterface
     }
 
     /**
-     * Create all patient fields not already set.
+     * Create all diagnosis fields not already set.
      *
      * @param FormEvent $event
      */
     public function buildForm(FormEvent $event)
     {
-        if (null === ($patient = $event->getData())) {
+        if (null === ($diagnosis = $event->getData())) {
             return;
         }
 
-        $this->builder->set($patient);
+        $this->builder->set($diagnosis);
         $possibleFields = $this->builder->getFieldRepository()->findAll();
 
         foreach ($possibleFields as $field) {
-            if (!$patient->hasFieldByName($field->getName())) {
+            if (!$diagnosis->hasFieldByName($field->getName())) {
                 $this->builder->addField($field->getName(), null, $field->getPresentation());
             }
         }

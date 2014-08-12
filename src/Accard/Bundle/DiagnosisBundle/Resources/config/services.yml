@@ -8,6 +8,7 @@
 parameters:
 
     accard.form.type.diagnosis.class: Accard\Bundle\DiagnosisBundle\Form\Type\DiagnosisType
+    accard.builder.diagnosis.class: Accard\Component\Diagnosis\Builder\DiagnosisBuilder
 
 services:
 
@@ -16,6 +17,15 @@ services:
         arguments:
             - %accard.model.diagnosis.class%
             - %accard.validation_group.diagnosis%
+            - @accard.builder.diagnosis
             - @accard.option.provider
         tags:
             - { name: form.type, alias: accard_diagnosis }
+
+    accard.builder.diagnosis:
+        class: %accard.builder.diagnosis.class%
+        arguments:
+            - @accard.manager.diagnosis
+            - @accard.repository.diagnosis
+            - @accard.repository.diagnosis_field
+            - @accard.repository.diagnosis_field_value

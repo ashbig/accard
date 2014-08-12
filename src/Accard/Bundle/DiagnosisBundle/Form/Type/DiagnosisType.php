@@ -16,6 +16,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\OptionBundle\Form\Type\OptionValueChoiceType;
 use Accard\Component\Option\Provider\OptionProviderInterface;
+use Accard\Component\Diagnosis\Builder\DiagnosisBuilderInterface;
+use Accard\Bundle\DiagnosisBundle\Form\EventListener\DefaultDiagnosisFieldListener;
 
 /**
  * Diagnosis form type.
@@ -40,6 +42,13 @@ class DiagnosisType extends AbstractType
     protected $validationGroups;
 
     /**
+     * Field builder.
+     *
+     * @var DiagnosisBuilderInterface
+     */
+    protected $builder;
+
+    /**
      * Option provider..
      *
      * @var OptionProviderInterface
@@ -56,10 +65,12 @@ class DiagnosisType extends AbstractType
      */
     public function __construct($dataClass,
                                 array $validationGroups,
+                                DiagnosisBuilderInterface $builder,
                                 OptionProviderInterface $optionProvider)
     {
         $this->dataClass = $dataClass;
         $this->validationGroups = $validationGroups;
+        $this->builder = $builder;
         $this->optionProvider = $optionProvider;
     }
 
@@ -70,12 +81,22 @@ class DiagnosisType extends AbstractType
     {
         $builder
             ->add('startDate', 'date', array(
-                'label' => 'accard.form.diagnosis.start_date',
+                'label' => 'accard.diagnosis.form.start_date',
             ))
             ->add('endDate', 'date', array(
-                'label' => 'accard.form.diagnosis.end_date',
+                'label' => 'accard.diagnosis.form.end_date',
                 'required' => false,
             ))
+            ->add('fields', 'collection', array(
+                'required'     => false,
+                'type'         => 'accard_diagnosis_field_value',
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false
+            ))
+            ->addEventSubscriber(
+                new DefaultDiagnosisFieldListener($builder->getFormFactory(), $this->builder)
+            )
         ;
     }
 
