@@ -41,6 +41,12 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
         if ('patient' === $baseRoute) {
             $patient->setCurrent(true);
         }
+
+        $diagnosis = $this->createSimpleItem($event, $repositories, 'diagnosis', 'diagnosis_index', 'diagnoses');
+
+        if ('diagnosis' === $baseRoute) {
+            $diagnosis->setCurrent(true);
+        }
     }
 
     /**
