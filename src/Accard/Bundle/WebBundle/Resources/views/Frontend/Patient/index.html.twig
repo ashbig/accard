@@ -15,16 +15,16 @@
 {%- set settings = accard_settings('patient') -%}
 {% set designBtn = null %}
 {% if is_granted('ROLE_ADMIN') %}
-    {% set designBtn = design(path('accard_backend_patient_design'), 'accard.form.patient.design'|trans) %}
+    {% set designBtn = design(path('accard_backend_patient_design'), 'accard.patient.action.design'|trans) %}
 {% endif %}
 
 {% block content %}
 
     {% block patient_title %}
     {{ page_title(
-        'accard.interface.frontend.titles.index_patient'|trans,
+        'accard.patient.title.index'|trans,
         [
-            create(path('accard_frontend_patient_create'), 'accard.form.patient.create'|trans),
+            create(path('accard_frontend_patient_create'), 'accard.patient.action.create'|trans),
             designBtn
         ]
     )}}
@@ -34,10 +34,10 @@
     {% if settings.import_enabled %}
     <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
         <li class="{{ active_if_current('accard_frontend_patient_index') }}">
-            <a href="{{ path('accard_frontend_patient_index') }}">{{ 'accard.form.patient.registered'|trans }}</a>
+            <a href="{{ path('accard_frontend_patient_index') }}">{{ 'accard.patient.registered'|trans }}</a>
         </li>
         <li class="{{ active_if_current('accard_frontend_patient_import') }}{{ active_if_current('accard_frontend_import_importer_records') }}">
-            <a href="{{ path('accard_frontend_patient_import') }}">{{ 'accard.form.patient.unregistered'|trans }}</a>
+            <a href="{{ path('accard_frontend_patient_import') }}">{{ 'accard.patient.unregistered'|trans }}</a>
         </li>
     </ul>
     {% endif %}

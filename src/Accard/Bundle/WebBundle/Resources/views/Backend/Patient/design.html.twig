@@ -15,10 +15,10 @@
 
 {% block content %}
     {{ page_title(
-        'accard.interface.backend.titles.design_patient'|trans,
+        'accard.patient.action.design'|trans,
         [
-            generic(path('accard_frontend_patient_index'), 'accard.form.patient.manage'|trans, 'user'),
-            create(path('accard_frontend_patient_create'), 'accard.form.patient.create'|trans)
+            generic(path('accard_frontend_patient_index'), 'accard.patient.action.manage'|trans, 'user'),
+            create(path('accard_frontend_patient_create'), 'accard.patient.action.create'|trans)
         ]
     ) }}
 
@@ -30,7 +30,7 @@
                         <div class="pull-right">
                             {{ create(path('accard_backend_patient_field_create'), 'accard.form.field.create'|trans, 'xs') }}
                         </div>
-                        {{ 'accard.form.patient.fields'|trans }}
+                        {{ 'accard.patient.field.title'|trans }}
                     </h4>
                 </div>
                 {{ list_fields(fields) }}
@@ -42,8 +42,8 @@
             </div>
         </div>
         <div class="col-md-4">
-            {{ button(path('accard_backend_option_update_redirect', { name: 'gender' }), 'accard.form.patient.update_gender'|trans, 'block') }}
-            {{ button(path('accard_backend_option_update_redirect', { name: 'race' }), 'accard.form.patient.update_race'|trans, 'block') }}
+            {{ button(path('accard_backend_option_update_redirect', { name: 'gender' }), 'accard.patient.field.update_gender'|trans, 'block') }}
+            {{ button(path('accard_backend_option_update_redirect', { name: 'race' }), 'accard.patient.field.update_race'|trans, 'block') }}
         </div>
     </div>
 
@@ -69,8 +69,8 @@
         </div>
         <div class="col-md-4">
             {{ statistics([
-                'accard.form.patient.count'|trans({'%total%': patient_count}),
-                'accard.form.patient.field_count'|trans({'%total%': fields|length})
+                'accard.patient.message.count'|trans({'%total%': patient_count}),
+                'accard.patient.field.count'|trans({'%total%': fields|length})
             ]) }}
         </div>
     </div>

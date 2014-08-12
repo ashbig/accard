@@ -13,9 +13,9 @@
     <div class="col-md-12">
         <div class="form-group{% if form.mrn.vars.errors|length %} has-error{% endif %}">
             {{ form_widget(form.mrn, {
-                widget_addon_append: { text: 'accard.form.patient.mrn'|trans },
+                widget_addon_append: { text: 'accard.patient.form.mrn'|trans },
                 attr: {
-                    placeholder: 'accard.form.patient.mrn_extended'|trans 
+                    placeholder: 'accard.patient.form.mrn_extended'|trans 
                 }
             }) }}
             {% if form.mrn.vars.errors|length %}
