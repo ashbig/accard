@@ -46,3 +46,8 @@ Accard\Component\Diagnosis\Model\Diagnosis:
         recurrences:
             targetEntity: Accard\Component\Diagnosis\Model\DiagnosisInterface
             mappedBy: primary
+        fields:
+            targetEntity: Accard\Component\Diagnosis\Model\FieldValueInterface
+            mappedBy: subject
+            orphanRemoval: true
+            cascade: ["all"]

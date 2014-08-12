@@ -42,6 +42,8 @@ class AccardDiagnosisBundle extends Bundle
     {
         $interfaces = array(
             'Accard\Component\Diagnosis\Model\DiagnosisInterface' => 'accard.model.diagnosis.class',
+            'Accard\Component\Diagnosis\Model\FieldInterface' => 'accard.model.diagnosis_field.class',
+            'Accard\Component\Diagnosis\Model\FieldValueInterface' => 'accard.model.diagnosis_field_value.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('accard_diagnosis', $interfaces));

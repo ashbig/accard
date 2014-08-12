@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('driver')->defaultValue('doctrine/orm')->cannotBeEmpty()->end()
             ->end()
         ;
 
