@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * Accard patient bundle extension.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce <piercedy@upenn.edu>
  */
 class AccardPatientExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {

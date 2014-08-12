@@ -12,19 +12,15 @@ accard:
             is_deceased: Is this patient deceased?
             deceased: Deceased
             date_of_death: Date of Death
+            update: Update patient field
             gender: Gender
-            race: Race
-            fields: Patient Fields
         action:
             create: Create Patient
             manage: Manage Patients
             design: Design Patient
             update: Update Patient
-            update_gender: Update Gender Options
-            update_race: Update Race Options
         message:
             count: %total% patients registered.
-            count_fields: Collecting %total% patient fields.
             import_disabled: 'Patient import has been disabled, access denied.'
             none_found: No patients found.
             not_found: Patient %patient% not found.
@@ -33,6 +29,13 @@ accard:
             show: %patient%
             create: Creating a New Patient
             update: Updating Patient, %patient%
+        field:
+            title: Patient Fields
+            create: Create a new Patient Field
+            race: Race
+            count: Collecting %total% patient fields.
+            update_gender: Update Gender Options
+            update_race: Update Race Options
     patient_type:
         form:
             id: Id

@@ -84,32 +84,32 @@ class PatientType extends AbstractType
 
         $builder
             ->add('mrn', 'text', array(
-                'label' => 'accard.form.patient.mrn'
+                'label' => 'accard.patient.form.mrn'
             ))
             ->add('firstName', 'text', array(
-                'label' => 'accard.form.patient.first_name'
+                'label' => 'accard.patient.form.first_name'
             ))
             ->add('lastName', 'text', array(
-                'label' => 'accard.form.patient.last_name'
+                'label' => 'accard.patient.form.last_name'
             ))
             ->add('dateOfBirth', 'birthday', array(
-                'label' => 'accard.form.patient.date_of_birth'
+                'label' => 'accard.patient.form.date_of_birth'
             ))
             ->add('deceased', 'checkbox', array(
-                'label' => 'accard.form.patient.is_deceased',
+                'label' => 'accard.patient.form.is_deceased',
                 'data' => isset($options['data']) ? (boolean) $options['data']->isDeceased() : false,
                 'required' => false,
                 'mapped' => false,
             ))
             ->add('dateOfDeath', 'date', array(
-                'label' => 'accard.form.patient.date_of_death',
+                'label' => 'accard.patient.form.date_of_death',
                 'required' => false,
             ))
             ->add('gender', new OptionValueChoiceType($genderOption), array(
-                'label' => 'accard.form.patient.gender'
+                'label' => 'accard.patient.form.gender'
             ))
             ->add('race', new OptionValueChoiceType($raceOption), array(
-                'label' => 'accard.form.patient.race'
+                'label' => 'accard.patient.form.race'
             ))
             ->add('fields', 'collection', array(
                 'required'     => false,
