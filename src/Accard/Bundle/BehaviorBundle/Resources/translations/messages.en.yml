@@ -1,0 +1,21 @@
+accard:
+    behavior:
+        title: Behavior
+        form:
+            start_date: Start Date
+            end_date: End Date
+            patient: Patient
+        action:
+            show: %behavior%
+            index: Browse Behavior
+            create: Create Behavior
+            design: Design Behavior
+            manage: Manage Behaviors
+        message:
+            count: %total% behaviors registered.
+            count_fields: Collecting %total% behavior fields.
+        field:
+            title: Behavior Fields
+            create: Create Behavior Field
+            update: Update Behavior Field
+            none_found: No Behavior Fields found
