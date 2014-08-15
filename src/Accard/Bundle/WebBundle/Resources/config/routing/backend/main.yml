@@ -25,3 +25,8 @@ accard_backend_patient:
 accard_backend_diagnosis:
     resource: @AccardWebBundle/Resources/config/routing/backend/diagnosis.yml
     prefix: /diagnosis
+
+
+accard_backend_behavior:
+    resource: @AccardWebBundle/Resources/config/routing/backend/behavior.yml
+    prefix: /behavior
