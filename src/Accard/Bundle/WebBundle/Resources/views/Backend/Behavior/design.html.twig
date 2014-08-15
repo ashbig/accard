@@ -1,0 +1,73 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
+{% extends 'AccardWebBundle:Backend:layout.html.twig' %}
+
+{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import button, create, generic %}
+{% from 'AccardWebBundle:Common/Macros:actions.html.twig' import update %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import pagination, page_title, statistics %}
+{% from 'AccardWebBundle:Backend/Behavior:macros.html.twig' import list_fields %}
+
+
+{% block content %}
+    {{ page_title(
+        'accard.behavior.action.design'|trans,
+        [
+            generic(path('accard_frontend_behavior_index'), 'accard.behavior.action.manage'|trans, 'user'),
+            create(path('accard_frontend_behavior_create'), 'accard.behavior.action.create'|trans)
+        ]
+    ) }}
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <div class="pull-right">
+                            {{ create(path('accard_backend_behavior_field_create'), 'accard.form.field.create'|trans, 'xs') }}
+                        </div>
+                        {{ 'accard.behavior.field.title'|trans }}
+                    </h4>
+                </div>
+                {{ list_fields(fields) }}
+                {% if fields.haveToPaginate() %}
+                <div class="panel-body">
+                    {{ pagination(fields) }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form action="{{ path('accard_backend_behavior_settings_update') }}" method="POST" enctype="{{ form_enctype(settings_form) }}" novalidate>
+                {{ form_widget(settings_form._token) }}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary btn-xs">{{ 'accard.update'|trans }}</button>
+                            </div>
+                            {{- 'accard.settings'|trans -}}
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_widget(settings_form.enabled) }}
+                        {{ form_widget(settings_form.import_enabled) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            {{ statistics([
+                'accard.behavior.message.count'|trans({'%total%': behaviors_count}),
+                'accard.behavior.message.count_fields'|trans({'%total%': fields|length})
+            ]) }}
+        </div>
+    </div>
+{% endblock %}

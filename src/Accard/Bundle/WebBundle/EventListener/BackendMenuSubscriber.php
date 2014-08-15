@@ -21,6 +21,7 @@ use Accard\Bundle\WebBundle\Event\MenuBuilderEvent;
  * Creates the default secondary menu structure for the backend menus.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce <piercedy@upenn.edu>
  */
 class BackendMenuSubscriber implements EventSubscriberInterface
 {
@@ -34,17 +35,21 @@ class BackendMenuSubscriber implements EventSubscriberInterface
         $menu = $event->getMenu();
 
         $design = $menu->getChild('design');
-        $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
-        $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
 
+        $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
         if (false !== strpos($event->getRequest()->getUri(), 'patient/field')) {
             $patient->setCurrent(true);
         }
 
+        $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
         if (false !== strpos($event->getRequest()->getUri(), 'diagnosis/field')) {
             $diagnosis->setCurrent(true);
         }
 
+        $behavior = $this->createSimpleItem($event, $design, 'behavior', 'behavior_design', 'behavior');
+        if (false !== strpos($event->getRequest()->getUri(), 'behavior/field')) {
+            $behavior->setCurrent(true);
+        }
         $settings = $menu->getChild('settings');
         $this->createSimpleItem($event, $settings, 'general', "general_settings", 'general_settings');
         $this->createSimpleItem($event, $settings, 'theme', "theme_settings", 'theme_settings');

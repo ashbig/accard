@@ -1,6 +1,4 @@
-{% set count = form.fields|length %}
-{% set row1fields = form.fields|slice(0, count/2) %}
-{% set row2fields = form.fields|slice(count/2, count) %}
+
 
 <div class="col-lg-3">
     <h3>Select a Patient</h3>
@@ -36,21 +34,3 @@
     </div>
 </div>
 
-{% macro render_field(field) %}
-    {{ form_widget(field) }}
-{% endmacro %}
-
-{% from _self import render_field %}
-
-<div class="row">
-    <div class="col-md-6">
-    {% for field in row1fields %}
-        {{ render_field(field) }}
-    {% endfor %}
-    </div>
-    <div class="col-md-6">
-    {% for field in row2fields %}
-        {{ render_field(field) }}
-    {% endfor %}
-    </div>
-</div>
