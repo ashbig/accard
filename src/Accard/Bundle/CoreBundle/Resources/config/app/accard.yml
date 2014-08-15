@@ -29,6 +29,12 @@ accard_diagnosis:
             model: Accard\Component\Core\Model\Diagnosis
             controller: Accard\Bundle\CoreBundle\Controller\DiagnosisController
 
+accard_behavior:
+    classes:
+        behavior:
+            model: Accard\Component\Core\Model\Behavior
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+
 accard_phase:
     classes:
         phase:
