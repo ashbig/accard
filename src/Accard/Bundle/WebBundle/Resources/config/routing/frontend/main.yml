@@ -10,11 +10,6 @@ accard_frontend_homepage:
     defaults:
         _controller: AccardWebBundle:Frontend:main
 
-accard_test:
-    path: /test
-    defaults:
-        _controller: AccardWebBundle:Frontend:test
-
 accard_frontend_patient:
     resource: @AccardWebBundle/Resources/config/routing/frontend/patient.yml
     prefix: /patient
@@ -22,3 +17,7 @@ accard_frontend_patient:
 accard_frontend_diagnosis:
     resource: @AccardWebBundle/Resources/config/routing/frontend/diagnosis.yml
     prefix: /diagnosis
+
+accard_frontend_flow:
+    resource: @AccardFlowBundle/Resources/config/routing.yml
+    prefix: /flow

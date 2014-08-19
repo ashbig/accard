@@ -1,0 +1,35 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
+{% extends 'AccardWebBundle:Frontend:layout.html.twig' %}
+
+{% macro flow_path(route, scenario, step, params={}) %}
+{%- spaceless %}
+    {{ path(route, params|merge({ scenarioAlias: scenario, stepName: step })) }}
+{% endspaceless -%}
+{% endmacro %}
+
+{% from _self import flow_path %}
+
+{% block content %}
+
+    {% block flow_navigation %}
+        {% include 'AccardWebBundle:Frontend/Flow:navigation.html.twig' %}
+    {% endblock %}
+
+    {% block flow_content %}
+    <form action="{{ flow_path(context.flow.forwardRoute, context.flow.scenarioAlias, context.currentStep.name) }}" method="post">
+        {{ block('flow_buttons') }}
+    </form>
+    {% endblock %}
+{% endblock %}
+
+{% block flow_buttons %}
+    <div class="pull-right">
+        {% include 'AccardWebBundle:Frontend/Flow:buttons.html.twig' %}
+    </div>
+{% endblock %}
