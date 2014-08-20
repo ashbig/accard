@@ -17,7 +17,11 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Accard\Component\Patient\Builder\PatientBuilderInterface;
 
 /**
+ * Patient builder listener.
  *
+ * Responsible for adding default null objects to represent the values for each
+ * patient field form element. This will ensure that the fields are present to be
+ * filled on create forms where they haven't yet been included.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */

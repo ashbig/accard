@@ -41,11 +41,11 @@ class PatientType extends AbstractType
     protected $validationGroups;
 
     /**
-     * Field repository.
+     * Field builder.
      *
      * @var PatientBuilderInterface
      */
-    protected $builder;
+    protected $patientBuilder;
 
     /**
      * Option provider..
@@ -65,12 +65,12 @@ class PatientType extends AbstractType
      */
     public function __construct($dataClass,
                                 array $validationGroups,
-                                PatientBuilderInterface $builder,
+                                PatientBuilderInterface $patientBuilder,
                                 OptionProviderInterface $optionProvider)
     {
         $this->dataClass = $dataClass;
         $this->validationGroups = $validationGroups;
-        $this->builder = $builder;
+        $this->patientBuilder = $patientBuilder;
         $this->optionProvider = $optionProvider;
     }
 
@@ -95,12 +95,6 @@ class PatientType extends AbstractType
             ->add('dateOfBirth', 'birthday', array(
                 'label' => 'accard.patient.form.date_of_birth'
             ))
-            ->add('deceased', 'checkbox', array(
-                'label' => 'accard.patient.form.is_deceased',
-                'data' => isset($options['data']) ? (boolean) $options['data']->isDeceased() : false,
-                'required' => false,
-                'mapped' => false,
-            ))
             ->add('dateOfDeath', 'date', array(
                 'label' => 'accard.patient.form.date_of_death',
                 'required' => false,
@@ -119,7 +113,7 @@ class PatientType extends AbstractType
                 'by_reference' => false
             ))
             ->addEventSubscriber(
-                new DefaultPatientFieldListener($builder->getFormFactory(), $this->builder)
+                new DefaultPatientFieldListener($builder->getFormFactory(), $this->patientBuilder)
             )
         ;
     }
