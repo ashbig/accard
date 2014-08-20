@@ -13,6 +13,7 @@ namespace Accard\Bundle\CoreBundle\Form\Extension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Diagnosis form type extension.
@@ -29,23 +30,13 @@ class DiagnosisTypeExtension extends AbstractTypeExtension
     protected $patientClass;
 
     /**
-     * Phase class FQCN.
-     *
-     * @var string
-    */
-    // protected $phaseClass;
-
-
-    /**
      * Constructor.
      *
      * @param string $patientClass
-     * @param string $phaseClass
      */
-    public function __construct($patientClass /*, $phaseClass*/)
+    public function __construct($patientClass)
     {
         $this->patientClass = $patientClass;
-        // $this->phaseClass   = $phaseClass;
     }
 
     /**
@@ -53,15 +44,25 @@ class DiagnosisTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('patient', 'entity', array(
-                'class' => $this->patientClass,
-                'property' => 'fullName',
+        if ($options['use_patient']) {
+            $builder
+                ->add('patient', 'entity', array(
+                    'class' => $this->patientClass,
+                    'property' => 'fullName',
+                ))
+            ;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver
+            ->setDefaults(array(
+                'use_patient' => false,
             ))
-            // ->add('phase', 'entity', array(
-            //     'class' => $this->phaseClass,
-            //     'property' => 'label',
-            // ))
         ;
     }
 

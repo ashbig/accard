@@ -8,8 +8,6 @@ parameters:
     accard.flow.storage.session.class: Accard\Bundle\FlowBundle\Storage\SessionStorage
     accard.flow.storage.session.bag.class: Accard\Bundle\FlowBundle\Storage\SessionFlowsBag
 
-    accard.flow.scenario.sample.class: Accard\Bundle\FlowBundle\Flow\Scenario\SampleScenario
-
 services:
 
     accard.flow.context:
@@ -45,24 +43,3 @@ services:
 
     accard.flow.storage.session.bag:
         class: %accard.flow.storage.session.bag.class%
-
-
-    accard.flow.scenario.sample:
-        class: %accard.flow.scenario.sample.class%
-        tags:
-            - { name: accard.flow.scenario, alias: sample }
-
-    accard.flow.step.sample_one:
-        class: Accard\Bundle\FlowBundle\Flow\Step\SampleStep
-        tags:
-            - { name: accard.flow.step, alias: sample_one }
-
-    accard.flow.step.sample_two:
-        class: Accard\Bundle\FlowBundle\Flow\Step\SampleStep
-        tags:
-            - { name: accard.flow.step, alias: sample_two }
-
-    accard.flow.step.sample_three:
-        class: Accard\Bundle\FlowBundle\Flow\Step\SampleStep
-        tags:
-            - { name: accard.flow.step, alias: sample_three }

@@ -246,6 +246,26 @@ class FlowContext implements FlowContextInterface
         $this->setStepHistory($history);
     }
 
+    public function getStepData(StepInterface $step = null)
+    {
+        $step = $step ?: $this->currentStep;
+
+        return $this->storage->get($step->getName());
+    }
+
+    public function hasStepData(StepInterface $step = null)
+    {
+        $step = $step ?: $this->currentStep;
+
+        return $this->storage->has($step->getName());
+    }
+
+    public function setStepData(array $stepData)
+    {
+        $stepName = $this->currentStep->getName();
+        $this->storage->set($stepName, $stepData);
+    }
+
     /**
      * {@inheritdoc}
      */

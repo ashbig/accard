@@ -69,14 +69,6 @@ abstract class ControllerStep extends Controller implements StepInterface
     /**
      * {@inheritdoc}
      */
-    public function display(FlowContextInterface $context)
-    {
-        return new Response($this->name.' display response.');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function skip(FlowContextInterface $context)
     {
         return false;
