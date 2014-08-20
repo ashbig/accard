@@ -21,6 +21,10 @@ accard:
     settings: Settings
     confirmation:
         message: Are you sure you want to delete this resource?
+    flow:
+        basic_patient:
+            create_patient: Create a Patient
+            create_diagnosis: Add a Diagnosis
     alert:
         info: Information
         success: Success
