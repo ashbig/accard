@@ -18,4 +18,33 @@ accard:
             title: Diagnosis Fields
             create: Create Diagnosis Field
             update: Update Diagnosis Field
-            none_found: No Diagnosis Fields found
+            none_found: No diagnosis fields found.
+    diagnosis_code:
+        title: Diagnosis Codes
+        form:
+            id: Id
+            code: Code
+            description: Description
+        action:
+            index: Diagnosis Codes
+            create: Create Diagnosis Code
+            update: Update Diagnosis Code
+            delete: Delete Diagnosis Code
+        message:
+            count: %total% diagnosis codes.
+            none_found: No diagnosis codes found.
+    diagnosis_code_group:
+        title: Diagnosis Code Group
+        form:
+            id: Id
+            name: Name
+            codes: Codes
+        action:
+            index: Diagnosis Code Groups
+            create: Create Diagnosis Code Group
+            update: Update Diagnosis Code Group
+            delete: Delete Diagnosis Code Group
+            manage: Manage Diagnosis Code Groups
+        message:
+            count: %total% diagnosis code groups.
+            none_found: No diagnosis code groups found.

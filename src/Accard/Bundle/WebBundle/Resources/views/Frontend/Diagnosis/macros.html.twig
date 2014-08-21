@@ -5,8 +5,6 @@
 {# For the full copyright and license information, please view the LICENSE #}
 {# file that was distributed with this source code. #}
 
-{# @author Dylan Pierce <piercedy@upenn.edu #}
-
 {% macro list(diagnoses) %}
 
 {% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
@@ -42,6 +40,49 @@
     </table>
 {% else %}
     {{ info('accard.diagnosis.none_found'|trans) }}
+{% endif %}
+
+{% endmacro %}
+
+
+{% macro list_groups(groups) %}
+
+{% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
+{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
+
+{% if groups|length > 0 %}
+    <table class="diagnosis_group table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="name">{{ 'accard.diagnosis_code_group.form.name'|trans }}</th>
+                <th class="codes">{{ 'accard.diagnosis_code_group.form.codes'|trans }}</th>
+                <th class="actions"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for group in groups %}
+            <tr id="{{ group.id }}">
+                <td class="name">{{ group.name }}</td>
+                <td class="codes">
+                {% for code in group.codes %}
+                    {{ label(code.code) }}
+                {% else %}
+                    {{ label('accard.diagnosis_code.message.none_found'|trans, 'danger') }}
+                {% endfor %}
+                </td>
+                <td class="actions">
+                    <div class="pull-right">
+                        {{ edit(path('accard_backend_diagnosis_code_group_update', {'id': group.id}), null, 'xs') }}
+                        {{ delete(path('accard_backend_diagnosis_code_group_delete', {'id': group.id}), null, 'xs') }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    {{ info('accard.diagnosis.code_group.none_found'|trans) }}
 {% endif %}
 
 {% endmacro %}

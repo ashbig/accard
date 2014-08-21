@@ -30,6 +30,13 @@ class CodeGroupType extends AbstractType
     protected $dataClass;
 
     /**
+     * Code class.
+     *
+     * @var string
+     */
+    protected $dataCodeClass;
+
+    /**
      * Validation groups.
      *
      * @var array
@@ -41,11 +48,13 @@ class CodeGroupType extends AbstractType
      * Constructor.
      *
      * @param string $dataClass
+     * @param string $dataCodeClass
      * @param array $validationGroups
      */
-    public function __construct($dataClass, array $validationGroups)
+    public function __construct($dataClass, $dataCodeClass, array $validationGroups)
     {
         $this->dataClass = $dataClass;
+        $this->dataCodeClass = $dataCodeClass;
         $this->validationGroups = $validationGroups;
     }
 
@@ -59,6 +68,23 @@ class CodeGroupType extends AbstractType
                 'label' => 'accard.diagnosis_code_group.form.name',
             ))
         ;
+
+        if ($options['create_codes']) {
+            $builder->add('codes', 'collection', array(
+                'type' => 'accard_diagnosis_code',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'delete_empty' => true,
+                'by_reference' => false,
+            ));
+        } elseif ($options['select_codes']) {
+            $builder->add('codes', 'entity', array(
+                'class' => $this->dataCodeClass,
+                'property' => 'description',
+                'expanded' => true,
+                'multiple' => true,
+            ));
+        }
     }
 
     /**
@@ -69,7 +95,9 @@ class CodeGroupType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'data_class' => $this->dataClass,
-                'validation_groups' => $this->validationGroups
+                'validation_groups' => $this->validationGroups,
+                'create_codes' => false,
+                'select_codes' => false,
             ))
         ;
     }

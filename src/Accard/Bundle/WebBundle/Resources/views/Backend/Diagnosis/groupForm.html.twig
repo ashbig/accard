@@ -1,0 +1,20 @@
+{{ form_widget(form._token) }}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group input-lg{% if form.name.vars.errors|length %} has-error{% endif %}">
+            {{ form_widget(form.name, {
+                widget_addon_prepend: { text: 'accard.diagnosis_code_group.form.name'|trans },
+                'attr': {
+                    'class': 'input-lg'
+                }
+            }) }}
+            {% if form.name.vars.errors|length %}
+                {{ form_errors(form.name) }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+</div>

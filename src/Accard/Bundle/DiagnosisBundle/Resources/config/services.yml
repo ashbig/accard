@@ -28,6 +28,7 @@ services:
         class: %accard.form.type.diagnosis_code.class%
         arguments:
             - %accard.model.diagnosis_code.class%
+            - %accard.model.diagnosis_code_group.class%
             - %accard.validation_group.diagnosis_code%
         tags:
             - { name: form.type, alias: accard_diagnosis_code }
@@ -36,6 +37,7 @@ services:
         class: %accard.form.type.diagnosis_code_group.class%
         arguments:
             - %accard.model.diagnosis_code_group.class%
+            - %accard.model.diagnosis_code.class%
             - %accard.validation_group.diagnosis_code_group%
         tags:
             - { name: form.type, alias: accard_diagnosis_code_group }
