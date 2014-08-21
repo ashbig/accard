@@ -8,6 +8,7 @@
 Accard\Component\Diagnosis\Model\Diagnosis:
     type: mappedSuperclass
     repositoryClass: Accard\Bundle\DiagnosisBundle\Doctrine\ORM\DiagnosisRepository
+    table: accard_diagnosis
 
     id:
         id:

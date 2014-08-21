@@ -61,7 +61,7 @@ class DiagnosisTypeExtension extends AbstractTypeExtension
     {
         $resolver
             ->setDefaults(array(
-                'use_patient' => false,
+                'use_patient' => true,
             ))
         ;
     }
