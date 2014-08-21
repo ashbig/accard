@@ -18,6 +18,10 @@ accard_frontend_diagnosis:
     resource: @AccardWebBundle/Resources/config/routing/frontend/diagnosis.yml
     prefix: /diagnosis
 
+accard_frontend_import:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/import.yml
+    prefix: /import
+
 accard_frontend_flow:
     resource: @AccardFlowBundle/Resources/config/routing.yml
     prefix: /flow
