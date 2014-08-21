@@ -35,6 +35,13 @@ class CodeGroup implements CodeGroupInterface
     protected $name;
 
     /**
+     * Presentation.
+     *
+     * @var string
+     */
+    protected $presentation;
+
+    /**
      * Codes.
      *
      * @var Collection|CodeInterface[]
@@ -74,6 +81,24 @@ class CodeGroup implements CodeGroupInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
     }
 
     /**

@@ -67,6 +67,9 @@ class CodeGroupType extends AbstractType
             ->add('name', 'text', array(
                 'label' => 'accard.diagnosis_code_group.form.name',
             ))
+            ->add('presentation', 'text', array(
+                'label' => 'accard.diagnosis_code_group.form.presentation',
+            ))
         ;
 
         if ($options['create_codes']) {

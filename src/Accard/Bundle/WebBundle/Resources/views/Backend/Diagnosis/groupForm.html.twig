@@ -1,20 +1,16 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
 {{ form_widget(form._token) }}
-
 <div class="row">
-    <div class="col-md-12">
-        <div class="form-group input-lg{% if form.name.vars.errors|length %} has-error{% endif %}">
-            {{ form_widget(form.name, {
-                widget_addon_prepend: { text: 'accard.diagnosis_code_group.form.name'|trans },
-                'attr': {
-                    'class': 'input-lg'
-                }
-            }) }}
-            {% if form.name.vars.errors|length %}
-                {{ form_errors(form.name) }}
-            {% endif %}
-        </div>
+    <div class="col-md-6">
+        {{ form_row(form.name) }}
     </div>
-</div>
-
-<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.presentation) }}
+    </div>
 </div>

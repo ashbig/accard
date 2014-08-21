@@ -42,6 +42,21 @@ interface CodeGroupInterface
     public function getName();
 
     /**
+     * Set presentation.
+     *
+     * @param string $presentation
+     * @return CodeGroupInterface
+     */
+    public function setPresentation($presentation);
+
+    /**
+     * Get presentation.
+     *
+     * @return string
+     */
+    public function getPresentation();
+
+    /**
      * Get codes.
      *
      * @return Collection|CodeInterface[]
