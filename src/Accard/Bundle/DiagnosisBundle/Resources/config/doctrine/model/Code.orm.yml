@@ -7,7 +7,7 @@
 
 Accard\Component\Diagnosis\Model\Code:
     type: mappedSuperclass
-    table: accard_resource_code
+    table: accard_diagnosis_code
 
     id:
         id:

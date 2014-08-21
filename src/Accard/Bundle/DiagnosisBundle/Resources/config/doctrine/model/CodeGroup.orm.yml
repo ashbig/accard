@@ -7,7 +7,7 @@
 
 Accard\Component\Diagnosis\Model\CodeGroup:
     type: mappedSuperclass
-    table: accard_resource_code_group
+    table: accard_diagnosis_code_group
 
     id:
         id:
