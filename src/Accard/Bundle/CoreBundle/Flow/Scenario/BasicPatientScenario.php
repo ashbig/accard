@@ -30,7 +30,6 @@ class BasicPatientScenario extends FlowScenario
         $builder
             ->add('create_patient')
             ->add('create_diagnosis')
-            ->setRedirect('accard_frontend_homepage')
         ;
     }
 }

@@ -1,0 +1,37 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
+{% extends 'AccardWebBundle:Frontend/Flow:layout.html.twig' %}
+
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import page_title %}
+
+{% block flow_content %}
+
+    {% if create_patient is defined %}
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Patient</h3>
+            <p>A patient with the following details will be created.</p>
+        </div>
+        <div class="col-md-8">
+            {{ dump(create_patient) }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if create_diagnosis is defined %}
+        <div class="col-md-4">
+            <h3>Diagnosis</h3>
+            <p>A patient with the following details will be created.</p>
+        </div>
+        <div class="col-md-8">
+            {{ dump(create_patient) }}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
