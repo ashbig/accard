@@ -90,12 +90,19 @@ interface ImportTargetInterface
     public function unregisterImporter($importerName);
 
     /**
+     * Get all descriptions.
+     *
+     * @return array
+     */
+    public function getDescriptions();
+
+    /**
      * Get all descriptions for importer.
      *
      * @param string $importerName
      * @return array
      */
-    public function getDescriptions($importerName);
+    public function getDescriptionsFor($importerName);
 
     /**
      * Test if descriptions exist for importer.

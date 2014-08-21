@@ -124,7 +124,15 @@ trait ImportTargetTrait
     /**
      * {@inheritdoc}
      */
-    public function getDescriptions($importerName)
+    public function getDescriptions()
+    {
+        return $this->descriptions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescriptionsFor($importerName)
     {
         if ($this->hasImporter($importerName)) {
             return $this->descriptions[$importerName];
