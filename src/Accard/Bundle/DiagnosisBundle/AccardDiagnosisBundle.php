@@ -41,8 +41,8 @@ class AccardDiagnosisBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Accard\Component\Diagnosis\Model\CodeInterface' => 'accard.model.resource_code.class',
-            'Accard\Component\Diagnosis\Model\CodeGroupInterface' => 'accard.model.resource_code_group.class',
+            'Accard\Component\Diagnosis\Model\CodeInterface' => 'accard.model.diagnosis_code.class',
+            'Accard\Component\Diagnosis\Model\CodeGroupInterface' => 'accard.model.diagnosis_code_group.class',
             'Accard\Component\Diagnosis\Model\DiagnosisInterface' => 'accard.model.diagnosis.class',
             'Accard\Component\Diagnosis\Model\FieldInterface' => 'accard.model.diagnosis_field.class',
             'Accard\Component\Diagnosis\Model\FieldValueInterface' => 'accard.model.diagnosis_field_value.class',
