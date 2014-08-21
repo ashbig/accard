@@ -22,3 +22,14 @@ Accard\Component\Diagnosis\Model\Code:
         description:
             type: string
             nullable: false
+
+    manyToMany:
+        groups:
+            targetEntity: Accard\Component\Diagnosis\Model\CodeGroupInterface
+            inversedBy: codes
+            joinTable:
+                name: accard_diagnosis_codes_groups
+                joinColumns:
+                    codeId: ~
+                inverseJoinColumns:
+                    groupId: ~

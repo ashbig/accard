@@ -10,6 +10,9 @@
  */
 namespace Accard\Component\Diagnosis\Model;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Code model.
  *
@@ -38,6 +41,21 @@ class Code implements CodeInterface
      */
     protected $description;
 
+    /**
+     * Groups.
+     *
+     * @var Collection|CodeGroupInterface[]
+     */
+    protected $groups;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->groups = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -81,5 +99,45 @@ class Code implements CodeInterface
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasGroup(CodeGroupInterface $group)
+    {
+        return $this->groups->contains($group);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addGroup(CodeGroupInterface $group)
+    {
+        if (!$this->hasGroup($group)) {
+            $this->groups->add($group);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeGroup(CodeGroupInterface $group)
+    {
+        if ($this->hasGroup($group)) {
+            $this->groups->removeElement($group);
+        }
+
+        return $this;
     }
 }

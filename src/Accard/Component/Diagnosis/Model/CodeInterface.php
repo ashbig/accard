@@ -10,6 +10,8 @@
  */
 namespace Accard\Component\Diagnosis\Model;
 
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Code interface.
  *
@@ -53,4 +55,35 @@ interface CodeInterface
      * @return string
      */
     public function getDescription();
+
+    /**
+     * Get groups.
+     *
+     * @return Collection|CodeGroupInterfacep[]
+     */
+    public function getGroups();
+
+    /**
+     * Test for groups presence.
+     *
+     * @param CodeGroupInterface $group
+     * @return CodeInterface
+     */
+    public function hasGroup(CodeGroupInterface $group);
+
+    /**
+     * Add group.
+     *
+     * @param CodeGroupInterface $group
+     * @return CodeInterface
+     */
+    public function addGroup(CodeGroupInterface $group);
+
+    /**
+     * Remove group.
+     *
+     * @param CodeGroupInterface $group
+     * @return CodeInterface
+     */
+    public function removeGroup(CodeGroupInterface $group);
 }

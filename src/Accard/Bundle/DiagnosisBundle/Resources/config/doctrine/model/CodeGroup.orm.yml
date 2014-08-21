@@ -19,3 +19,8 @@ Accard\Component\Diagnosis\Model\CodeGroup:
         name:
             type: string
             nullable: false
+
+    manyToMany:
+        codes:
+            targetEntity: Accard\Component\Diagnosis\Model\CodeInterface
+            mappedBy: groups

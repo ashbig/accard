@@ -10,6 +10,9 @@
  */
 namespace Accard\Component\Diagnosis\Model;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Code group model.
  *
@@ -31,6 +34,21 @@ class CodeGroup implements CodeGroupInterface
      */
     protected $name;
 
+    /**
+     * Codes.
+     *
+     * @var Collection|CodeInterface[]
+     */
+    protected $codes;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->codes = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -56,5 +74,47 @@ class CodeGroup implements CodeGroupInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCodes()
+    {
+        return $this->codes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasCode(CodeInterface $code)
+    {
+        return $this->codes->contains($code);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addCode(CodeInterface $code)
+    {
+        if (!$this->hasCode($code)) {
+            $code->addGroup($this);
+            $this->codes->add($code);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeCode(CodeInterface $code)
+    {
+        if ($this->hasCode($code)) {
+            $this->codes->removeElement($this);
+            $code->removeGroup($this);
+        }
+
+        return $this;
     }
 }
