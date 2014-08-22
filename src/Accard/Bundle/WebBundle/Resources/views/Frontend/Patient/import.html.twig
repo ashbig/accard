@@ -16,11 +16,10 @@
 {% endblock %}
 
 {% block page_javascripts %}
-
-    {% javascripts output='assets/compiled/import.js'
-            'bundles/accardresource/js/import.js'
-        %}
-<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts output='assets/compiled/import.js' 'bundles/accardresource/js/import.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
+    <script type="text/javascript">
+        $('tr[data-toggle="popover"]').popover();
+    </script>
 {% endblock %}

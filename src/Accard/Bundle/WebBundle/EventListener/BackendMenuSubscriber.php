@@ -33,16 +33,20 @@ class BackendMenuSubscriber implements EventSubscriberInterface
     public function createSidebarItems(MenuBuilderEvent $event)
     {
         $menu = $event->getMenu();
+        $uri = $event->getRequest()->getUri();
 
         $design = $menu->getChild('design');
 
+
         $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
-        if (false !== strpos($event->getRequest()->getUri(), 'patient/field')) {
+
+        if (false !== strpos($uri, 'patient/field')) {
             $patient->setCurrent(true);
         }
 
         $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
-        if (false !== strpos($event->getRequest()->getUri(), 'diagnosis/field')) {
+
+        if (false !== strpos($uri, 'diagnosis/field') || false !== strpos($uri, 'diagnosis/code')) {
             $diagnosis->setCurrent(true);
         }
 

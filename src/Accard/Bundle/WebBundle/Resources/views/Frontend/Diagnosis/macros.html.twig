@@ -7,33 +7,33 @@
 
 {# @author Dylan Pierce <piercedy@upenn.edu #}
 
-{% macro list(behaviors) %}
+{% macro list(diagnoses) %}
 
 {% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
 {% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
 {% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
 
-{% if behaviors|length > 0 %}
-    <table class="behavior table table-bordered table-striped table-hover">
+{% if diagnoses|length > 0 %}
+    <table class="diagnosis table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th class="patient">{{ 'accard.patient.form.full_name'|trans }}</th>
-                <th class="start-date">{{ accard_resource_sort('startDate', 'accard.behavior.form.start_date'|trans) }}</th>
-                <th class='end-date'>{{ accard_resource_sort('endDate', 'accard.behavior.form.end_date'|trans )}}</th>
+                <th class="start-date">{{ accard_resource_sort('startDate', 'accard.diagnosis.form.start_date'|trans) }}</th>
+                <th class='end-date'>{{ accard_resource_sort('endDate', 'accard.diagnosis.form.end_date'|trans )}}</th>
                 <th class="actions"></th>
             </tr>
         </thead>
         <tbody>
-        {% for behavior in behaviors %}
-            <tr id="{{ behavior.id }}">
-                <td class="patient-name">{{ behavior.patient.fullName }}</td>
-                <td class="start-of-behavior">{{ behavior.startDate|localizeddate('medium', 'none') }}</td>
-                <td class='end-date'>{{ behavior.endDate|localizeddate('medium', 'none') }}
+        {% for diagnosis in diagnoses %}
+            <tr id="{{ diagnosis.id }}">
+                <td class="patient-name">{{ diagnosis.patient.fullName }}</td>
+                <td class="start-of-diagnosis">{{ diagnosis.startDate|localizeddate('medium', 'none') }}</td>
+                <td class='end-date'>{{ diagnosis.endDate|localizeddate('medium', 'none') }}
                 <td class="actions">
                     <div class="pull-right">
-                        {{ show(path('accard_frontend_behavior_show', {'id': behavior.id}), null, 'xs') }}
-                        {{ edit(path('accard_frontend_behavior_update', {'id': behavior.id}), null, 'xs') }}
-                        {{ delete(path('accard_frontend_behavior_delete', {'id': behavior.id}), null, 'xs') }}
+                        {{ show(path('accard_frontend_diagnosis_show', {'id': diagnosis.id}), null, 'xs') }}
+                        {{ edit(path('accard_frontend_diagnosis_update', {'id': diagnosis.id}), null, 'xs') }}
+                        {{ delete(path('accard_frontend_diagnosis_delete', {'id': diagnosis.id}), null, 'xs') }}
                     </div>
                 </td>
             </tr>
@@ -41,7 +41,7 @@
         </tbody>
     </table>
 {% else %}
-    {{ info('accard.behavior.none_found'|trans) }}
+    {{ info('accard.diagnosis.none_found'|trans) }}
 {% endif %}
 
 {% endmacro %}

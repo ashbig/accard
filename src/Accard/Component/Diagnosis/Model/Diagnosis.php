@@ -11,8 +11,8 @@
 namespace Accard\Component\Diagnosis\Model;
 
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Accard\Component\Field\Model\FieldValueInterface as BaseFieldValueInterface;
 use Accard\Component\Option\Model\OptionValueInterface;
 
