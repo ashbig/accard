@@ -7,41 +7,26 @@
 
 {# @author Dylan Pierce <piercedy@upenn.edu #}
 
-{% macro list(behaviors) %}
 
-{% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
-{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
-{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
+{% macro behaviors_menu() %}
 
-{% if behaviors|length > 0 %}
-    <table class="behavior table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th class="patient">{{ 'accard.patient.form.full_name'|trans }}</th>
-                <th class="start-date">{{ accard_resource_sort('startDate', 'accard.behavior.form.start_date'|trans) }}</th>
-                <th class='end-date'>{{ accard_resource_sort('endDate', 'accard.behavior.form.end_date'|trans )}}</th>
-                <th class="actions"></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for behavior in behaviors %}
-            <tr id="{{ behavior.id }}">
-                <td class="patient-name">{{ behavior.patient.fullName }}</td>
-                <td class="start-of-behavior">{{ behavior.startDate|localizeddate('medium', 'none') }}</td>
-                <td class='end-date'>{{ behavior.endDate|localizeddate('medium', 'none') }}
-                <td class="actions">
-                    <div class="pull-right">
-                        {{ show(path('accard_frontend_behavior_show', {'id': behavior.id}), null, 'xs') }}
-                        {{ edit(path('accard_frontend_behavior_update', {'id': behavior.id}), null, 'xs') }}
-                        {{ delete(path('accard_frontend_behavior_delete', {'id': behavior.id}), null, 'xs') }}
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    {{ info('accard.behavior.none_found'|trans) }}
-{% endif %}
+{% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
+
+    <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
+        <li class="{{ active_if_current('accard_frontend_behavior_alcohol_index') }}">
+            <a href="{{ path('accard_frontend_behavior_alcohol_index') }}">{{ 'accard.behavior.alcohol.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior_smoking_index') }}">
+            <a href="{{ path('accard_frontend_behavior_smoking_index') }}">{{ 'accard.behavior.smoking.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior_illicit_drug_index') }}">
+            <a href="{{ path('accard_frontend_behavior_illicit_drug_index') }}">{{ 'accard.behavior.illicit_drug.title'|trans }}</a>
+        <li class="{{ active_if_current('accard_frontend_behavior_occupation_index') }}">
+            <a href="{{ path('accard_frontend_behavior_occupation_index') }}">{{ 'accard.behavior.occupation.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior.education_index') }}">
+            <a href="{{ path('accard_frontend_behavior_education_index') }}">{{ 'accard.behavior.education.title'|trans }}</a>
+        </li>
+    </ul>
 
 {% endmacro %}
