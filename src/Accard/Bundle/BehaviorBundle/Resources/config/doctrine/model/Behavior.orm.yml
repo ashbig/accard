@@ -22,3 +22,5 @@ Accard\Component\Behavior\Model\Behavior:
         endDate:
             type: datetime
             nullable: true
+
+
