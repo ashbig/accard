@@ -5,50 +5,22 @@
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 
-accard_frontend_behavior_index:
-    pattern: /
-    methods: [GET]
-    defaults:
-        _controller: accard.controller.behavior:indexAction
-        _accard:
-            template: AccardWebBundle:Frontend/Behavior:index.html.twig
-            sortable: true
-            paginate: 25
+accard_frontend_behavior_alcohol:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/behavior/alcohol.yml
+    prefix: /alcohol
 
-accard_frontend_behavior_show:
-    pattern: /{id}
-    methods: [GET]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.behavior:showAction
-        _accard:
-            template: AccardWebBundle:Frontend/Behavior:show.html.twig
+accard_frontend_behavior_smoking:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/behavior/smoking.yml
+    prefix: /smoking
 
-accard_frontend_behavior_create:
-    pattern: /new
-    methods: [GET, POST]
-    defaults:
-        _controller: accard.controller.behavior:createAction
-        _accard:
-            template: AccardWebBundle:Frontend/Behavior:create.html.twig
-            redirect: accard_frontend_behavior_show
+accard_frontend_behavior_illicit_drug:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/behavior/illicit_drug.yml
+    prefix: /illicit_drug
 
-accard_frontend_behavior_update:
-    pattern: /{id}/edit
-    methods: [GET, PUT, POST]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.behavior:updateAction
-        _accard:
-            template: AccardWebBundle:Frontend/Behavior:update.html.twig
-            redirect: accard_frontend_behavior_show
+accard_frontend_behavior_occupation:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/behavior/occupation.yml
+    prefix: /occupation
 
-accard_frontend_behavior_delete:
-    pattern: /{id}
-    methods: [DELETE]
-    requirements: { id: \d+ }
-    defaults:
-        _controller: accard.controller.behavior:deleteAction
-        _accard:
-            template: AccardWebBundle:Frontend/Behavior:delete.html.twig
-            redirect: accard_frontend_behavior_index
+accard_frontend_behavior_education:
+    resource: @AccardWebBundle/Resources/config/routing/frontend/behavior/education.yml
+    prefix: /education
