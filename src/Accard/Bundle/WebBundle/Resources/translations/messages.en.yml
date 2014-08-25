@@ -42,6 +42,7 @@ accard:
             design: Design
             patient: Patient
             diagnosis: Diagnosis
+            behavior: Behaviors
             options: Options
         frontend:
             home: Home
@@ -50,6 +51,7 @@ accard:
             import: Import
             admin: Administration
             diagnoses: Diagnoses
+            behavior: Behaviors
     interface:
         backend:
             title: Accard Administration
