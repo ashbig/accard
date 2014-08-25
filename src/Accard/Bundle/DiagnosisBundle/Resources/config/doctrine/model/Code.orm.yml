@@ -19,6 +19,7 @@ Accard\Component\Diagnosis\Model\Code:
         code:
             type: string
             nullable: false
+            unique: true
         description:
             type: string
             nullable: false

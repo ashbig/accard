@@ -19,6 +19,7 @@ Accard\Component\Diagnosis\Model\CodeGroup:
         name:
             type: string
             nullable: false
+            unique: true
         presentation:
             type: string
             nullable: false

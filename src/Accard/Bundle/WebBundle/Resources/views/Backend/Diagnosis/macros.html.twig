@@ -36,14 +36,52 @@
 {% endmacro %}
 
 
+{% macro list_codes(codes) %}
+
+{% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
+{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label %}
+
+{% if codes|length > 0 %}
+    <table class="diagnosis-code table table-bordered table-condensed table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="code">{{ 'accard.diagnosis_code.form.code'|trans }}</th>
+                <th class="description">{{ 'accard.diagnosis_code.form.description'|trans }}</th>
+                <th class="actions"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for code in codes %}
+            <tr id="{{ code.id }}">
+                <td class="code">
+                    <span data-code-id="{{ code.id }}" class="label label-default">{{ code.code }}</span></td>
+                <td class="description">{{ code.description }}</td>
+                <td class="actions">
+                    <div class="pull-right">
+                        {{ edit(path('accard_backend_diagnosis_code_update', {'id': code.id}), null, 'xs') }}
+                        {{ delete(path('accard_backend_diagnosis_code_delete', {'id': code.id}), null, 'xs') }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    {{ info('accard.diagnosis.code.none_found'|trans) }}
+{% endif %}
+
+{% endmacro %}
+
+
 {% macro list_groups(groups) %}
 
 {% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
-{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
-{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
+{% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label %}
 
 {% if groups|length > 0 %}
-    <table class="diagnosis_group table table-bordered table-striped table-hover">
+    <table class="diagnosis-code-group table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th class="presentation">{{ 'accard.diagnosis_code_group.form.presentation'|trans }}</th>
@@ -55,13 +93,13 @@
         <tbody>
         {% for group in groups %}
             <tr id="{{ group.id }}">
-                <th class="presentation">{{ group.presentation }}</th>
+                <td class="presentation">{{ group.presentation }}</td>
                 <td class="name">{{ group.name }}</td>
-                <td class="codes">
+                <td data-code-container="{{ group.id }}" class="codes">
                 {% for code in group.codes %}
-                    {{ label(code.code) }}
+                    <span data-code-id="{{ code.id }}" class="label label-primary">{{ code.code }}</span>
                 {% else %}
-                    {{ label('accard.diagnosis_code.message.none_found'|trans, 'danger') }}
+                    <span data-code-none class="label label-danger">{{ 'accard.diagnosis_code.message.none_found'|trans }}</span>
                 {% endfor %}
                 </td>
                 <td class="actions">
