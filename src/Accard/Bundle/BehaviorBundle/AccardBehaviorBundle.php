@@ -43,6 +43,11 @@ class AccardBehaviorBundle extends Bundle
     {
         $interfaces = array(
             'Accard\Component\Behavior\Model\BehaviorInterface' => 'accard.model.behavior.class',
+            'Accard\Component\Behavior\Model\AlcoholBehaviorInterface' => 'accard.model.alcohol_behavior.class',
+            'Accard\Component\Behavior\Model\SmokingBehaviorInterface' => 'accard.model.smoking_behavior.class',
+            'Accard\Component\Behavior\Model\IllicitDrugBehaviorInterface' => 'accard.model.illicit_drug_behavior.class',
+            'Accard\Component\Behavior\Model\OccupationBehaviorInterface' => 'accard.model.occupation_behavior.class',
+            'Accard\Component\Behavior\Model\EducationBehaviorInterface' => 'accard.model.education_behavior.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('accard_behavior', $interfaces));
