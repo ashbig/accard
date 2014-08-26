@@ -50,10 +50,6 @@ class BackendMenuSubscriber implements EventSubscriberInterface
             $diagnosis->setCurrent(true);
         }
 
-        $behavior = $this->createSimpleItem($event, $design, 'behavior', 'behavior_design', 'behavior');
-        if (false !== strpos($event->getRequest()->getUri(), 'behavior/field')) {
-            $behavior->setCurrent(true);
-        }
         $settings = $menu->getChild('settings');
         $this->createSimpleItem($event, $settings, 'general', "general_settings", 'general_settings');
         $this->createSimpleItem($event, $settings, 'theme', "theme_settings", 'theme_settings');
