@@ -25,6 +25,12 @@ Accard\Component\Diagnosis\Model\Diagnosis:
             nullable: true
 
     manyToOne:
+        code:
+            targetEntity: Accard\Component\Diagnosis\Model\CodeInterface
+            joinColumn:
+                name: codeId
+                referencedColumnName: id
+                nullable: false
         parent:
             targetEntity: Accard\Component\Diagnosis\Model\DiagnosisInterface
             inversedBy: comorbidities
