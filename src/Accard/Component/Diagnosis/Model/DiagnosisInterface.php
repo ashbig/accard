@@ -59,6 +59,21 @@ interface DiagnosisInterface extends FieldSubjectInterface
     public function setPrimary(DiagnosisInterface $primary = null);
 
     /**
+     * Get diagnosis code.
+     *
+     * @return CodeInterace
+     */
+    public function getCode();
+
+    /**
+     * Set code interface.
+     *
+     * @param CodeInterface $code
+     * @return DiagnosisInterface
+     */
+    public function setCode(CodeInterface $code);
+
+    /**
      * Get start date.
      *
      * @return DateTime

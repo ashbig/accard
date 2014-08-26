@@ -46,6 +46,13 @@ class Diagnosis implements DiagnosisInterface
     protected $primary;
 
     /**
+     * Diagnosis code.
+     *
+     * @var CodeInterface
+     */
+    protected $code;
+
+    /**
      * Start date.
      *
      * @var DateTime
@@ -132,6 +139,24 @@ class Diagnosis implements DiagnosisInterface
     public function setPrimary(DiagnosisInterface $primary = null)
     {
         $this->primary = $primary;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCode(CodeInterface $code)
+    {
+        $this->code = $code;
 
         return $this;
     }
