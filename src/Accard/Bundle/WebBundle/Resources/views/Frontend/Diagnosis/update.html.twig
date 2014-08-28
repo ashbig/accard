@@ -15,7 +15,7 @@
 
     {{ form_errors(form) }}
     
-    <form action="{{ path('accard_frontend_behavior_update', { id: behavior.id }) }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('accard_frontend_diagnosis_update', { id: diagnosis.id }) }}" method="post" {{ form_enctype(form) }}>
         <input type="hidden" name="_method" value="PUT">
         {{ form_widget(form._token) }}
         {% include 'AccardWebBundle:Frontend/Diagnosis:form.html.twig' %}
