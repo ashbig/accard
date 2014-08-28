@@ -39,3 +39,9 @@ accard_phase:
     classes:
         phase:
             model: Accard\Component\Core\Model\Phase
+
+accard_attribute:
+    classes:
+        attribute:
+            model: Accard\Component\Core\Model\Attribute
+            controller: Accard\Bundle\CoreBundle\Controller\AttributeController

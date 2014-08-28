@@ -7,6 +7,7 @@
 
 parameters:
 
+    accard.form.extension.accard_attribute.class: Accard\Bundle\CoreBundle\Form\Extension\AttributeTypeExtension
     accard.form.extension.accard_diagnosis.class: Accard\Bundle\CoreBundle\Form\Extension\DiagnosisTypeExtension
     accard.form.extension.accard_behavior.class: Accard\Bundle\CoreBundle\Form\Extension\BehaviorTypeExtension
     accard.flow.scenario.basic_patient.class: Accard\Bundle\CoreBundle\Flow\Scenario\BasicPatientScenario
@@ -15,6 +16,12 @@ parameters:
 
 
 services:
+    accard.form.extension.accard_attribute:
+        class: %accard.form.extension.accard_attribute.class%
+        arguments:
+            - %accard.model.patient.class%
+        tags:
+            - { name: form.type_extension, alias: accard_attribute }
 
     accard.form.extension.accard_behavior:
         class: %accard.form.extension.accard_behavior.class%

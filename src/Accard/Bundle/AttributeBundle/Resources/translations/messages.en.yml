@@ -1,0 +1,32 @@
+accard:
+    attribute:
+        action:
+            create: Create an Attribute
+            index: Browse Attributes
+            update: Update an Attribute
+            design: Design an Attribute
+            delete: Delete an Attribute
+        family_cancer:
+            title: Family Cancers
+            action:
+                index: Browse Family Cancers
+                create: Create new Family Cancer
+                update: Update a Family Cancer
+                delete: Delete a Family Cancer
+                design: Design a Family Cancer
+            form:
+                familyMember: Family member
+                side: Side of Family
+                fathers_side: Father's side
+                mothers_side: Mother's side
+                cancerType: Type of cancer
+                family:
+                    mother: Mother
+                    father: Father
+                    sister: Sister
+                    brother: Brother
+                    grandfather: Grandfather
+                    grandmother: Grandmother
+                    uncle: Uncle 
+                    aunt: Aunt
+                    cousin: Cousin
