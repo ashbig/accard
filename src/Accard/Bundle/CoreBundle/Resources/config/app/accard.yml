@@ -28,6 +28,8 @@ accard_diagnosis:
         diagnosis:
             model: Accard\Component\Core\Model\Diagnosis
             controller: Accard\Bundle\CoreBundle\Controller\DiagnosisController
+        diagnosis_code_group:
+            controller: Accard\Bundle\CoreBundle\Controller\DiagnosisCodeGroupController
 
 accard_behavior:
     classes:

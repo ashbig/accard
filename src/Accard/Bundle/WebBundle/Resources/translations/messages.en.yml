@@ -76,7 +76,10 @@ accard:
             patient:
                 base: Base Fields
                 custom: Custom
-
+    patient:
+        form:
+            select_patient: Select a patient
+            end_date_help: Leave blank for an ongoing diagnosis
     form:
         choose: Choose one
         field:

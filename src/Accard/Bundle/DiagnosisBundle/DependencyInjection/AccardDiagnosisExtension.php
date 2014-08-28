@@ -26,6 +26,11 @@ class AccardDiagnosisExtension extends AbstractResourceExtension implements Prep
     /**
      * {@inheritdoc}
      */
+    protected $configFiles = array('services', 'builders', 'forms', 'providers');
+
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $config, ContainerBuilder $container)
     {
         $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
