@@ -3,8 +3,8 @@ accard:
         alcohol:
             title: Alcohol
             action:
-                create: Create Alochol Behavior
-                index: Browse Alochol Behaviors
+                create: Create Alcohol Behavior
+                index: Browse Alcohol Behaviors
                 update: Update Alcohol Behavior
                 delete: Delete Alcohol Behavior
                 design: Design Alcohol Behavior
