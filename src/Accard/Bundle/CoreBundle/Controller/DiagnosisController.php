@@ -30,18 +30,34 @@ class DiagnosisController extends ResourceController
      */
     public function designAction(Request $request)
     {
-
         $manager = $this->get('accard.settings.manager');
         $settingsForm = $this->get('accard.settings.form_factory')->create('behavior');
         $settingsForm->setData($manager->load('diagnosis'));
 
-        $view = $this
-            ->view()
+        $view = $this->view()
             ->setTemplate($this->config->getTemplate('design.html'))
             ->setData(array(
                 'fields' => $this->getFields(),
                 'settings_form' => $settingsForm->createView(),
                 'diagnoses_count' => $this->getDiagnosesCount(),
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * Code group action.
+     *
+     * @param Request $request
+     */
+    public function codeGroupAction(Request $request)
+    {
+        $view = $this->view()
+            ->setTemplate($this->config->getTemplate('groupIndex.html'))
+            ->setData(array(
+                'diagnosis_code_groups' => $this->getCodeGroups(),
+                'diagnosis_codes' => $this->getCodes(),
             ))
         ;
 
@@ -56,6 +72,21 @@ class DiagnosisController extends ResourceController
     private function getFields()
     {
         return $this->get('accard.repository.diagnosis_field')->createPaginator();
+    }
+
+    /**
+     * Get all code groups.
+     *
+     * @return array
+     */
+    private function getCodeGroups()
+    {
+        return $this->get('accard.repository.diagnosis_code_group')->findAll();
+    }
+
+    private function getCodes()
+    {
+        return $this->get('accard.repository.diagnosis_code')->findAll();
     }
 
     /**

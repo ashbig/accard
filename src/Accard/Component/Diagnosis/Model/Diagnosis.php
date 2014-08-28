@@ -46,6 +46,13 @@ class Diagnosis implements DiagnosisInterface
     protected $primary;
 
     /**
+     * Diagnosis code.
+     *
+     * @var CodeInterface
+     */
+    protected $code;
+
+    /**
      * Start date.
      *
      * @var DateTime
@@ -139,6 +146,24 @@ class Diagnosis implements DiagnosisInterface
     /**
      * {@inheritdoc}
      */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCode(CodeInterface $code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getStartDate()
     {
         return $this->startDate;
@@ -170,6 +195,14 @@ class Diagnosis implements DiagnosisInterface
         $this->endDate = $endDate;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isOngoing()
+    {
+        return null === $this->endDate;
     }
 
     /**

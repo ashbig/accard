@@ -1,3 +1,10 @@
+/* Forms */
+label.optional {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Tables */
+
 /* Sidebar Menu Styles */
 
 #side-menu li.current > a {
@@ -6,6 +13,15 @@
 
 #side-menu li.ancestor {
 
+}
+
+/* Drag */
+.drag-over {
+    background-color: rgba(0, 15, 235, 0.1) !important;
+}
+
+.drag-reject {
+    background-color: rgba(235, 15, 0 0.1) !important;
 }
 
 /* Delete form */

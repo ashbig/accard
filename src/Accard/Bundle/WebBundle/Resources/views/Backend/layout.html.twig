@@ -29,8 +29,6 @@
 <link href="{{ asset_url }}" rel="stylesheet" type="text/css">
     {% endstylesheets %}
     {% endblock %}
-
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
 <body>
@@ -173,6 +171,7 @@
 
     {% block javascripts -%}
         {% javascripts output='assets/compiled/backend.js'
+            'bundles/accardweb/js/plugins/modernizr/modernizr.js'
             'bundles/accardweb/js/jquery.js'
             'bundles/accardweb/js/bootstrap.js'
             'bundles/accardweb/js/menu.js'

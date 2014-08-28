@@ -12,28 +12,28 @@ namespace Accard\Bundle\DiagnosisBundle\Doctrine\ORM;
 use Accard\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
- * Basic diagnosis repository.
+ * Basic diagnosis code repository.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class DiagnosisRepository extends EntityRepository
+class CodeRepository extends EntityRepository
 {
     /**
      * {@inheritdoc}
      */
     protected function getAlias()
     {
-        return 'diagnosis';
+        return 'diagnosis_code';
     }
 
     /**
-     * Get patient count.
+     * Get diagnosis code count.
      *
      * @return integer
      */
     public function getCount()
     {
-        return $this->getQueryBuilder()->select('COUNT(diagnosis.id)')->getQuery()->getSingleScalarResult();
+        return $this->getQueryBuilder()->select('COUNT(diagnosis_code.id)')->getQuery()->getSingleScalarResult();
     }
 
 }

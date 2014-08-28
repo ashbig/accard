@@ -59,6 +59,21 @@ interface DiagnosisInterface extends FieldSubjectInterface
     public function setPrimary(DiagnosisInterface $primary = null);
 
     /**
+     * Get diagnosis code.
+     *
+     * @return CodeInterace
+     */
+    public function getCode();
+
+    /**
+     * Set code interface.
+     *
+     * @param CodeInterface $code
+     * @return DiagnosisInterface
+     */
+    public function setCode(CodeInterface $code);
+
+    /**
      * Get start date.
      *
      * @return DateTime
@@ -87,6 +102,13 @@ interface DiagnosisInterface extends FieldSubjectInterface
      * @return DiagnosisInterface
      */
     public function setEndDate(DateTime $endDate = null);
+
+    /**
+     * Test ongoing.
+     *
+     * @return boolean
+     */
+    public function isOngoing();
 
     /**
      * Get recurrences.
