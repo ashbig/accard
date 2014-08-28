@@ -18,6 +18,7 @@ use Accard\Bundle\OptionBundle\Form\Type\OptionValueChoiceType;
 use Accard\Component\Option\Provider\OptionProviderInterface;
 use Accard\Component\Diagnosis\Builder\DiagnosisBuilderInterface;
 use Accard\Bundle\DiagnosisBundle\Form\EventListener\DefaultDiagnosisFieldListener;
+use Accard\Bundle\DiagnosisBundle\Provider\CodeProvider;
 
 /**
  * Diagnosis form type.
@@ -49,6 +50,13 @@ class DiagnosisType extends AbstractType
     protected $builder;
 
     /**
+     * Diagnosis code provider.
+     *
+     * @var CodeProvider
+     */
+    protected $codeProvider;
+
+    /**
      * Option provider..
      *
      * @var OptionProviderInterface
@@ -66,11 +74,13 @@ class DiagnosisType extends AbstractType
     public function __construct($dataClass,
                                 array $validationGroups,
                                 DiagnosisBuilderInterface $builder,
+                                CodeProvider $codeProvider,
                                 OptionProviderInterface $optionProvider)
     {
         $this->dataClass = $dataClass;
         $this->validationGroups = $validationGroups;
         $this->builder = $builder;
+        $this->codeProvider = $codeProvider;
         $this->optionProvider = $optionProvider;
     }
 
@@ -79,7 +89,20 @@ class DiagnosisType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $codeClass = $this->codeProvider->getRepository()->getClassName();
+        $codeChoices = null;
+
+        if (is_string($options['code_group'])) {
+            $choices = $this->codeProvider->getCodesForGroup($options['code_group']);
+        }
+
         $builder
+            ->add('code', 'entity', array(
+                  'class' => $codeClass,
+                  'property' => 'description',
+                  'choices' => $codeChoices,
+                  'label' => 'accard.diagnosis.form.code',
+            ))
             ->add('startDate', 'date', array(
                 'label' => 'accard.diagnosis.form.start_date',
             ))
@@ -108,7 +131,8 @@ class DiagnosisType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'data_class' => $this->dataClass,
-                'validation_groups' => $this->validationGroups
+                'validation_groups' => $this->validationGroups,
+                'code_group' => 'main',
             ))
         ;
     }
