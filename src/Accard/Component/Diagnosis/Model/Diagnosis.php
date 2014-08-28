@@ -200,6 +200,14 @@ class Diagnosis implements DiagnosisInterface
     /**
      * {@inheritdoc}
      */
+    public function isOngoing()
+    {
+        return null === $this->endDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getRecurrences()
     {
         return $this->recurrences;

@@ -104,6 +104,13 @@ interface DiagnosisInterface extends FieldSubjectInterface
     public function setEndDate(DateTime $endDate = null);
 
     /**
+     * Test ongoing.
+     *
+     * @return boolean
+     */
+    public function isOngoing();
+
+    /**
      * Get recurrences.
      *
      * @return Collection|DiagnosisInterface[]
