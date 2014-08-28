@@ -51,7 +51,8 @@ accard:
             import: Import
             admin: Administration
             diagnoses: Diagnoses
-            behavior: Behaviors
+            behaviors: Behaviors
+            attributes: Attributes
     interface:
         backend:
             title: Accard Administration

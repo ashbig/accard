@@ -48,10 +48,16 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
             $diagnosis->setCurrent(true);
         }
 
-        $behavior = $this->createSimpleItem($event, $repositories, 'behavior', 'behavior_alcohol_index', 'behavior');
+        $behavior = $this->createSimpleItem($event, $repositories, 'behavior', 'behavior_alcohol_index', 'behaviors');
 
         if ('behavior' === $baseRoute) {
             $behavior->setCurrent(true);
+        }
+
+        $attribute = $this->createSimpleItem($event, $repositories, 'attribute', 'family_cancer_attribute_index', 'attributes');
+
+        if ('attribute' === $baseRoute) {
+            $attribute->setCurrent(true);
         }
     }
 
