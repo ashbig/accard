@@ -2,8 +2,10 @@ accard:
     diagnosis:
         title: Diagnosis
         form:
+            code: Code
             start_date: Start Date
             end_date: End Date
+            end_date_ongoing: ongoing
             patient: Patient
         action:
             show: %diagnosis%
