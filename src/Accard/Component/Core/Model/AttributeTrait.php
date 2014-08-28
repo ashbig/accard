@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Accard package.
  *
@@ -9,15 +10,12 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\Behavior as BaseBehavior;
-use DateTime;
-
 /**
- * Accard behavior model.
+ * Accard attribute trait.
  *
- * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class Behavior extends BaseBehavior implements BehaviorInterface
+trait AttributeTrait
 {
     // Traits
     use \Accard\Component\Resource\Model\BlameableTrait;
@@ -31,14 +29,6 @@ class Behavior extends BaseBehavior implements BehaviorInterface
      */
     protected $patient;
 
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->createdAt = new DateTime();
-    }
 
     /**
      * {@inheritdoc}

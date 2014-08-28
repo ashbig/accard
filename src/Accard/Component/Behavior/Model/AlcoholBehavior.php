@@ -45,6 +45,4 @@ class AlcoholBehavior extends Behavior implements AlcoholBehaviorInterface
     }
 
 
-
-
 }
