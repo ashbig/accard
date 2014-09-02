@@ -25,3 +25,4 @@ accard_backend_patient:
 accard_backend_diagnosis:
     resource: @AccardWebBundle/Resources/config/routing/backend/diagnosis.yml
     prefix: /diagnosis
+

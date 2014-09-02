@@ -21,6 +21,7 @@ use Accard\Bundle\WebBundle\Event\MenuBuilderEvent;
  * Creates the default secondary menu structure for the backend menus.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce <piercedy@upenn.edu>
  */
 class BackendMenuSubscriber implements EventSubscriberInterface
 {
@@ -35,12 +36,15 @@ class BackendMenuSubscriber implements EventSubscriberInterface
         $uri = $event->getRequest()->getUri();
 
         $design = $menu->getChild('design');
+
+
         $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
-        $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
 
         if (false !== strpos($uri, 'patient/field')) {
             $patient->setCurrent(true);
         }
+
+        $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
 
         if (false !== strpos($uri, 'diagnosis/field') || false !== strpos($uri, 'diagnosis/code')) {
             $diagnosis->setCurrent(true);

@@ -31,7 +31,7 @@ class DiagnosisController extends ResourceController
     public function designAction(Request $request)
     {
         $manager = $this->get('accard.settings.manager');
-        $settingsForm = $this->get('accard.settings.form_factory')->create('patient');
+        $settingsForm = $this->get('accard.settings.form_factory')->create('behavior');
         $settingsForm->setData($manager->load('diagnosis'));
 
         $view = $this->view()

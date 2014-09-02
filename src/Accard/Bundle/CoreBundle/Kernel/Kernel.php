@@ -39,6 +39,7 @@ abstract class Kernel extends BaseKernel
             new \Accard\Bundle\PatientBundle\AccardPatientBundle(),
             new \Accard\Bundle\DiagnosisBundle\AccardDiagnosisBundle(),
             new \Accard\Bundle\PhaseBundle\AccardPhaseBundle(),
+            new \Accard\Bundle\BehaviorBundle\AccardBehaviorBundle(),
 
             new \Accard\Bundle\CoreBundle\AccardCoreBundle(),
             new \Accard\Bundle\WebBundle\AccardWebBundle(),

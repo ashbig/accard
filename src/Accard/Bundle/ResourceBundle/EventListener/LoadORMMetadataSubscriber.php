@@ -10,11 +10,13 @@
  */
 namespace Accard\Bundle\ResourceBundle\EventListener;
 
+use LogicException;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Events;
+use Doctrine\ORM\Configuration;
 
 /**
  * Doctrine listener used to manipulate mappings.
@@ -24,22 +26,33 @@ use Doctrine\ORM\Events;
 class LoadORMMetadataSubscriber implements EventSubscriber
 {
     /**
+     * Resource classes.
+     *
      * @var array
      */
     protected $classes;
 
     /**
+     * Resource inheritance.
+     *
+     * @var array
+     */
+    protected $inheritance;
+
+    /**
      * Constructor
      *
      * @param array $classes
+     * @param array $inheritance
      */
-    public function __construct($classes)
+    public function __construct($classes, $inheritance)
     {
         $this->classes = $classes;
+        $this->inheritance = $inheritance;
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getSubscribedEvents()
     {
@@ -49,27 +62,98 @@ class LoadORMMetadataSubscriber implements EventSubscriber
     }
 
     /**
+     * Load class metadata event listener.
+     *
      * @param LoadClassMetadataEventArgs $eventArgs
      */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
         /** @var ClassMetadata $metadata */
         $metadata = $eventArgs->getClassMetadata();
+        $configuration = $eventArgs->getEntityManager()->getConfiguration();
 
+        $this->setSuperclassStatus($metadata);
         $this->setCustomRepositoryClasses($metadata);
 
         if (!$metadata->isMappedSuperclass) {
-            $this->setAssociationMappings($metadata, $eventArgs->getEntityManager()->getConfiguration());
+            $this->setAssociationMappings($metadata, $configuration);
+            if ($hasInheritance = $this->hasInheritanceMappings($metadata)) {
+                $this->setInheritanceMappings($hasInheritance, $metadata, $configuration);
+            }
         } else {
             $this->unsetAssociationMappings($metadata);
         }
     }
 
+    /**
+     * Conditionally set mapping superclass status.
+     *
+     * @param ClassMetadataInfo $metadata
+     */
+    private function setSuperclassStatus(ClassMetadataInfo $metadata)
+    {
+        foreach ($this->classes as $class) {
+            if ($class['model'] === $metadata->getName()) {
+                $metadata->isMappedSuperclass = false;
+            }
+        }
+    }
+
+    /**
+     * Test for inheritance mappings for given metadata.
+     *
+     * @param ClassMetadataInfo $metadata
+     * @return boolean
+     */
+    private function hasInheritanceMappings(ClassMetadataInfo $metadata)
+    {
+        $entityName = $metadata->getName();
+        $hasMappings = false;
+
+        foreach ($this->classes as $model => $class) {
+            if ($class['model'] === $entityName && isset($class['children'])) {
+                $hasMappings = $model;
+            }
+        }
+
+        return $hasMappings;
+    }
+
+    /**
+     * Set inheritance mapping for a given metadata.
+     *
+     * @throws LogicException When inheritance can not be found, but should be there.
+     * @param string $model
+     * @param ClassMetadataInfo $metadata
+     * @param Configuration $configuration
+     */
+    private function setInheritanceMappings($model, ClassMetadataInfo $metadata, $configuration)
+    {
+        if (!isset($this->inheritance[$model])) {
+            throw new LogicException('Model has been found to support inheritance, but has no inheritance found.');
+        }
+
+        $inheritance = $this->inheritance[$model];
+
+        $metadata->setInheritanceType(ClassMetadata::INHERITANCE_TYPE_JOINED);
+        $metadata->setDiscriminatorColumn(array(
+            'name' => 'discriminator',
+            'type' => 'string',
+            'length' => 120,
+        ));
+        $metadata->setDiscriminatorMap($inheritance);
+        $metadata->setSubclasses(array_values($inheritance));
+    }
+
+    /**
+     * Set custom repository from configuration.
+     *
+     * @param ClassMetadataInfo $metadata
+     */
     private function setCustomRepositoryClasses(ClassMetadataInfo $metadata)
     {
         foreach ($this->classes as $class) {
-            if (array_key_exists('model', $class) && $class['model'] === $metadata->getName()) {
-                $metadata->isMappedSuperclass = false;
+            if ($class['model'] === $metadata->getName()) {
                 if (array_key_exists('repository', $class)) {
                     $metadata->setCustomRepositoryClass($class['repository']);
                 }
@@ -77,6 +161,12 @@ class LoadORMMetadataSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * Set inherited association mappings.
+     *
+     * @param ClassMetadataInfo $metadata
+     * @param Configuration $configuration
+     */
     private function setAssociationMappings(ClassMetadataInfo $metadata, $configuration)
     {
         foreach (class_parents($metadata->getName()) as $parent) {
@@ -97,6 +187,11 @@ class LoadORMMetadataSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * Remove inherited association mappings.
+     *
+     * @param ClassMetadataInfo $metadata
+     */
     private function unsetAssociationMappings(ClassMetadataInfo $metadata)
     {
         foreach ($metadata->getAssociationMappings() as $key => $value) {
@@ -106,6 +201,12 @@ class LoadORMMetadataSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * Test for presence of a relation.
+     *
+     * @param integer $type
+     * @return boolean
+     */
     private function hasRelation($type)
     {
         return in_array(

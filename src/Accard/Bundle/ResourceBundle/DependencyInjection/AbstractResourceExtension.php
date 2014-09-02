@@ -75,6 +75,7 @@ abstract class AbstractResourceExtension extends Extension
 
         if ($configure & self::CONFIGURE_PARAMETERS) {
             $this->mapClassParameters($classes, $container);
+            $this->mapInheritance($classes, $container);
         }
 
         if ($configure & self::CONFIGURE_VALIDATORS) {
@@ -87,7 +88,31 @@ abstract class AbstractResourceExtension extends Extension
 
         $container->setParameter('accard.config.classes', $classes);
 
+        if (!$container->hasParameter('accard.config.inheritance')) {
+            $container->setParameter('accard.config.inheritance', array());
+        }
+
         return array($config, $loader);
+    }
+
+    protected function mapInheritance(array $classes, ContainerBuilder $container)
+    {
+        foreach ($classes as $model => $inheritanceClass) {
+            if (isset($inheritanceClass['children'])) {
+                $map = array($model => $inheritanceClass['model']);
+                foreach ($inheritanceClass['children'] as $child) {
+                    $map[$child] = $classes[$child]['model'];
+                }
+
+                $inherited = array();
+                if ($container->hasParameter('accard.config.inheritance')) {
+                    $inherited = $container->getParameter('accard.config.inheritance');
+                }
+
+                $inherited[$model] = $map;
+                $container->setParameter('accard.config.inheritance', $inherited);
+            }
+        }
     }
 
     /**

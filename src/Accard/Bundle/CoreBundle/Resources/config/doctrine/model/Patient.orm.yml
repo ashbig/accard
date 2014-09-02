@@ -23,6 +23,11 @@ Accard\Component\Core\Model\Patient:
             mappedBy: patient
             orphanRemoval: true
             cascade: ["persist", "remove"]
+        behaviors:
+            targetEntity: Accard\Component\Behavior\Model\BehaviorInterface
+            mappedBy: patient
+            orphanRemoval: true
+            cascades: ["persist", "remove"]
 #        activities:
 #            targetEntity: Accard\Component\Activity\Model\ActivityInterface
 #            mappedBy: patient

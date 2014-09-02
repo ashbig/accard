@@ -1,0 +1,32 @@
+{# This file is part of the Accard package. #}
+
+{# (c) University of Pennsylvania #}
+
+{# For the full copyright and license information, please view the LICENSE #}
+{# file that was distributed with this source code. #}
+
+{# @author Dylan Pierce <piercedy@upenn.edu #}
+
+
+{% macro behaviors_menu() %}
+
+{% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
+
+    <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
+        <li class="{{ active_if_current('accard_frontend_behavior_alcohol_index') }}">
+            <a href="{{ path('accard_frontend_behavior_alcohol_index') }}">{{ 'accard.behavior.alcohol.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior_smoking_index') }}">
+            <a href="{{ path('accard_frontend_behavior_smoking_index') }}">{{ 'accard.behavior.smoking.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior_illicit_drug_index') }}">
+            <a href="{{ path('accard_frontend_behavior_illicit_drug_index') }}">{{ 'accard.behavior.illicit_drug.title'|trans }}</a>
+        <li class="{{ active_if_current('accard_frontend_behavior_occupation_index') }}">
+            <a href="{{ path('accard_frontend_behavior_occupation_index') }}">{{ 'accard.behavior.occupation.title'|trans }}</a>
+        </li>
+        <li class="{{ active_if_current('accard_frontend_behavior.education_index') }}">
+            <a href="{{ path('accard_frontend_behavior_education_index') }}">{{ 'accard.behavior.education.title'|trans }}</a>
+        </li>
+    </ul>
+
+{% endmacro %}

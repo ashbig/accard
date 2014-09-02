@@ -45,6 +45,13 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
     protected $activities;
 
     /**
+     * Behaviors.
+     *
+     * @var Collection|BehaviorInterface[]
+     */
+    protected $behaviors;
+
+    /**
      * Phases.
      *
      * @var Collection|PatientPhaseInterface[]
@@ -60,6 +67,7 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
         $this->createdAt = new DateTime();
         $this->diagnoses = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->behaviors = new ArrayCollection();
         $this->phases = new ArrayCollection();
 
         parent::__construct();
@@ -144,6 +152,46 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
         if ($this->hasActivity($activity)) {
             $this->activities->removeElement($activity);
             $activity->setPatient(null);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBehaviors()
+    {
+        return $this->behaviors;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasBehavior(BehaviorInterface $behavior)
+    {
+        return $this->behaviors->contains($behavior);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addBehavior(BehaviorInterface $behavior)
+    {
+        if (!$this->hasBehavior($behavior)) {
+            $behavior->setPatient($this);
+            $this->behaviors->add($behavior);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeBehavior(BehaviorInterface $behavior)
+    {
+        if ($this->hasBehavior($behavior)) {
+            $this->behaviors->removeElement($behavior);
+            $behavior->setPatient(null);
         }
     }
 

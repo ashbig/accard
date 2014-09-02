@@ -31,6 +31,13 @@ accard_diagnosis:
         diagnosis_code_group:
             controller: Accard\Bundle\CoreBundle\Controller\DiagnosisCodeGroupController
 
+accard_behavior:
+    classes:
+        behavior:
+            model: Accard\Component\Core\Model\Behavior
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+
+
 accard_phase:
     classes:
         phase:
