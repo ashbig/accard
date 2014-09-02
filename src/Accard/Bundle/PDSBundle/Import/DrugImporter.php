@@ -75,7 +75,7 @@ class DrugImporter extends PatientImporter
             $result = array_change_key_case($result, CASE_LOWER);
             $result['import_description'] = sprintf('%s ordered on %s.', $result['medication'], $result['medication_date']);
 
-            unset($result['diagnosis'], $result['diagnosis_date']);
+            unset($result['medication'], $result['medication_date']);
             $records[] = $resolver->resolve($result);
             unset($results[$key]);
         }
