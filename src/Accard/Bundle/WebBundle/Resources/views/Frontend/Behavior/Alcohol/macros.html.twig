@@ -29,7 +29,7 @@
         <tbody>
         {% for alcohol_behavior in alcohol_behaviors %}
             <tr id="{{ alcohol_behavior.id }}">
-               {#} <td class="patient-name">{{ alcohol_behavior.patient.fullName }}</td>#}
+                <td class="patient-name">{{ alcohol_behavior.patient.fullName }}</td>
                 <td class="start-of-behavior">{{ alcohol_behavior.startDate|localizeddate('medium', 'none') }}</td>
                 <td class='end-date'>{{ alcohol_behavior.endDate|localizeddate('medium', 'none') }}</td>
                 <td class="frequency">{{ alcohol_behavior.frequency }}</td>

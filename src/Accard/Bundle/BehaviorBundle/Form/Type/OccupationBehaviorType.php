@@ -34,6 +34,10 @@ class OccupationBehaviorType extends BehaviorType
                 'label' => 'accard.behavior.occupation.form.industry'
             ))
 
+            ->add('hours', 'text', array(
+                'label' => 'accard.behavior.occupation.form.hours'
+            ))
+
         ;
     }
 
