@@ -41,7 +41,7 @@ class ImportController extends ResourceController
         }
 
         $target = $record->getImportTarget();
-        $target->setStatus(ImportTargetInterface::DECLINED);
+        $target->setStatus(ImportTargetInterface::ACCEPTED);
         $manager->persist($record);
         $manager->persist($target);
         $manager->flush();
