@@ -99,7 +99,7 @@ abstract class AbstractResourceExtension extends Extension
     {
         foreach ($classes as $model => $inheritanceClass) {
             if (isset($inheritanceClass['children'])) {
-                $map = array($model => $inheritanceClass['model']);
+                $map = array();//array($model => $inheritanceClass['model']);
                 foreach ($inheritanceClass['children'] as $child) {
                     $map[$child] = $classes[$child]['model'];
                 }

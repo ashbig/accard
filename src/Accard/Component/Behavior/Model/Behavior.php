@@ -17,7 +17,7 @@ use DateTime;
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class Behavior implements BehaviorInterface
+abstract class Behavior implements BehaviorInterface
 {
     /**
      * Behavior id.

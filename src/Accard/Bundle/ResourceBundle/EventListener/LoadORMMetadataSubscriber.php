@@ -142,7 +142,6 @@ class LoadORMMetadataSubscriber implements EventSubscriber
             'length' => 120,
         ));
         $metadata->setDiscriminatorMap($inheritance);
-        $metadata->setSubclasses(array_values($inheritance));
     }
 
     /**

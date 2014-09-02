@@ -15,7 +15,6 @@ accard_core:
 
 accard_resource: ~
 accard_settings: ~
-#accard_import: ~
 
 accard_patient:
     classes:
