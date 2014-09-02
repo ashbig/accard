@@ -24,12 +24,6 @@ class Attribute implements AttributeInterface
      */
     protected $id;
 
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * {@inheritdoc}

@@ -10,15 +10,87 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Attribute\Model\FamilyCancerAttribute as BaseFamilyCancerAttribute;
-
 /**
- * Accard FamilyCancerAttribute model.
+ * Accard family cancer attribute model.
  *
  * @author Dylan Pierce <piercedy@upenn.edu>
+ * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class FamilyCancerAttribute extends BaseFamilyCancerAttribute implements FamilyCancerAttributeInterface
+class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeInterface
 {
-    // Traits
-    use AttributeTrait;
+    /**
+     * Family member.
+     *
+     * @var string
+     */
+    protected $familyMember;
+
+    /**
+     * Type of cancer.
+     *
+     * @var string
+     */
+    protected $cancerType;
+
+    /**
+     * Side of family.
+     *
+     * @var string
+     */
+    protected $side;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFamilyMember($familyMember)
+    {
+        $this->familyMember = $familyMember;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFamilyMember()
+    {
+        return $this->familyMember;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCancerType($cancerType)
+    {
+        $this->cancerType = $cancerType;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCancerType()
+    {
+        return $this->cancerType;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSide($side)
+    {
+        $this->side = $side;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSide()
+    {
+        return $this->side;
+    }
 }

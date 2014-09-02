@@ -16,9 +16,8 @@ use Accard\Component\Attribute\Model\FamilyCancerAttributeInterface as BaseFamil
  * Accard family cancer attribute interface.
  *
  * @author Dylan Pierce <piercedy@upenn.edu>
+ * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
 interface FamilyCancerAttributeInterface extends BaseFamilyCancerAttributeInterface, AttributeInterface
 {
-
-
 }
