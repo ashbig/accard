@@ -33,6 +33,12 @@ class LoadGenderOptionValueData extends AbstractFixture implements OrderedFixtur
 
         $manager->persist($genderFemaleOptionValue);
 
+        $genderUnknownOptionValue = new OptionValue();
+        $genderUnknownOptionValue->setValue('Unknown');
+        $genderUnknownOptionValue->setOption($this->getReference('genderOption'));
+
+        $manager->persist($genderUnknownOptionValue);
+
         $manager->flush();
         
     }
