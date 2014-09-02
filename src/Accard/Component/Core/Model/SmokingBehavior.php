@@ -10,17 +10,61 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\SmokingBehavior as BaseSmokingBehavior;
-use DateTime;
-
 /**
  * Accard SmokingBehavior model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class SmokingBehavior extends BaseSmokingBehavior implements SmokingBehaviorInterface
+class SmokingBehavior extends Behavior implements SmokingBehaviorInterface
 {
-    // Traits
-    use BehaviorTrait;
+    /**
+     * Type of smoking (like cigarettes, cigars, etc)
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * Frequency of smoking.
+     *
+     * @var integer
+     */
+    protected $frequency;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFrequency($frequency)
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
 }

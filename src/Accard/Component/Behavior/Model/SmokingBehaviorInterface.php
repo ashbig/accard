@@ -21,7 +21,7 @@ interface SmokingBehaviorInterface extends BehaviorInterface
 
     /**
      * Set past smoking type.
-     * 
+     *
      * @param string $past_type
      * @return SmokingBehaviorInterface
      */
@@ -29,14 +29,14 @@ interface SmokingBehaviorInterface extends BehaviorInterface
 
     /**
      * Get type.
-     * 
+     *
      * @return string
      */
     public function getType();
 
     /**
      * Set past smoking frequency.
-     * 
+     *
      * @param string $type
      * @return SmokingBehaviorInterface
      */
@@ -44,9 +44,8 @@ interface SmokingBehaviorInterface extends BehaviorInterface
 
     /**
      * Get frequency.
-     * 
+     *
      * @return string
      */
     public function getFrequency();
-
 }

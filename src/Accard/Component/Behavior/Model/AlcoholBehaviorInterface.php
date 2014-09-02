@@ -20,7 +20,7 @@ interface AlcoholBehaviorInterface extends BehaviorInterface
 {
     /**
      * Set frequency.
-     * 
+     *
      * @param integer $frequency
      * @return AlcoholBehaviorInterface
      */
@@ -28,9 +28,8 @@ interface AlcoholBehaviorInterface extends BehaviorInterface
 
     /**
      * Get frequency.
-     * 
+     *
      * @return integer
      */
     public function getFrequency();
-
 }

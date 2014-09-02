@@ -19,6 +19,4 @@ use Accard\Component\Behavior\Model\AlcoholBehaviorInterface as BaseAlcoholBehav
  */
 interface AlcoholBehaviorInterface extends BaseAlcoholBehaviorInterface, BehaviorInterface
 {
-
-
 }

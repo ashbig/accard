@@ -10,16 +10,36 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\AlcoholBehavior as BaseAlcoholBehavior;
-use DateTime;
-
 /**
- * Accard AlcoholBehavior model.
+ * Accard alcohol behavior model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class AlcoholBehavior extends BaseAlcoholBehavior implements AlcoholBehaviorInterface
+class AlcoholBehavior extends Behavior implements AlcoholBehaviorInterface
 {
-    // Traits
-    use BehaviorTrait;
+    /**
+     * Frequency of use.
+     *
+     * @var integer
+     */
+    protected $frequency;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFrequency($frequency)
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
 }

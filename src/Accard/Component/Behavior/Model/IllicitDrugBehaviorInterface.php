@@ -21,7 +21,7 @@ interface IllicitDrugBehaviorInterface extends BehaviorInterface
 
     /**
      * Set type.
-     * 
+     *
      * @param string $type
      * @return IllicitDrugBehaviorInterface
      */
@@ -29,14 +29,14 @@ interface IllicitDrugBehaviorInterface extends BehaviorInterface
 
     /**
      * Get type.
-     * 
+     *
      * @return string $type
      */
     public function getType();
 
     /**
      * Set method.
-     * 
+     *
      * @param string $method
      * @return IllicitDrugBehaviorInterface
      */
@@ -44,14 +44,14 @@ interface IllicitDrugBehaviorInterface extends BehaviorInterface
 
     /**
      * Get method.
-     * 
+     *
      * @return integer
      */
     public function getMethod();
 
     /**
      * Set frequency.
-     * 
+     *
      * @param string $frequency
      * @return IllicitDrugBehaviorInterface
      */
@@ -59,9 +59,8 @@ interface IllicitDrugBehaviorInterface extends BehaviorInterface
 
     /**
      * Get frequency.
-     * 
+     *
      * @return integer
      */
     public function getFrequency();
-
 }

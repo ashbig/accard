@@ -10,17 +10,87 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\EducationBehavior as BaseEducationBehavior;
-use DateTime;
-
 /**
- * Accard Education Behavior model.
+ * Accard education behavior model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class EducationBehavior extends BaseEducationBehavior implements EducationBehaviorInterface
+class EducationBehavior extends Behavior implements EducationBehaviorInterface
 {
-    // Traits
-    use BehaviorTrait;
+    /**
+     * level of education.
+     *
+     * @var string
+     */
+    protected $level;
+
+    /**
+     * Completed.
+     *
+     * @var boolean
+     */
+    protected $completed;
+
+    /**
+     * Number of years attended.
+     *
+     * @var integer
+     */
+    protected $years;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getYears()
+    {
+        return $this->level;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setYears($years)
+    {
+        $this->years = $years;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
 }
