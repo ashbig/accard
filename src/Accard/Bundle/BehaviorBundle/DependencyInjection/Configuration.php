@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('accard_behaviors');
+        $rootNode = $treeBuilder->root('accard_behavior');
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -59,6 +59,26 @@ class Configuration implements ConfigurationInterface
                             ->prototype('scalar')->end()
                             ->defaultValue(array('accard'))
                         ->end()
+                        ->arrayNode('alcohol_behavior')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('smoking_behavior')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('illicit_drug_behavior')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('occupation_behavior')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('education_behavior')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
                     ->end()
                 ->end()
             ->end()
@@ -72,6 +92,14 @@ class Configuration implements ConfigurationInterface
      */
     private function addClassesSection(ArrayNodeDefinition $node)
     {
+        $defaultInheritance = array(
+            'alcohol_behavior',
+            'smoking_behavior',
+            'illicit_drug_behavior',
+            'occupation_behavior',
+            'education_behavior',
+        );
+
         $node
             ->children()
                 ->arrayNode('classes')
@@ -80,6 +108,10 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->arrayNode('children')
+                                    ->prototype('scalar')->end()
+                                    ->defaultValue($defaultInheritance)
+                                ->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Behavior\Model\Behavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
@@ -89,6 +121,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('alcohol_behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('parent')->defaultValue('behavior')->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\AlcoholBehavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
@@ -98,6 +131,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('smoking_behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('parent')->defaultValue('behavior')->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\SmokingBehavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
@@ -107,6 +141,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('illicit_drug_behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('parent')->defaultValue('behavior')->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\IllicitDrugBehavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
@@ -116,6 +151,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('occupation_behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('parent')->defaultValue('behavior')->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\OccupationBehavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
@@ -125,6 +161,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('education_behavior')
                             ->addDefaultsIfNotSet()
                             ->children()
+                                ->scalarNode('parent')->defaultValue('behavior')->end()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\EducationBehavior')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('repository')->defaultValue('Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository')->end()
