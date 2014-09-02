@@ -2,6 +2,8 @@ accard:
     behavior:
         alcohol:
             title: Alcohol
+            message:
+                none_found: No alcohol behaviors found
             action:
                 create: Create Alcohol Behavior
                 index: Browse Alcohol Behaviors
@@ -12,6 +14,8 @@ accard:
                 frequency: Frequency
         smoking:
             title: Smoking
+            message:
+                none_found: No smoking behaviors found
             action:
                 create: Create Smoking Behavior
                 index: Browse Smoking Behaviors
@@ -23,6 +27,8 @@ accard:
                 frequency: Number of Packs
         illicit_drug:
             title: Illicit Drugs
+            message:
+                none_found: No illicit drug behaviors found 
             action:
                 create: Create Illicit Drug Behavior
                 index: Browse Illicit Drug Behaviors
@@ -34,6 +40,8 @@ accard:
                 method: Method
                 frequency: Frequency
         occupation:
+            message:
+                none_found: No occupation behaviors found
             title: Occupation
             action:
                 create: Create Occupation Behavior
@@ -43,7 +51,10 @@ accard:
                 design: Design Occupation Behavior
             form:
                 industry: Industry 
+                hours: Hours per week
         education:
+            message:
+                none_found: No education behaviors found
             title: Education
             action:
                 create: Create Education Behavior
