@@ -8,8 +8,8 @@
 # Dylan Pierce <piercedy@upenn.edu>
 
 Accard\Component\Core\Model\Behavior:
-    type: mappedSuperclass
-    table: accard_behaviors
+    type: entity
+    table: accard_behavior
     repositoryClass: Accard\Bundle\BehaviorBundle\Doctrine\ORM\BehaviorRepository
 
     manyToOne:

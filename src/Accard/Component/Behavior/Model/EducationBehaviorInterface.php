@@ -21,14 +21,14 @@ interface EducationBehaviorInterface extends BehaviorInterface
 
     /**
      * Get level.
-     * 
+     *
      * @return string
      */
     public function getLevel();
 
     /**
     * Set level.
-    * 
+    *
     * @param string $level
     * @return EducationBehaviorInterface
     */
@@ -36,14 +36,14 @@ interface EducationBehaviorInterface extends BehaviorInterface
 
     /**
      * Get years.
-     * 
+     *
      * @return string
      */
     public function getYears();
 
     /**
     * Set years.
-    * 
+    *
     * @param integer $years
     * @return EducationBehaviorInterface
     */
@@ -51,17 +51,16 @@ interface EducationBehaviorInterface extends BehaviorInterface
 
     /**
      * Get completed.
-     * 
+     *
      * @return boolean
      */
     public function getCompleted();
 
     /**
     * Set completed.
-    * 
+    *
     * @param string $completed
     * @return EducationBehaviorInterface
     */
     public function setCompleted($completed);
-
 }

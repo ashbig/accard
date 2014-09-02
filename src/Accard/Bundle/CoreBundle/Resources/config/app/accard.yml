@@ -37,6 +37,7 @@ accard_behavior:
             model: Accard\Component\Core\Model\Behavior
             controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
 
+
 accard_phase:
     classes:
         phase:

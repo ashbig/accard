@@ -20,7 +20,7 @@ interface OccupationBehaviorInterface extends BehaviorInterface
 {
     /**
      * Set past industry
-     * 
+     *
      * @param string $industry
      * @return OccupationBehaviorInterface
      */
@@ -28,14 +28,14 @@ interface OccupationBehaviorInterface extends BehaviorInterface
 
     /**
      * Get past industry
-     * 
+     *
      * @return string
      */
     public function getIndustry();
 
     /**
      * Set weekly hours
-     * 
+     *
      * @param string $hours
      * @return OccupationBehaviorInterface
      */
@@ -43,10 +43,8 @@ interface OccupationBehaviorInterface extends BehaviorInterface
 
     /**
      * Get weekly hours
-     * 
+     *
      * @return string
      */
     public function getHours();
-
-
 }

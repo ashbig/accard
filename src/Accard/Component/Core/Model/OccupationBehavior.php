@@ -10,17 +10,61 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\OccupationBehavior as BaseOccupationBehavior;
-use DateTime;
-
 /**
- * Accard OccupationBehavior model.
+ * Accard occupation behavior model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class OccupationBehavior extends BaseOccupationBehavior implements OccupationBehaviorInterface
+class OccupationBehavior extends Behavior implements OccupationBehaviorInterface
 {
-    // Traits
-    use BehaviorTrait;
+    /**
+     * Past industry
+     *
+     * @var string
+     */
+    protected $industry;
+
+    /**
+     * Weekly hours
+     *
+     * @var string
+     */
+    protected $hours;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIndustry($industry)
+    {
+        $this->industry = $industry;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIndustry()
+    {
+        return $this->industry;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setHours($hours)
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHours()
+    {
+        return $this->hours;
+    }
 }

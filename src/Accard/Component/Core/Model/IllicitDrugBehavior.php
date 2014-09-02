@@ -10,17 +10,86 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Behavior\Model\IllicitDrugBehavior as BaseIllicitDrugBehavior;
-use DateTime;
-
 /**
- * Accard Illicit Drug Behavior model.
+ * Accard illicit drug behavior model.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class IllicitDrugBehavior extends BaseIllicitDrugBehavior implements IllicitDrugBehaviorInterface
+class IllicitDrugBehavior extends Behavior implements IllicitDrugBehaviorInterface
 {
-    // Traits
-    use BehaviorTrait;
+    /**
+     * Type of illicit drug
+     *
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * Method of consumption.
+     *
+     * @var string
+     */
+    protected $method;
+
+    /**
+     * Frequency of consumption.
+     *
+     * @var string
+     */
+    protected $frequency;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMethod($method)
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFrequency($frequency)
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
 }
