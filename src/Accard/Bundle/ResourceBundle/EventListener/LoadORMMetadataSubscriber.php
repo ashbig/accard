@@ -29,13 +29,19 @@ class LoadORMMetadataSubscriber implements EventSubscriber
     protected $classes;
 
     /**
+     * @var array
+     */
+    protected $inheritance;
+
+    /**
      * Constructor
      *
      * @param array $classes
      */
-    public function __construct($classes)
+    public function __construct($classes, $inheritance)
     {
         $this->classes = $classes;
+        $this->inheritance = $inheritance;
     }
 
     /**
@@ -55,21 +61,66 @@ class LoadORMMetadataSubscriber implements EventSubscriber
     {
         /** @var ClassMetadata $metadata */
         $metadata = $eventArgs->getClassMetadata();
+        $configuration = $eventArgs->getEntityManager()->getConfiguration();
 
+        $this->setSuperclassStatus($metadata);
         $this->setCustomRepositoryClasses($metadata);
 
         if (!$metadata->isMappedSuperclass) {
-            $this->setAssociationMappings($metadata, $eventArgs->getEntityManager()->getConfiguration());
+            $this->setAssociationMappings($metadata, $configuration);
+            if ($hasInheritance = $this->hasInheritanceMappings($metadata)) {
+                $this->setInheritanceMappings($hasInheritance, $metadata, $configuration);
+            }
         } else {
             $this->unsetAssociationMappings($metadata);
         }
     }
 
+    private function setSuperclassStatus(ClassMetadataInfo $metadata)
+    {
+        foreach ($this->classes as $class) {
+            if ($class['model'] === $metadata->getName()) {
+                $metadata->isMappedSuperclass = false;
+            }
+        }
+    }
+
+    private function hasInheritanceMappings(ClassMetadataInfo $metadata)
+    {
+        $entityName = $metadata->getName();
+        $hasMappings = false;
+
+        foreach ($this->classes as $model => $class) {
+            if ($class['model'] === $entityName && isset($class['children'])) {
+                $hasMappings = $model;
+            }
+        }
+
+        return $hasMappings;
+    }
+
+    private function setInheritanceMappings($model, ClassMetadataInfo $metadata, $configuration)
+    {
+        if (!isset($this->inheritance[$model])) {
+            throw new \LogicException('Model has been found to support inheritance, but has no inheritance found.');
+        }
+
+        $inheritance = $this->inheritance[$model];
+
+        $metadata->setInheritanceType(ClassMetadata::INHERITANCE_TYPE_JOINED);
+        $metadata->setDiscriminatorColumn(array(
+            'name' => 'discriminator',
+            'type' => 'string',
+            'length' => 120,
+        ));
+        $metadata->setDiscriminatorMap($inheritance);
+        $metadata->setSubclasses(array_values($inheritance));
+    }
+
     private function setCustomRepositoryClasses(ClassMetadataInfo $metadata)
     {
         foreach ($this->classes as $class) {
-            if (array_key_exists('model', $class) && $class['model'] === $metadata->getName()) {
-                $metadata->isMappedSuperclass = false;
+            if ($class['model'] === $metadata->getName()) {
                 if (array_key_exists('repository', $class)) {
                     $metadata->setCustomRepositoryClass($class['repository']);
                 }

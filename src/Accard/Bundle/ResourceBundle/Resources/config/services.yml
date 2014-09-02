@@ -33,7 +33,7 @@ services:
 
     accard.event_subscriber.load_orm_metadata:
         class: %accard.event_subscriber.load_orm_metadata.class%
-        arguments: ["%accard.config.classes%"]
+        arguments: ["%accard.config.classes%", "%accard.config.inheritance%"]
         tags: [{ name: doctrine.event_subscriber }]
 
     accard.event_subscriber.kernel_controller:
