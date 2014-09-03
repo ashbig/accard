@@ -90,6 +90,68 @@ interface PatientInterface extends BasePatientInterface,
     public function removeActivity(ActivityInterface $activity);
 
     /**
+     * Get behaviors.
+     *
+     * @return Collection|BehaviorInterface[]
+     */
+    public function getBehaviors();
+
+    /**
+     * Test for presence of a behavior.
+     *
+     * @param BehaviorInterface $behavior
+     * @return boolean
+     */
+    public function hasBehavior(BehaviorInterface $behavior);
+
+    /**
+     * Add a behavior.
+     *
+     * @param BehaviorInterface $behavior
+     * @return PatientInterface
+     */
+    public function addBehavior(BehaviorInterface $behavior);
+
+    /**
+     * Remove a behavior.
+     *
+     * @param BehaviorInterface $behavior
+     * @return PatientInterface
+     */
+    public function removeBehavior(BehaviorInterface $behavior);
+
+    /**
+     * Get attributes.
+     *
+     * @return Collection|AttributeInterface[]
+     */
+    public function getAttributes();
+
+    /**
+     * Test for presence of an attribute.
+     *
+     * @param AttributeInterface $attribute
+     * @return boolean
+     */
+    public function hasAttribute(AttributeInterface $attribute);
+
+    /**
+     * Add an attribute.
+     *
+     * @param AttributeInterface $attribute
+     * @return PatientInterface
+     */
+    public function addAttribute(AttributeInterface $attribute);
+
+    /**
+     * Remove an attribute.
+     *
+     * @param AttributeInterface $attribute
+     * @return PatientInterface
+     */
+    public function removeAttribute(AttributeInterface $attribute);
+
+    /**
      * Get phases.
      *
      * @return Collection|PatientPhaseInterface[]
