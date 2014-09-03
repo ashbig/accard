@@ -18,8 +18,40 @@ use Pagerfanta\Pagerfanta;
  * Attribute controller.
  *
  * @author Dylan Pierce <piercedy@upenn.edu>
+ * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
 class AttributeController extends ResourceController
 {
- 
+    /**
+     * Design attribute action.
+     *
+     * @param Request $request
+     * @todo create logical actions
+     */
+    public function designAction(Request $request)
+    {
+        $manager = $this->get('accard.settings.manager');
+        $settingsForm = $this->get('accard.settings.form_factory')->create('attribute');
+        $settingsForm->setData($manager->load('attribute'));
+
+        $view = $this->view()
+            ->setTemplate($this->config->getTemplate('design.html'))
+            ->setData(array(
+                'settings_form' => $settingsForm->createView(),
+                'attribute_count' => $this->getAttributeCount(),
+            ))
+        ;
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * Get the total number of attributes.
+     *
+     * @return integer
+     */
+    private function getAttributeCount()
+    {
+        return $this->get('accard.repository.attribute')->getCount();
+    }
 }

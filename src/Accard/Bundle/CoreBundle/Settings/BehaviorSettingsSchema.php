@@ -47,9 +47,19 @@ class BehaviorSettingsSchema implements SchemaInterface
         $builder
             ->setDefaults(array_merge(array(
                 'enabled' => true,
+                'enable_alcohol' => true,
+                'enable_smoking' => true,
+                'enable_illicit_drugs' => true,
+                'enable_occupation' => true,
+                'enable_education' => true,
             ), $this->defaults))
             ->setAllowedValues(array(
                 'enabled' => array(true, false, '1', '0'),
+                'enable_alcohol' => array(true, false, '1', '0'),
+                'enable_smoking' => array(true, false, '1', '0'),
+                'enable_illicit_drugs' => array(true, false, '1', '0'),
+                'enable_occupation' => array(true, false, '1', '0'),
+                'enable_education' => array(true, false, '1', '0'),
             ))
         ;
     }
@@ -63,9 +73,25 @@ class BehaviorSettingsSchema implements SchemaInterface
             ->add('enabled', 'checkbox', array(
                 'label' => 'accard.form.settings.behavior.enabled',
                 'required' => false,
-                'disabled' => true,
             ))
-            ->add('import_enabled', 'checkbox', array(
+            ->add('enable_alcohol', 'checkbox', array(
+                'label' => 'accard.form.settings.behavior.enable_alcohol',
+                'required' => false,
+            ))
+            ->add('enable_smoking', 'checkbox', array(
+                'label' => 'accard.form.settings.behavior.enable_smoking',
+                'required' => false,
+            ))
+            ->add('enable_illicit_drugs', 'checkbox', array(
+                'label' => 'accard.form.settings.behavior.enable_illicit_drugs',
+                'required' => false,
+            ))
+            ->add('enable_occupation', 'checkbox', array(
+                'label' => 'accard.form.settings.behavior.enable_occupation',
+                'required' => false,
+            ))
+            ->add('enable_education', 'checkbox', array(
+                'label' => 'accard.form.settings.behavior.enable_education',
                 'required' => false,
             ))
         ;

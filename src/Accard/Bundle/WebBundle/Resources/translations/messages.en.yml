@@ -42,7 +42,8 @@ accard:
             design: Design
             patient: Patient
             diagnosis: Diagnosis
-            behavior: Behaviors
+            behavior: Behavior
+            attribute: Attribute
             options: Options
         frontend:
             home: Home
