@@ -35,6 +35,16 @@ accard_behavior:
         behavior:
             model: Accard\Component\Core\Model\Behavior
             controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+        alcohol_behavior:
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+        smoking_behavior:
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+        illicit_drug_behavior:
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+        occupation_behavior:
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
+        education_behavior:
+            controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
 
 
 accard_phase:
@@ -46,4 +56,6 @@ accard_attribute:
     classes:
         attribute:
             model: Accard\Component\Core\Model\Attribute
+            controller: Accard\Bundle\CoreBundle\Controller\AttributeController
+        family_cancer_attribute:
             controller: Accard\Bundle\CoreBundle\Controller\AttributeController

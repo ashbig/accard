@@ -79,7 +79,7 @@ class ResourceController extends FOSRestController implements InitializableContr
     /**
      * {@inheritdoc}
      */
-    public function initialize(Request $request, SecurityContextInterface $sc)
+    public function initialize(Request $request, SecurityContextInterface $securityContext)
     {
     }
 

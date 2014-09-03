@@ -12,7 +12,7 @@
 namespace Accard\Bundle\ResourceBundle\EventListener;
 
 use Accard\Bundle\ResourceBundle\Controller\ResourceController;
-use Accard\Bundle\ResourceBundle\Controller\InitlializableController;
+use Accard\Bundle\ResourceBundle\Controller\InitializableController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -70,7 +70,7 @@ class KernelControllerSubscriber implements EventSubscriberInterface
         }
 
         // Run initialization if required.
-        if ($controller[0] instanceof InitlializableController) {
+        if ($controller[0] instanceof InitializableController) {
             $controller[0]->initialize($event->getRequest(), $this->securityContext);
         }
     }
