@@ -18,7 +18,7 @@ use DateTime;
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class Attribute extends BaseAttribute implements AttributeInterface
+abstract class Attribute extends BaseAttribute implements AttributeInterface
 {
     // Traits
     use \Accard\Component\Resource\Model\BlameableTrait;
