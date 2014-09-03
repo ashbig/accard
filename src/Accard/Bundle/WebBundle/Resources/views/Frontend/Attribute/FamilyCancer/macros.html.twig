@@ -28,7 +28,7 @@
         <tbody>
         {% for family_cancer_attribute in family_cancer_attributes %}
             <tr id="{{ family_cancer_attribute.id }}">
-               {# <td class="patient-name">{{ family_cancer_attribute.patient.fullName }}</td>#}
+                <td class="patient-name">{{ family_cancer_attribute.patient.fullName }}</td>
                 <td class="family-member">{{ family_cancer_attribute.familyMember }}</td> 
                 <td class="side">{{ family_cancer_attribute.side }}</td>
                 <td class="cancer-type">{{ family_cancer_attribute.cancerType }}</td>
