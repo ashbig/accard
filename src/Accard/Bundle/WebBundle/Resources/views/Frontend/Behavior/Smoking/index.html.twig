@@ -16,9 +16,11 @@
 {% from 'AccardWebBundle:Frontend/Behavior:macros.html.twig' import behaviors_menu %}
 
 {% set designBtn = null %}
+{% if is_granted('ROLE_ADMIN') %}
+    {% set designBtn = design(path('accard_backend_behavior_design'), 'accard.behavior.action.design'|trans) %}
+{% endif %}
 
 {% block content %}
-
 
    {{ page_title(
         'accard.behavior.smoking.action.index'|trans,
