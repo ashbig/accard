@@ -12,8 +12,10 @@
 namespace Accard\Bundle\ResourceBundle\EventListener;
 
 use Accard\Bundle\ResourceBundle\Controller\ResourceController;
+use Accard\Bundle\ResourceBundle\Controller\InitlializableController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Doctrine listener used to set the request on the configurable controllers.
@@ -22,6 +24,23 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
  */
 class KernelControllerSubscriber implements EventSubscriberInterface
 {
+    /**
+     * Security context.
+     *
+     * @var SecurityContextInterface
+     */
+    private $securityContext;
+
+    /**
+     * Constructor.
+     *
+     * @param SecurityContextInterface $securityContext
+     */
+    public function __construct(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+
     /**
      * @return array
      */
@@ -33,6 +52,8 @@ class KernelControllerSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * Before controller action listener.
+     *
      * @param FilterControllerEvent $event
      */
     public function onKernelController(FilterControllerEvent $event)
@@ -43,8 +64,14 @@ class KernelControllerSubscriber implements EventSubscriberInterface
             return;
         }
 
+        // Inject the request if required.
         if ($controller[0] instanceof ResourceController) {
             $controller[0]->getConfiguration()->setRequest($event->getRequest());
+        }
+
+        // Run initialization if required.
+        if ($controller[0] instanceof InitlializableController) {
+            $controller[0]->initialize($event->getRequest(), $this->securityContext);
         }
     }
 }

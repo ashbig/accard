@@ -19,47 +19,68 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Base resource controller for Accard.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class ResourceController extends FOSRestController
+class ResourceController extends FOSRestController implements InitializableController
 {
     /**
+     * Controller configuration.
+     *
      * @var Configuration
      */
     protected $config;
 
     /**
+     * Flash helper.
+     *
      * @var FlashHelper
      */
     protected $flashHelper;
 
     /**
+     * Domain manager.
+     *
      * @var DomainManager
      */
     protected $domainManager;
 
     /**
+     * Resource resolver.
+     *
      * @var ResourceResolver
      */
     protected $resourceResolver;
 
     /**
+     * Redirect handler.
+     *
      * @var RedirectHandler
      */
     protected $redirectHandler;
 
     /**
+     * State machine graph.
+     *
      * @var string
      */
     protected $stateMachineGraph;
 
+
     public function __construct(Configuration $config)
     {
         $this->config = $config;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function initialize(Request $request, SecurityContextInterface $sc)
+    {
     }
 
     public function getConfiguration()
