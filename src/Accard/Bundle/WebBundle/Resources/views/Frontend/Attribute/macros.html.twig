@@ -10,12 +10,15 @@
 
 {% macro attributes_menu() %}
 
-{% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
+    {%- set settings = accard_settings('attribute') -%}
+    {% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
 
     <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
+    {% if settings.enable_family_cancer %}
         <li class="{{ active_if_current('accard_frontend_family_cancer_attribute_index') }}">
             <a href="{{ path('accard_frontend_family_cancer_attribute_index') }}">{{ 'accard.attribute.family_cancer.title'|trans }}</a>
         </li>
+    {% endif %}
     </ul>
 
 {% endmacro %}

@@ -1,19 +1,19 @@
 accard:
     attribute:
         action:
-            create: Create an Attribute
+            create: Create Attribute
             index: Browse Attributes
-            update: Update an Attribute
-            design: Design an Attribute
-            delete: Delete an Attribute
+            update: Update Attribute
+            design: Design Attribute
+            delete: Delete Attribute
         family_cancer:
             title: Family Cancers
             action:
-                index: Browse Family Cancers
-                create: Create new Family Cancer
-                update: Update a Family Cancer
-                delete: Delete a Family Cancer
-                design: Design a Family Cancer
+                index: Browse Family Cancer History
+                create: Create New Family Cancer
+                update: Update Family Cancer
+                delete: Delete Family Cancer
+                design: Design Family Cancer
             form:
                 familyMember: Family member
                 side: Side of Family
