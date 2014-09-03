@@ -15,7 +15,7 @@
 
     {{ form_errors(form) }}
 
-    <form action="{{ path('accard_backend_theme_settings') }}" method="post" class="form-horizontal" {{ form_enctype(form) }} novalidate>
+    <form action="{{ path('accard_backend_theme_settings') }}" method="post" class="form-horizontal" {{ form_enctype(form) }}>
         <div class="row">
             <div class="col-md-6">
                 {{ form_row(form.theme) }}

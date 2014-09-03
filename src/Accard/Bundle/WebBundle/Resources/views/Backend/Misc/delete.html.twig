@@ -12,7 +12,7 @@
 
     {{ page_title(message is defined ? message : 'accard.confirmation.message'|trans) }}
 
-    <form action="{{ app.request.requestUri }}" method="post" class="delete-action-form" novalidate>
+    <form action="{{ app.request.requestUri }}" method="post" class="delete-action-form">
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="confirmed" value="1">
         <div class="form-actions">

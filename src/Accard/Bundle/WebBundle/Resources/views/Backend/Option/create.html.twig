@@ -15,7 +15,7 @@
 
     {{ form_errors(form) }}
     
-    <form action="{{ path('accard_backend_option_create') }}" method="post" {{ form_enctype(form) }} novalidate>
+    <form action="{{ path('accard_backend_option_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form._token) }}
         {% include 'AccardWebBundle:Backend/Option:form.html.twig' %}
         <hr>

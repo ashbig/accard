@@ -14,7 +14,7 @@
 
     {{ form_errors(form) }}
 
-    <form action="{{ path('accard_backend_patient_field_update', { id: patient_field.id }) }}" method="post" {{ form_enctype(form) }} novalidate>
+    <form action="{{ path('accard_backend_patient_field_update', { id: patient_field.id }) }}" method="post" {{ form_enctype(form) }}>
         {% include 'AccardWebBundle:Backend/Patient:form.html.twig' %}
         <div class="row">
             <div class="col-md-12">
