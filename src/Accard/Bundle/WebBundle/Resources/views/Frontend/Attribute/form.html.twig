@@ -1,23 +1,10 @@
+{# @author Dylan Pierce <piercedy@upenn.edu #}
+{% from 'AccardWebBundle:Common/Macros:form.html.twig' import select_patient %}
 
-
-<div class="col-lg-3">
-    <h3>Select a Patient</h3>
-    <p>Select the patient to apply the attribute to.</p>
-</div>
-<div class = 'col-lg-9'>
-    <div class = 'well'>
-        <div class="form-group{% if form.patient.vars.errors|length %} has-error{% endif %}">
-            {{ form_widget(form.patient, {
-                widget_addon_append: { text: 'accard.form.patient.name'|trans },
-                attr: {
-                    placeholder: 'accard.form.patient.name'|trans 
-                }
-            }) }}
-            {% if form.patient.vars.errors|length %}
-                {{ form_errors(form.patient) }}
-            {% endif %}
-        </div>
-    </div>
+<div class="row">
+{% if form.patient is defined %}
+    {{ select_patient(form.patient) }}
+{% endif %}
 </div>
 <hr>
 <div class="col-lg-3">
