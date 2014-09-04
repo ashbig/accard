@@ -13,6 +13,7 @@ namespace Accard\Bundle\AttributeBundle\Form\Type;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Accard\Bundle\DiagnosisBundle\Provider\CodeGroupProvider;
 /**
  * Attribute Family Cancer form type.
  *
@@ -26,6 +27,23 @@ class FamilyCancerAttributeType extends AttributeType
      * @var TranslatorInterface
      */
     private $translator;
+
+    /**
+     * code group provider.
+     *
+     * @var CodeGroupProvider
+     */
+    private $codeGroupProvider;
+
+    /**
+     * set code group provider.
+     *
+     * @param CodeGroupProvider
+     */
+    public function setCodeGroupProvider(CodeGroupProvider $codeGroupProvider)
+    {
+        $this->codeGroupProvider = $codeGroupProvider;
+    }
 
     /**
      * Set translator.
@@ -45,6 +63,14 @@ class FamilyCancerAttributeType extends AttributeType
         if (null === $this->translator) {
             throw new \LogicException('Translator must be present when constructing the family cancer attribute form type.');
         }
+
+        if (null === $this->codeGroupProvider) {
+            throw new \LogicException('Code Group must be present when constructing the family cancer attribute form type.');
+        }
+
+        $codeGroupClass = $this->codeGroupProvider->getRepository()->getClassName();
+        $codeGroupChoices = $this->codeGroupProvider->getGroups();
+
 
         $builder
             ->add('familyMember', 'choice', array(
@@ -70,15 +96,15 @@ class FamilyCancerAttributeType extends AttributeType
                     'father'            =>      $this->translator->trans('accard.attribute.family_cancer.form.fathers_side')
                 )
             ))
-            ->add('cancerType', 'choice', array(
-                'label'         => $this->translator->trans('accard.attribute.family_cancer.form.cancerType'),
-                'required'      => true,
-                'choices'           =>      array(
-                    'breast'            =>      $this->translator->trans('accard.attribute.family_cancer.form.breast'),
-                )
+            ->add('codeGroups', 'entity', array(
+                'label'         =>       'accard.attribute.family_cancer.form.code_groups',
+                'class'         =>       $codeGroupClass,
+                'choices'       =>       $codeGroupChoices,
+                'property'      =>       'presentation',
             ))
         ;
     }
+
 
     /**
      * {@inheritdoc}
