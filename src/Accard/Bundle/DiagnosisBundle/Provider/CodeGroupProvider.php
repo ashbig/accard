@@ -65,4 +65,15 @@ class CodeGroupProvider
 
         return $group;
     }
+
+    /**
+     * Get all code groups.
+     *
+     * @throws CodeGroupNotFoundException If code can not be located.
+     * @return CodeGroupInterface
+     */
+    public function getGroups()
+    {
+        return  $this->repository->findAll();
+    }
 }

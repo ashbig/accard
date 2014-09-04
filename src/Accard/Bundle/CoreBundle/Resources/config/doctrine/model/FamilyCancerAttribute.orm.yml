@@ -14,5 +14,12 @@ Accard\Component\Core\Model\FamilyCancerAttribute:
             type: string
         side:
             type: string
-        cancerType:
-            type: string
+
+    manyToOne:
+        codeGroups:
+            targetEntity: Accard\Component\Diagnosis\Model\CodeGroupInterface
+            inversedBy: family_cancer
+            joinColumn:
+                name: codeGroupId
+                referencedColumnName: id
+                nullable: false
