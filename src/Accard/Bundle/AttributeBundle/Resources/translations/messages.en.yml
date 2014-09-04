@@ -19,7 +19,7 @@ accard:
                 side: Side of Family
                 fathers_side: Father's side
                 mothers_side: Mother's side
-                cancerType: Type of cancer
+                code_groups: Type of cancer
                 family:
                     mother: Mother
                     father: Father
