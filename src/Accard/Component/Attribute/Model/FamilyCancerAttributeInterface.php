@@ -33,20 +33,6 @@ interface FamilyCancerAttributeInterface extends AttributeInterface
     */
     public function setFamilyMember($familyMember);
 
-    /**
-     * Get cancer type.
-     * 
-     * @return string
-     */
-    public function getCancerType();
-
-    /**
-    * Set cancer type.
-    * 
-    * @param integer $cancerType
-    * @return FamilyCancerAttributeInterface
-    */
-    public function setCancerType($cancerType);
 
     /**
      * Get side of family.

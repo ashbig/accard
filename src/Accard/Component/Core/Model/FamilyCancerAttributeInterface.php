@@ -20,4 +20,6 @@ use Accard\Component\Attribute\Model\FamilyCancerAttributeInterface as BaseFamil
  */
 interface FamilyCancerAttributeInterface extends BaseFamilyCancerAttributeInterface, AttributeInterface
 {
+
+
 }
