@@ -8,6 +8,7 @@
 parameters:
 
     accard.builder.patient.class: Accard\Component\Patient\Builder\PatientBuilder
+    accard.provider.patient.class: Accard\Bundle\PatientBundle\Provider\PatientProvider
 
 services:
 
@@ -28,3 +29,8 @@ services:
             - @accard.repository.patient
             - @accard.repository.patient_field
             - @accard.repository.patient_field_value
+
+    accard.provider.patient:
+        class: %accard.provider.patient.class%
+        arguments:
+            - @accard.repository.patient

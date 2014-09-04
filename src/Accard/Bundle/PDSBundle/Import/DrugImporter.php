@@ -13,6 +13,7 @@ namespace Accard\Bundle\PDSBundle\Import;
 use DateTime;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\PatientBundle\Import\PatientImporter;
+use Accard\Bundle\CoreBundle\Provider\ImportPatientProvider;
 use Doctrine\DBAL\Connection;
 
 /**
@@ -22,6 +23,13 @@ use Doctrine\DBAL\Connection;
  */
 class DrugImporter extends PatientImporter
 {
+    /**
+     * Patient provider.
+     *
+     * @var ImportPatientProvider
+     */
+    private $provider;
+
     /**
      * PDS connection.
      *
@@ -46,12 +54,17 @@ class DrugImporter extends PatientImporter
     /**
      * Constructor.
      *
+     * @param ImportPatientProvider $provider
      * @param Connection $connection
      * @param array $drugs
      * @param DateTime|null $defaultStartDate
      */
-    public function __construct(Connection $connection, array $drugs, DateTime $defaultStartDate = null)
+    public function __construct(ImportPatientProvider $provider,
+                                Connection $connection,
+                                array $drugs,
+                                DateTime $defaultStartDate = null)
     {
+        $this->provider = $provider;
         $this->connection = $connection;
         $this->drugs = $drugs;
         $this->defaultStartDate = $defaultStartDate ?: new DateTime('1 month ago');
@@ -70,9 +83,16 @@ class DrugImporter extends PatientImporter
         ));
         $results = $stmt->fetchAll();
         $stmt->closeCursor();
+        $cache = array();
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
+
+            if ($record = $this->provider->getPatientByMRN($result['mrn'])) {
+                $result['previous_record'] = $record;
+            }
+
+            $result['identifier'] = $result['mrn'];
             $result['import_description'] = sprintf('%s ordered on %s.', $result['medication'], $result['medication_date']);
 
             unset($result['medication'], $result['medication_date']);

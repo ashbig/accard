@@ -78,14 +78,20 @@ class ImporterEventSubscriber implements EventSubscriberInterface
         $importer = $event->getImporter()->getName();
 
         foreach ($records as $key => $record) {
-            $entity = $repo->createNew();
-            $entity->addDescription($importer, $record['import_description']);
-            foreach ($record as $field => $value) {
-                if (!empty($value) && $accessor->isWritable($entity, $field)) {
-                    $accessor->setValue($entity, $field, $value);
+            if (isset($records[$record['identifier']])) {
+                $entity = $records[$record['identifier']];
+            } else if (!$entity = $record['previous_record']) {
+                $entity = $repo->createNew();
+                foreach ($record as $field => $value) {
+                    if (!empty($value) && $accessor->isWritable($entity, $field)) {
+                        $accessor->setValue($entity, $field, $value);
+                    }
                 }
             }
-            $records[$key] = $entity;
+
+            $entity->addDescription($importer, $record['import_description']);
+            $records[$record['identifier']] = $entity;
+            unset($records[$key]);
         }
 
         $event->setRecords($records);

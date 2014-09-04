@@ -13,6 +13,7 @@ namespace Accard\Bundle\PDSBundle\Import;
 use DateTime;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\PatientBundle\Import\PatientImporter;
+use Accard\Bundle\CoreBundle\Provider\ImportPatientProvider;
 use Doctrine\DBAL\Connection;
 
 /**
@@ -22,6 +23,13 @@ use Doctrine\DBAL\Connection;
  */
 class TestImporter extends PatientImporter
 {
+    /**
+     * Patient provider.
+     *
+     * @var ImportPatientProvider
+     */
+    private $provider;
+
     /**
      * PDS connection.
      *
@@ -46,10 +54,17 @@ class TestImporter extends PatientImporter
     /**
      * Constructor.
      *
+     * @param ImportPatientProvider $provider
      * @param Connection $connection
+     * @param array $tests
+     * @param DateTime|null $defaultStartDate
      */
-    public function __construct(Connection $connection, array $tests, DateTime $defaultStartDate = null)
+    public function __construct(ImportPatientProvider $provider,
+                                Connection $connection,
+                                array $tests,
+                                DateTime $defaultStartDate = null)
     {
+        $this->provider = $provider;
         $this->connection = $connection;
         $this->tests = $tests;
         $this->defaultStartDate = $defaultStartDate ?: new DateTime('1 month ago');
@@ -71,6 +86,12 @@ class TestImporter extends PatientImporter
 
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
+
+            if ($record = $this->provider->getPatientByMRN($result['mrn'])) {
+                $result['previous_record'] = $record;
+            }
+
+            $result['identifier'] = $result['mrn'];
             $result['import_description'] = sprintf('%s test on %s.', $result['result'], $result['result_date']);
 
             unset($result['result'], $result['result_date']);

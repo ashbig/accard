@@ -69,18 +69,7 @@ services:
         class: %accard.import.event_subscriber.class%
         tags: [{ name: kernel.event_subscriber }]
 
-    accard.importer.static:
-        class: Accard\Bundle\ResourceBundle\Import\StaticImporter
-        tags:
-            - { name: accard.importer, importer: static }
-
-
-
-
-
-
-
-
-
-
-
+#    accard.importer.static:
+#        class: Accard\Bundle\ResourceBundle\Import\StaticImporter
+#        tags:
+#            - { name: accard.importer, importer: static }

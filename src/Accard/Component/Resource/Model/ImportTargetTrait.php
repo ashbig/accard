@@ -176,4 +176,12 @@ trait ImportTargetTrait
 
         return $this;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function mergeDescriptions(array $descriptions)
+    {
+        $this->descriptions = array_merge_recursive($this->descriptions, $descriptions);
+    }
 }

@@ -98,15 +98,17 @@ class Runner
                                               ResourceInterface $target)
     {
         $resolver->setDefaults(array(
+            'previous_record' => false,
             'subject_resource' => $subject,
             'target_resource' => $target,
             'option_resource' => $this->option,
             'import_resource' => $this->import,
         ));
 
-        $resolver->setRequired(array('import_description'));
+        $resolver->setRequired(array('identifier', 'previous_record', 'import_description'));
 
         $resolver->setAllowedTypes(array(
+            'identifier' => 'string',
             'subject_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
             'target_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),
             'option_resource' => array('Accard\Bundle\ResourceBundle\Import\ResourceInterface'),

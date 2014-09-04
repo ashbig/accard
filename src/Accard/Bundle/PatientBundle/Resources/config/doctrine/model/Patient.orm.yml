@@ -20,6 +20,7 @@ Accard\Component\Patient\Model\Patient:
             type: string
             length: 36
             nullable: true
+            unique: true
         firstName:
             type: string
             length: 36

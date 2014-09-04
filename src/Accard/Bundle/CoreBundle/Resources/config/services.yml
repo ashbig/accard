@@ -13,7 +13,7 @@ parameters:
     accard.flow.scenario.basic_patient.class: Accard\Bundle\CoreBundle\Flow\Scenario\BasicPatientScenario
     accard.flow.step.create_patient.class: Accard\Bundle\CoreBundle\Flow\Step\CreatePatientStep
     accard.flow.step.create_diagnosis.class: Accard\Bundle\CoreBundle\Flow\Step\CreateDiagnosisStep
-
+    accard.provider.import_patient.class: Accard\Bundle\CoreBundle\Provider\ImportPatientProvider
 
 services:
     accard.form.extension.accard_attribute:
@@ -58,3 +58,9 @@ services:
             - %accard.model.diagnosis.class%
         tags:
             - { name: accard.flow.step, alias: create_diagnosis }
+
+    accard.provider.import_patient:
+        class: %accard.provider.import_patient.class%
+        arguments:
+            - @accard.repository.import_patient
+
