@@ -12,6 +12,7 @@ namespace Accard\Bundle\CoreBundle\Controller;
 
 use Accard\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Pagerfanta\Pagerfanta;
 
 /**
@@ -22,6 +23,22 @@ use Pagerfanta\Pagerfanta;
  */
 class DiagnosisController extends ResourceController
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function initialize(Request $request, SecurityContextInterface $securityContext)
+    {
+        $settings = $this->get('accard.settings.manager')->load('diagnosis');
+
+        if ($securityContext->isGranted('ROLE_ADMIN')) {
+            return;
+        }
+
+        if (!$settings['enabled']) {
+            throw $this->createNotFoundException('Diagnoses have been disabled. Please contact your administrator to turn them back on.');
+        }
+    }
+
     /**
      * Design diagnosis action.
      *
