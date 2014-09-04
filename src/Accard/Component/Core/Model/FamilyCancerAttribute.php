@@ -10,6 +10,8 @@
  */
 namespace Accard\Component\Core\Model;
 
+use Accard\Component\Diagnosis\Model\CodeGroupInterface;
+
 /**
  * Accard family cancer attribute model.
  *
@@ -19,26 +21,25 @@ namespace Accard\Component\Core\Model;
 class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeInterface
 {
     /**
-     * Family member.
+     * family member.
      *
      * @var string
      */
     protected $familyMember;
 
     /**
-     * Type of cancer.
+     * diagnosis code group
      *
-     * @var string
+     * @var CodeGroupInterface
      */
-    protected $cancerType;
+    protected $codeGroups;
 
     /**
-     * Side of family.
+     * side of family.
      *
      * @var string
      */
     protected $side;
-
 
     /**
      * {@inheritdoc}
@@ -61,19 +62,19 @@ class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeIn
     /**
      * {@inheritdoc}
      */
-    public function setCancerType($cancerType)
+    public function getCodeGroups()
     {
-        $this->cancerType = $cancerType;
-
-        return $this;
+        return $this->codeGroups;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCancerType()
+    public function setCodeGroups(CodeGroupInterface $codeGroups = null)
     {
-        return $this->cancerType;
+        $this->codeGroups = $codeGroups;
+
+        return $this;
     }
 
     /**
