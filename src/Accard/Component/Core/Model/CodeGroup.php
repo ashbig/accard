@@ -10,6 +10,7 @@
  */
 namespace Accard\Component\Core\Model;
 
+use Accard\Component\Diagnosis\Model\CodeGroup as BaseCodeGroup;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -19,128 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @author Dylan Pierce <piercedy@upenn.edu>
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class CodeGroup implements CodeGroupInterface
+class CodeGroup extends BaseCodeGroup implements CodeGroupInterface
 {
-    /**
-     * Internal id.
-     *
-     * @var integer
-     */
-    protected $id;
 
-    /**
-     * Name.
-     *
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * Presentation.
-     *
-     * @var string
-     */
-    protected $presentation;
-
-    /**
-     * Codes.
-     *
-     * @var Collection|CodeInterface[]
-     */
-    protected $codes;
-
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->codes = new ArrayCollection();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setPresentation($presentation)
-    {
-        $this->presentation = $presentation;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPresentation()
-    {
-        return $this->presentation;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCodes()
-    {
-        return $this->codes;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasCode(CodeInterface $code)
-    {
-        return $this->codes->contains($code);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addCode(CodeInterface $code)
-    {
-        if (!$this->hasCode($code)) {
-            $code->addGroup($this);
-            $this->codes->add($code);
-        }
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeCode(CodeInterface $code)
-    {
-        if ($this->hasCode($code)) {
-            $this->codes->removeElement($this);
-            $code->removeGroup($this);
-        }
-
-        return $this;
-    }
 }
