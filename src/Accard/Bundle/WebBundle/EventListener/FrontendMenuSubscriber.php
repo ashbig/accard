@@ -34,6 +34,7 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
         $menu = $event->getMenu();
         $route = str_replace('accard_frontend_', '', $event->getRequest()->attributes->get('_route'));
         $baseRoute = explode('_', $route)[0];
+        $settingsManager = $event->getSettingsManager();
 
         $repositories = $menu->getChild('repositories');
         $patient = $this->createSimpleItem($event, $repositories, 'patient', 'patient_index', 'patients');
@@ -42,22 +43,31 @@ class FrontendMenuSubscriber implements EventSubscriberInterface
             $patient->setCurrent(true);
         }
 
-        $diagnosis = $this->createSimpleItem($event, $repositories, 'diagnosis', 'diagnosis_index', 'diagnoses');
+        $diagnosisSettings = $settingsManager->load('diagnosis');
+        if ($diagnosisSettings['enabled']) {
+            $diagnosis = $this->createSimpleItem($event, $repositories, 'diagnosis', 'diagnosis_index', 'diagnoses');
 
-        if ('diagnosis' === $baseRoute) {
-            $diagnosis->setCurrent(true);
+            if ('diagnosis' === $baseRoute) {
+                $diagnosis->setCurrent(true);
+            }
         }
 
-        $behavior = $this->createSimpleItem($event, $repositories, 'behavior', 'behavior_alcohol_index', 'behaviors');
+        $behaviorSettings = $settingsManager->load('behavior');
+        if ($behaviorSettings['enabled']) {
+            $behavior = $this->createSimpleItem($event, $repositories, 'behavior', 'behavior_alcohol_index', 'behaviors');
 
-        if ('behavior' === $baseRoute) {
-            $behavior->setCurrent(true);
+            if ('behavior' === $baseRoute) {
+                $behavior->setCurrent(true);
+            }
         }
 
-        $attribute = $this->createSimpleItem($event, $repositories, 'attribute', 'family_cancer_attribute_index', 'attributes');
+        $attributeSettings = $settingsManager->load('attribute');
+        if ($attributeSettings['enabled']) {
+            $attribute = $this->createSimpleItem($event, $repositories, 'attribute', 'family_cancer_attribute_index', 'attributes');
 
-        if ('attribute' === $baseRoute) {
-            $attribute->setCurrent(true);
+            if ('attribute' === $baseRoute) {
+                $attribute->setCurrent(true);
+            }
         }
     }
 

@@ -17,6 +17,9 @@ accard:
             patient:
                 enabled: Enable patient repository
                 import_enabled: Enable patient repository import
+            diagnosis:
+                enabled: Enable diagnosis repository
+                import_enabled: Enable diagnosis repository import
             behavior:
                 enabled: Enable behavior repository
                 enable_alcohol: Enable alcohol behavior

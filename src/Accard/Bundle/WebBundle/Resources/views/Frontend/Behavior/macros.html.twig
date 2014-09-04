@@ -12,6 +12,11 @@
 
     {%- set settings = accard_settings('behavior') -%}
     {% from 'AccardWebBundle:Common/Macros:url.html.twig' import active_if_current %}
+    {% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import disabled %}
+
+    {% if not settings.enabled %}
+        {{ disabled('accard.behavior.title'|trans) }}
+    {% endif %}
 
     <ul class="nav nav-tabs nav-justified grid-tabs" role="tablist">
     {% if settings.enable_alcohol %}

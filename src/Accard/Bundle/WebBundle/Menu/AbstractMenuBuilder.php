@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Accard\Bundle\WebBundle\Event\MenuBuilderEvent;
+use Accard\Bundle\SettingsBundle\Manager\SettingsManager;
 
 /**
  * Abstract menu builder.
@@ -60,6 +61,13 @@ abstract class AbstractMenuBuilder
      */
     protected $eventDispatcher;
 
+    /**
+     * Settings manager.
+     *
+     * @var SettingsManager
+     */
+    protected $settingsManager;
+
 
     /**
      * Constructor.
@@ -72,13 +80,14 @@ abstract class AbstractMenuBuilder
     public function __construct(FactoryInterface $factory,
                                 SecurityContextInterface $securityContext,
                                 TranslatorInterface $translator,
-                                EventDispatcherInterface $eventDispatcher
-    )
+                                EventDispatcherInterface $eventDispatcher,
+                                SettingsManager $settingsManager)
     {
         $this->factory = $factory;
         $this->securityContext = $securityContext;
         $this->translator = $translator;
         $this->eventDispatcher = $eventDispatcher;
+        $this->settingsManager = $settingsManager;
     }
 
     /**
@@ -102,6 +111,11 @@ abstract class AbstractMenuBuilder
      */
     protected function createMenuEvent(ItemInterface $item, Request $request)
     {
-        return new MenuBuilderEvent($this->factory, $item, $request, $this->translator, $this->securityContext);
+        return new MenuBuilderEvent($this->factory,
+                                    $item,
+                                    $request,
+                                    $this->translator,
+                                    $this->securityContext,
+                                    $this->settingsManager);
     }
 }

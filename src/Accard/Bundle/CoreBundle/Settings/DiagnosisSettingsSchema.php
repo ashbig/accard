@@ -61,11 +61,7 @@ class DiagnosisSettingsSchema implements SchemaInterface
     {
         $builder
             ->add('enabled', 'checkbox', array(
-                'label' => 'accard.form.settings.patient.enabled',
-                'required' => false,
-                'disabled' => true,
-            ))
-            ->add('import_enabled', 'checkbox', array(
+                'label' => 'accard.form.settings.diagnosis.enabled',
                 'required' => false,
             ))
         ;

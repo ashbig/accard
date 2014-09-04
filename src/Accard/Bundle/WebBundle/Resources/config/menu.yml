@@ -21,6 +21,7 @@ services:
             - "@security.context"
             - "@translator"
             - "@event_dispatcher"
+            - "@accard.settings.manager"
 
     accard.menu.backend.main:
         class: Knp\Menu\MenuItem
@@ -52,6 +53,7 @@ services:
             - "@security.context"
             - "@translator"
             - "@event_dispatcher"
+            - "@accard.settings.manager"
 
     accard.menu.frontend.main:
         class: Knp\Menu\MenuItem

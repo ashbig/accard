@@ -37,7 +37,6 @@ class BackendMenuSubscriber implements EventSubscriberInterface
 
         $design = $menu->getChild('design');
 
-
         $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
 
         if (false !== strpos($uri, 'patient/field')) {

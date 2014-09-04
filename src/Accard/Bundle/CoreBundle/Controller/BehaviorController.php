@@ -29,6 +29,7 @@ class BehaviorController extends ResourceController
     public function initialize(Request $request, SecurityContextInterface $securityContext)
     {
         $settings = $this->get('accard.settings.manager')->load('behavior');
+
         if ($securityContext->isGranted('ROLE_ADMIN')) {
             return;
         }
@@ -36,6 +37,38 @@ class BehaviorController extends ResourceController
         if (!$settings['enabled']) {
             throw $this->createNotFoundException('Behaviors have been disabled. Please contact your administrator to turn them back on.');
         }
+
+        if ($this->routeMatches($request, 'behavior_alcohol') && !$settings['enable_alcohol']) {
+            throw $this->createNotFoundException('Alcohol behavior has been disabled. Please contact your administrator to turn it on.');
+        }
+
+        if ($this->routeMatches($request, 'behavior_smoking') && !$settings['enable_smoking']) {
+            throw $this->createNotFoundException('Smoking behavior has been disabled. Please contact your administrator to turn it on.');
+        }
+
+        if ($this->routeMatches($request, 'behavior_illicit_drug') && !$settings['enable_illicit_drugs']) {
+            throw $this->createNotFoundException('Illicit drug behavior has been disabled. Please contact your administrator to turn it on.');
+        }
+
+        if ($this->routeMatches($request, 'behavior_occupation') && !$settings['enable_occupation']) {
+            throw $this->createNotFoundException('Occupation behavior has been disabled. Please contact your administrator to turn it on.');
+        }
+
+        if ($this->routeMatches($request, 'behavior_education') && !$settings['enable_education']) {
+            throw $this->createNotFoundException('Education behavior has been disabled. Please contact your administrator to turn it on.');
+        }
+    }
+
+    /**
+     * Test if current route matches a given string.
+     *
+     * @param Request $request
+     * @param string $searchString
+     * @return boolean
+     */
+    private function routeMatches(Request $request, $searchString)
+    {
+        return false !== strpos($request->get('_route'), $searchString);
     }
 
     /**

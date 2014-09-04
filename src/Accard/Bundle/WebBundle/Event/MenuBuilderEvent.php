@@ -16,6 +16,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use Accard\Bundle\SettingsBundle\Manager\SettingsManager;
 
 /**
  * Menu builder event.
@@ -62,6 +63,13 @@ class MenuBuilderEvent extends Event
      */
     private $securityContext;
 
+    /**
+     * Settings manager.
+     *
+     * @var SettingsManager
+     */
+    private $settingsManager;
+
 
     /**
      * Constructor.
@@ -73,12 +81,15 @@ class MenuBuilderEvent extends Event
                                 ItemInterface $menu,
                                 Request $request,
                                 TranslatorInterface $translator,
-                                SecurityContextInterface $securityContext)
+                                SecurityContextInterface $securityContext,
+                                SettingsManager $settingsManager)
     {
         $this->factory = $factory;
         $this->menu = $menu;
         $this->request = $request;
         $this->translator = $translator;
+        $this->securityContext = $securityContext;
+        $this->settingsManager = $settingsManager;
     }
 
     /**
@@ -129,6 +140,16 @@ class MenuBuilderEvent extends Event
     public function getSecurityContext()
     {
         return $this->securityContext;
+    }
+
+    /**
+     * Get settings manager.
+     *
+     * @return SettingsManager
+     */
+    public function getSettingsManager()
+    {
+        return $this->settingsManager;
     }
 
     /**

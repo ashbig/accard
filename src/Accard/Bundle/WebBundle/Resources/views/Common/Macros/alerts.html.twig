@@ -50,3 +50,10 @@
     <div class="clearfix"></div>
 </div>
 {% endmacro %}
+
+{% macro disabled(area) %}
+{% from 'AccardWebBundle:Common/Macros:misc.html.twig' import icon %}
+<div class="alert alert-warning">
+    {{ 'accard.alert.disabled_area'|trans({'%area%': area}) }}
+</div>
+{% endmacro %}
