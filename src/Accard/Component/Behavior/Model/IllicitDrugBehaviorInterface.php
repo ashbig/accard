@@ -11,14 +11,13 @@
 namespace Accard\Component\Behavior\Model;
 
 /**
- * Basic illicit drug behavior interface.
+ * Illicit drug behavior interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
 interface IllicitDrugBehaviorInterface extends BehaviorInterface
 {
-
     /**
      * Set type.
      *

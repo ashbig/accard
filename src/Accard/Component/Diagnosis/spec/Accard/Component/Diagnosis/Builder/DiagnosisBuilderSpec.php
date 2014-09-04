@@ -22,11 +22,15 @@ use DateTime;
  */
 class DiagnosisBuilderSpec extends ObjectBehavior
 {
-    function let(ObjectManager $manager, RepositoryInterface $repository, Diagnosis $diagnosis)
+    function let(ObjectManager $manager,
+                 RepositoryInterface $diagnosisRepository,
+                 RepositoryInterface $fieldRepository,
+                 RepositoryInterface $fieldValueRepository,
+                 Diagnosis $diagnosis)
     {
-        $repository->createNew()->willReturn($diagnosis);
+        $diagnosisRepository->createNew()->willReturn($diagnosis);
 
-        $this->beConstructedWith($manager, $repository);
+        $this->beConstructedWith($manager, $diagnosisRepository, $fieldRepository, $fieldValueRepository);
     }
 
     function it_is_initializable()
@@ -44,9 +48,9 @@ class DiagnosisBuilderSpec extends ObjectBehavior
         $this->shouldImplement('Accard\Component\Resource\Builder\BuilderInterface');
     }
 
-    function it_creates_new_diagnosis($repository)
+    function it_creates_new_diagnosis($diagnosisRepository)
     {
-        $repository->createNew()->shouldBeCalled();
+        $diagnosisRepository->createNew()->shouldBeCalled();
         $this->create();
     }
 

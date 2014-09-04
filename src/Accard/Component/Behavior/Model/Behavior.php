@@ -42,13 +42,6 @@ abstract class Behavior implements BehaviorInterface
 
 
     /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getId()

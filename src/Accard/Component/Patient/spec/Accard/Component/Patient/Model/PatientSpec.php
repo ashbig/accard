@@ -12,6 +12,7 @@ namespace spec\Accard\Component\Patient\Model;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Accard\Component\Option\Model\OptionValueInterface;
 
 /**
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
@@ -78,6 +79,29 @@ class PatientSpec extends ObjectBehavior
         $this->getDateOfBirth()->shouldReturn($date);
     }
 
+    function it_returns_null_for_age_with_no_DOB()
+    {
+        $this->getAge()->shouldReturn(null);
+    }
+
+    function it_can_calculate_age_for_deceased_patient()
+    {
+        $birth = new \DateTime('6 seconds ago');
+        $death = new \DateTime('4 seconds ago');
+        $this->setDateOfBirth($birth);
+        $this->setDateOfDeath($death);
+
+        $this->getAge()->shouldReturnAnInstanceOf('DateInterval');
+    }
+
+    function it_can_calculate_age_for_living_patient()
+    {
+        $birth = new \DateTime('6 seconds ago');
+        $this->setDateOfBirth($birth);
+
+        $this->getAge()->shouldReturnAnInstanceOf('DateInterval');
+    }
+
     function it_has_no_date_of_death_by_default()
     {
         $this->getDateOfDeath()->shouldReturn(null);
@@ -114,13 +138,13 @@ class PatientSpec extends ObjectBehavior
         $this->getGender()->shouldReturn(null);
     }
 
-    function its_gender_is_mutable()
+    function its_gender_is_mutable(OptionValueInterface $gender)
     {
-        $this->setGender(0);
-        $this->getGender()->shouldReturn(0);
+        $this->setGender($gender);
+        $this->getGender()->shouldReturn($gender);
     }
 
-    function it_has_fluent_interface()
+    function it_has_fluent_interface(OptionValueInterface $gender)
     {
         $date = new \DateTime();
 
@@ -129,6 +153,6 @@ class PatientSpec extends ObjectBehavior
         $this->setLastName('Bardon')->shouldReturn($this);
         $this->setDateOfBirth($date)->shouldReturn($this);
         $this->setDateOfDeath($date)->shouldReturn($this);
-        $this->setGender(0)->shouldReturn($this);
+        $this->setGender($gender)->shouldReturn($this);
     }
 }

@@ -26,7 +26,7 @@ class DiagnosisBuilder extends AbstractBuilder implements DiagnosisBuilderInterf
 {
     /**
      * Diagnosis repository.
-     * 
+     *
      * @var RepositoryInterface
      */
     private $repository;
@@ -47,7 +47,7 @@ class DiagnosisBuilder extends AbstractBuilder implements DiagnosisBuilderInterf
 
     /**
      * Constructor.
-     * 
+     *
      * @param ObjectManager $manager
      * @param RepositoryInterface $diagnosisRepository
      */
@@ -62,11 +62,31 @@ class DiagnosisBuilder extends AbstractBuilder implements DiagnosisBuilderInterf
         $this->fieldValueRepository = $fieldValueRepository;;
     }
 
+    /**
+     * Get diagnosis repository.
+     *
+     * @return RepositoryInterface
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
+
+    /**
+     * Get diagnosis field repository.
+     *
+     * @return RepositoryInterface
+     */
     public function getFieldRepository()
     {
         return $this->fieldRepository;
     }
 
+    /**
+     * Get diagnosis field value repository.
+     *
+     * @return RepositoryInterface
+     */
     public function getFieldValueRepository()
     {
         return $this->fieldValueRepository;
@@ -81,7 +101,7 @@ class DiagnosisBuilder extends AbstractBuilder implements DiagnosisBuilderInterf
 
         return $this;
     }
-    
+
     /**
      * {@inheritdoc}
      */

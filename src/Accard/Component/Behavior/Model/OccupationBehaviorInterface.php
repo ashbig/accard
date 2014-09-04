@@ -11,7 +11,7 @@
 namespace Accard\Component\Behavior\Model;
 
 /**
- * Basic Occupation behavior interface.
+ * Occupation behavior interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
@@ -19,7 +19,7 @@ namespace Accard\Component\Behavior\Model;
 interface OccupationBehaviorInterface extends BehaviorInterface
 {
     /**
-     * Set past industry
+     * Set industry.
      *
      * @param string $industry
      * @return OccupationBehaviorInterface
@@ -27,14 +27,14 @@ interface OccupationBehaviorInterface extends BehaviorInterface
     public function setIndustry($industry);
 
     /**
-     * Get past industry
+     * Get industry.
      *
      * @return string
      */
     public function getIndustry();
 
     /**
-     * Set weekly hours
+     * Set hours (weekly).
      *
      * @param string $hours
      * @return OccupationBehaviorInterface
@@ -42,7 +42,7 @@ interface OccupationBehaviorInterface extends BehaviorInterface
     public function setHours($hours);
 
     /**
-     * Get weekly hours
+     * Get hours (weekly).
      *
      * @return string
      */

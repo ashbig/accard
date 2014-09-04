@@ -18,7 +18,6 @@ namespace Accard\Component\Behavior\Model;
  */
 interface EducationBehaviorInterface extends BehaviorInterface
 {
-
     /**
      * Get level.
      *

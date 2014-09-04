@@ -11,39 +11,38 @@
 namespace Accard\Component\Behavior\Model;
 
 /**
- * Basic smoking behavior interface.
+ * Smoking behavior interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
 interface SmokingBehaviorInterface extends BehaviorInterface
 {
-
     /**
-     * Set past smoking type.
+     * Set smoking type.
      *
-     * @param string $past_type
+     * @param string $type
      * @return SmokingBehaviorInterface
      */
-    public function setType($past_type);
+    public function setType($type);
 
     /**
-     * Get type.
+     * Get smoking type.
      *
      * @return string
      */
     public function getType();
 
     /**
-     * Set past smoking frequency.
+     * Set smoking frequency.
      *
-     * @param string $type
+     * @param string $frequency
      * @return SmokingBehaviorInterface
      */
-    public function setFrequency($past_frequency);
+    public function setFrequency($frequency);
 
     /**
-     * Get frequency.
+     * Get smoking frequency.
      *
      * @return string
      */

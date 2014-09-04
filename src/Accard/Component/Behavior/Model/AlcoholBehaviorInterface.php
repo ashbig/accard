@@ -11,7 +11,7 @@
 namespace Accard\Component\Behavior\Model;
 
 /**
- * Basic alcohol behavior interface.
+ * Alcohol behavior interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  * @author Dylan Pierce <piercedy@upenn.edu>
