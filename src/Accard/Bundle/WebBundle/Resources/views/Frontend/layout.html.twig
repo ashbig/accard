@@ -20,7 +20,7 @@
     </title>
 
     {% block stylesheets -%}
-    {% stylesheets output='assets/compiled/backend.css' filter='cssrewrite'
+    {% stylesheets output='assets/compiled/frontend.css' filter='cssrewrite'
         'bundles/accardweb/css/bootstrap.min.css'
         'bundles/accardweb/css/font-awesome.css'
         'bundles/accardweb/css/backend/backend.css'
@@ -167,7 +167,7 @@
     <!-- /#wrapper -->
 
     {% block javascripts -%}
-        {% javascripts output='assets/compiled/backend.js'
+        {% javascripts output='assets/compiled/frontend.js'
             'bundles/accardweb/js/plugins/modernizr/modernizr.js'
             'bundles/accardweb/js/jquery.js'
             'bundles/accardweb/js/bootstrap.js'
