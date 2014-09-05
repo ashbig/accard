@@ -10,7 +10,7 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Diagnosis\Model\CodeGroupInterface;
+use Accard\Component\Diagnosis\Model\CodeInterface;
 
 /**
  * Accard family cancer attribute model.
@@ -32,7 +32,7 @@ class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeIn
      *
      * @var CodeGroupInterface
      */
-    protected $codeGroups;
+    protected $code;
 
     /**
      * side of family.
@@ -40,6 +40,7 @@ class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeIn
      * @var string
      */
     protected $side;
+
 
     /**
      * {@inheritdoc}
@@ -62,17 +63,17 @@ class FamilyCancerAttribute extends Attribute implements FamilyCancerAttributeIn
     /**
      * {@inheritdoc}
      */
-    public function getCodeGroups()
+    public function getCode()
     {
-        return $this->codeGroups;
+        return $this->code;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setCodeGroups(CodeGroupInterface $codeGroups = null)
+    public function setCode(CodeInterface $code)
     {
-        $this->codeGroups = $codeGroups;
+        $this->code = $code;
 
         return $this;
     }

@@ -1,5 +1,5 @@
 <?php
-// src/Accard/Bundle/DiagnosisBundle/DataFixtures/ORM/LoadDiagnosisCodeGroupData.php
+// src/Accard/Bundle/DiagnosisBundle/DataFixtures/ORM/LoadMainDiagnosisCodeGroupData.php
 
 namespace Accard\Bundle\DiagnosisBundle\DataFixtures\ORM;
 
@@ -14,7 +14,7 @@ use Accard\Component\Diagnosis\Model\CodeGroup;
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
 
-class LoadDiagnosisCodeGroupData extends AbstractFixture implements OrderedFixtureInterface
+class LoadMainCodeGroupData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
@@ -28,6 +28,7 @@ class LoadDiagnosisCodeGroupData extends AbstractFixture implements OrderedFixtu
         $manager->persist($codeGroup);
 
         $manager->flush();
+
     }
 
     /**
