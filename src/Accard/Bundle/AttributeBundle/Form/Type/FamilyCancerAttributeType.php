@@ -13,7 +13,8 @@ namespace Accard\Bundle\AttributeBundle\Form\Type;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use Accard\Bundle\DiagnosisBundle\Provider\CodeGroupProvider;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Accard\Bundle\DiagnosisBundle\Provider\CodeProvider;
 /**
  * Attribute Family Cancer form type.
  *
@@ -31,18 +32,18 @@ class FamilyCancerAttributeType extends AttributeType
     /**
      * code group provider.
      *
-     * @var CodeGroupProvider
+     * @var CodeProvider
      */
-    private $codeGroupProvider;
+    private $codeProvider;
 
     /**
-     * set code group provider.
+     * Set code provider.
      *
-     * @param CodeGroupProvider
+     * @param CodeProvider
      */
-    public function setCodeGroupProvider(CodeGroupProvider $codeGroupProvider)
+    public function setCodeProvider(CodeProvider $codeProvider)
     {
-        $this->codeGroupProvider = $codeGroupProvider;
+        $this->codeProvider = $codeProvider;
     }
 
     /**
@@ -64,12 +65,12 @@ class FamilyCancerAttributeType extends AttributeType
             throw new \LogicException('Translator must be present when constructing the family cancer attribute form type.');
         }
 
-        if (null === $this->codeGroupProvider) {
+        if (null === $this->codeProvider) {
             throw new \LogicException('Code Group must be present when constructing the family cancer attribute form type.');
         }
 
-        $codeGroupClass = $this->codeGroupProvider->getRepository()->getClassName();
-        $codeGroupChoices = $this->codeGroupProvider->getGroups();
+        $codeClass = $this->codeProvider->getRepository()->getClassName();
+        $codeChoices = $this->codeProvider->getCodesForGroup($options['code_group']);
 
 
         $builder
@@ -77,34 +78,47 @@ class FamilyCancerAttributeType extends AttributeType
                 'label'         => $this->translator->trans('accard.attribute.family_cancer.form.familyMember'),
                 'required'      => true,
                 'choices'           =>      array(
-                    'mother'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.mother'),
-                    'father'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.father'),
-                    'sister'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.sister'),
-                    'brother'           =>      $this->translator->trans('accard.attribute.family_cancer.form.family.brother'),
-                    'grandfather'       =>      $this->translator->trans('accard.attribute.family_cancer.form.family.grandfather'),
-                    'grandmother'       =>      $this->translator->trans('accard.attribute.family_cancer.form.family.grandmother'),
-                    'aunt'              =>      $this->translator->trans('accard.attribute.family_cancer.form.family.aunt'),
-                    'uncle'             =>      $this->translator->trans('accard.attribute.family_cancer.form.family.uncle'),
-                    'cousin'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.cousin')
+                    'Mother'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.mother'),
+                    'Father'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.father'),
+                    'Sister'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.sister'),
+                    'Brother'           =>      $this->translator->trans('accard.attribute.family_cancer.form.family.brother'),
+                    'Grandfather'       =>      $this->translator->trans('accard.attribute.family_cancer.form.family.grandfather'),
+                    'Grandmother'       =>      $this->translator->trans('accard.attribute.family_cancer.form.family.grandmother'),
+                    'Aunt'              =>      $this->translator->trans('accard.attribute.family_cancer.form.family.aunt'),
+                    'Uncle'             =>      $this->translator->trans('accard.attribute.family_cancer.form.family.uncle'),
+                    'Cousin'            =>      $this->translator->trans('accard.attribute.family_cancer.form.family.cousin')
                 )
             ))
             ->add('side', 'choice', array(
                 'label'         => $this->translator->trans('accard.attribute.family_cancer.form.side'),
                 'required'      => true,
                 'choices'           =>      array(
-                    'mother'            =>      $this->translator->trans('accard.attribute.family_cancer.form.mothers_side'),
-                    'father'            =>      $this->translator->trans('accard.attribute.family_cancer.form.fathers_side')
+                    'Mother'            =>      $this->translator->trans('accard.attribute.family_cancer.form.mothers_side'),
+                    'Father'            =>      $this->translator->trans('accard.attribute.family_cancer.form.fathers_side')
                 )
             ))
-            ->add('codeGroups', 'entity', array(
-                'label'         =>       'accard.attribute.family_cancer.form.code_groups',
-                'class'         =>       $codeGroupClass,
-                'choices'       =>       $codeGroupChoices,
-                'property'      =>       'presentation',
+            ->add('code', 'entity', array(
+                'label'         =>       'accard.attribute.family_cancer.form.code',
+                'class'         =>       $codeClass,
+                'choices'       =>       $codeChoices,
+                'property'      =>       'description',
             ))
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver
+            ->setDefaults(array(
+                'data_class' => $this->dataClass,
+                'validation_groups' => $this->validationGroups,
+                'code_group' => 'family_cancer',
+            ))
+        ;
+    }
 
     /**
      * {@inheritdoc}

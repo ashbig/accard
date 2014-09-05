@@ -31,7 +31,7 @@ services:
             - @accard.option.provider
         calls:
             - ['setTranslator', ['@translator']]
-            - ['setCodeGroupProvider', ['@accard.provider.diagnosis_code_group']]
+            - ['setCodeProvider', ['@accard.provider.diagnosis_code']]
         tags:
             - { name: form.type, alias: accard_family_cancer_attribute }
 
