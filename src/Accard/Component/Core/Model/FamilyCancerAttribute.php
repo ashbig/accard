@@ -10,8 +10,6 @@
  */
 namespace Accard\Component\Core\Model;
 
-use Accard\Component\Diagnosis\Model\CodeGroupInterface;
-
 /**
  * Accard family cancer attribute model.
  *
