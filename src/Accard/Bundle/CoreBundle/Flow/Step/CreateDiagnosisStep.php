@@ -87,11 +87,15 @@ class CreateDiagnosisStep extends ControllerStep
     /**
      * Create diagnosis form.
      *
-     * @param DiagnosisInterface $diagnosisModel
+     * @param DiagnosisInterface|null $diagnosisModel
      * @return FormInterface
      */
-    private function createDiagnosisForm(DiagnosisInterface $diagnosisModel)
+    public function createDiagnosisForm(DiagnosisInterface $diagnosisModel = null)
     {
+        if (!$diagnosisModel) {
+            $diagnosisModel = new $this->diagnosisModelClass();
+        }
+
         return $this->createForm('accard_diagnosis', new $diagnosisModel, array(
             'csrf_protection' => false,
             'use_patient' => false,

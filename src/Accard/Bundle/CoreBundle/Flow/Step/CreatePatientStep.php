@@ -87,11 +87,15 @@ class CreatePatientStep extends ControllerStep
     /**
      * Create patient form.
      *
-     * @param PatientInterface $patientModel
+     * @param PatientInterface|null $patientModel
      * @return FormInterface
      */
-    private function createPatientForm(PatientInterface $patientModel)
+    public function createPatientForm(PatientInterface $patientModel = null)
     {
+        if (!$patientModel) {
+            $patientModel = new $this->patientModelClass();
+        }
+
         return $this->createForm('accard_patient', new $patientModel, array(
             'csrf_protection' => false,
         ));

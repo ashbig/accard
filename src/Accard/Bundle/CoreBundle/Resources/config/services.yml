@@ -40,6 +40,8 @@ services:
 
     accard.flow.scenario.basic_patient:
         class: %accard.flow.scenario.basic_patient.class%
+        arguments:
+            - "@accard.manager.patient"
         tags:
             - { name: accard.flow.scenario, alias: basic_patient }
 
