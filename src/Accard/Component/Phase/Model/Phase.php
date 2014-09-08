@@ -49,13 +49,6 @@ class Phase implements PhaseInterface
 
 
     /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getId()
