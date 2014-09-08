@@ -78,6 +78,13 @@ class Flow implements FlowInterface
      */
     protected $redirectParams = array();
 
+    /**
+     * Save callback.
+     *
+     * @var callable
+     */
+    protected $saveCallback;
+
 
 
     /**
@@ -309,4 +316,20 @@ class Flow implements FlowInterface
         unset($this->steps[$alias]);
         unset($this->orderedSteps[$index]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+     public function setSaveCallback(callable $callback)
+     {
+        $this->saveCallback = $callback;
+     }
+
+     /**
+     * {@inheritdoc}
+     */
+     public function getSaveCallback()
+     {
+        return $this->saveCallback;
+     }
 }

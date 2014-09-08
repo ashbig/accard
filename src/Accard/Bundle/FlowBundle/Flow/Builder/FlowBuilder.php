@@ -111,6 +111,10 @@ class FlowBuilder implements FlowBuilderInterface
         $this->setForwardRoute($this->defaultForwardRoute);
         $scenario->build($this);
 
+        if (!$this->flow->getSaveCallback()) {
+            $this->flow->setSaveCallback(function() {});
+        }
+
         return $this->flow;
     }
 
@@ -209,6 +213,14 @@ class FlowBuilder implements FlowBuilderInterface
 
         $this->flow->setRedirectRoute($route);
         $this->flow->setRedirectParams($params ?: array());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSaveCallback(callable $callback)
+    {
+        $this->flow->setSaveCallback($callback);
     }
 
     /**

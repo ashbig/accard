@@ -147,6 +147,8 @@ class FlowCoordinator implements FlowCoordinatorInterface
 
         if ($result instanceof CompleteResult) {
             if ($this->context->isLastStep()) {
+                // Calls the supplied save method, providing the context
+                call_user_func($flow->getSaveCallback(), $this->context);
                 $this->context->close();
 
                 // Allow dynamic redirect via a closure...
