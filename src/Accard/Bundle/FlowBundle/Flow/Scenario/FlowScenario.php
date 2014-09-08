@@ -11,7 +11,6 @@
 namespace Accard\Bundle\FlowBundle\Flow\Scenario;
 
 use Accard\Bundle\FlowBundle\Flow\Builder\FlowBuilderInterface;
-use Accard\Bundle\FlowBundle\StateMachine\FlowStateMachine;
 
 /**
  * Flow scenario.
@@ -20,15 +19,4 @@ use Accard\Bundle\FlowBundle\StateMachine\FlowStateMachine;
  */
 abstract class FlowScenario implements FlowScenarioInterface
 {
-    protected $stateMachine;
-
-    public function setStateMachine(FlowStateMachine $stateMachine)
-    {
-        $this->stateMachine = $stateMachine;
-    }
-
-    public function getStateMachine()
-    {
-        return $this->stateMachine;
-    }
 }

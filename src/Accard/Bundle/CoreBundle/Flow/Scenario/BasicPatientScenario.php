@@ -10,8 +10,10 @@
  */
 namespace Accard\Bundle\CoreBundle\Flow\Scenario;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Accard\Bundle\FlowBundle\Flow\Scenario\FlowScenario;
 use Accard\Bundle\FlowBundle\Flow\Builder\FlowBuilderInterface;
+use Accard\Bundle\FlowBundle\Flow\Context\FlowContextInterface;
 
 /**
  * Basic patient scenario.
@@ -23,6 +25,24 @@ use Accard\Bundle\FlowBundle\Flow\Builder\FlowBuilderInterface;
 class BasicPatientScenario extends FlowScenario
 {
     /**
+     * Entity manager.
+     *
+     * @var ObjectManager
+     */
+    private $objectManager;
+
+
+    /**
+     * Constructor.
+     *
+     * @param ObjectManager $objectManager
+     */
+    public function __construct(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function build(FlowBuilderInterface $builder)
@@ -30,6 +50,30 @@ class BasicPatientScenario extends FlowScenario
         $builder
             ->add('create_patient')
             ->add('create_diagnosis')
+            ->setSaveCallback(array($this, 'saveBasicPatient'))
         ;
+    }
+
+    public function saveBasicPatient(FlowContextInterface $context)
+    {
+        $flow = $context->getFlow();
+
+        $patientStep = $flow->getStep('create_patient');
+        $patientForm = $patientStep->createPatientForm();
+        $patientData = $context->getStepData($patientStep);
+        $diagnosisStep = $flow->getStep('create_diagnosis');
+        $diagnosisForm = $diagnosisStep->createDiagnosisForm();
+        $diagnosisData = $context->getStepData($diagnosisStep);
+
+        $diagnosisForm->submit($diagnosisData);
+        $patientForm->submit($patientData);
+
+        $patient = $patientForm->getData();
+        $diagnosis = $diagnosisForm->getData();
+
+        $patient->addDiagnosis($diagnosis);
+
+        $this->objectManager->persist($patient);
+        $this->objectManager->flush();
     }
 }
