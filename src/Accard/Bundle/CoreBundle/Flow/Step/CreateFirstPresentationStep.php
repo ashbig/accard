@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormInterface;
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class CreateDiagnosisStep extends ControllerStep
+class CreateFirstPresentationStep extends ControllerStep
 {
     /**
      * Diagnosis repository.

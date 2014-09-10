@@ -24,7 +24,7 @@ accard:
     flow:
         basic_patient:
             create_patient: Create a Patient
-            create_diagnosis: Add a Diagnosis
+            create_first_presentation: First Presentation
     alert:
         info: Information
         success: Success

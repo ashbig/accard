@@ -49,7 +49,7 @@ class BasicPatientScenario extends FlowScenario
     {
         $builder
             ->add('create_patient')
-            ->add('create_diagnosis')
+            ->add('create_first_presentation')
             ->setSaveCallback(array($this, 'saveBasicPatient'))
         ;
     }
@@ -61,7 +61,7 @@ class BasicPatientScenario extends FlowScenario
         $patientStep = $flow->getStep('create_patient');
         $patientForm = $patientStep->createPatientForm();
         $patientData = $context->getStepData($patientStep);
-        $diagnosisStep = $flow->getStep('create_diagnosis');
+        $firstPresentationStep = $flow->getStep('create_first_presentation');
         $diagnosisForm = $diagnosisStep->createDiagnosisForm();
         $diagnosisData = $context->getStepData($diagnosisStep);
 
