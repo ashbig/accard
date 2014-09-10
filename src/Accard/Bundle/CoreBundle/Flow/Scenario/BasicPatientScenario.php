@@ -50,6 +50,7 @@ class BasicPatientScenario extends FlowScenario
         $builder
             ->add('create_patient')
             ->add('create_first_presentation')
+            ->add('create_pre_existing_conditions')
             ->setSaveCallback(array($this, 'saveBasicPatient'))
         ;
     }

@@ -13,6 +13,7 @@ parameters:
     accard.flow.scenario.basic_patient.class: Accard\Bundle\CoreBundle\Flow\Scenario\BasicPatientScenario
     accard.flow.step.create_patient.class: Accard\Bundle\CoreBundle\Flow\Step\CreatePatientStep
     accard.flow.step.create_first_presentation.class: Accard\Bundle\CoreBundle\Flow\Step\CreateFirstPresentationStep
+    accard.flow.step.create_pre_existing_conditions.class : Accard\Bundle\CoreBundle\Flow\Step\CreatePreExistingConditionsStep
     accard.provider.import_patient.class: Accard\Bundle\CoreBundle\Provider\ImportPatientProvider
 
 services:
@@ -60,6 +61,14 @@ services:
             - %accard.model.diagnosis.class%
         tags:
             - { name: accard.flow.step, alias: create_first_presentation }
+
+    accard.flow.step.create_pre_existing_conditions:
+        class: %accard.flow.step.create_pre_existing_conditions.class%
+        arguments:
+            - @accard.repository.diagnosis
+            - %accard.model.diagnosis.class%
+        tags:
+            - { name: accard.flow.step, alias: create_pre_existing_conditions }
 
     accard.provider.import_patient:
         class: %accard.provider.import_patient.class%
