@@ -108,7 +108,7 @@ class CreateFirstPresentationStep extends ControllerStep
      */
     private function renderStep(FlowContextInterface $context, FormInterface $form)
     {
-        return $this->render('AccardWebBundle:Frontend\Flow:create_diagnosis.html.twig', array(
+        return $this->render('AccardWebBundle:Frontend\Flow:create_first_presentation.html.twig', array(
             'context' => $context,
             'form' => $form->createView(),
         ));
