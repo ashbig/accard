@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This file is part of the Accard package.
  *
@@ -34,6 +33,10 @@ abstract class Kernel extends BaseKernel
     public function registerBundles()
     {
         $bundles = array(
+            new \Accard\Bundle\ResourceBundle\AccardResourceBundle(),
+            new \Accard\Bundle\CoreBundle\AccardCoreBundle(),
+            new \Accard\Bundle\SettingsBundle\AccardSettingsBundle(),
+
             new \Accard\Bundle\OptionBundle\AccardOptionBundle(),
             new \Accard\Bundle\FieldBundle\AccardFieldBundle(),
             new \Accard\Bundle\PatientBundle\AccardPatientBundle(),
@@ -41,11 +44,7 @@ abstract class Kernel extends BaseKernel
             new \Accard\Bundle\PhaseBundle\AccardPhaseBundle(),
             new \Accard\Bundle\BehaviorBundle\AccardBehaviorBundle(),
             new \Accard\Bundle\AttributeBundle\AccardAttributeBundle(),
-
-            new \Accard\Bundle\CoreBundle\AccardCoreBundle(),
             new \Accard\Bundle\WebBundle\AccardWebBundle(),
-            new \Accard\Bundle\ResourceBundle\AccardResourceBundle(),
-            new \Accard\Bundle\SettingsBundle\AccardSettingsBundle(),
 
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),

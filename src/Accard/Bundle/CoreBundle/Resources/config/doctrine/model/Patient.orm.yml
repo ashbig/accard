@@ -10,6 +10,12 @@ Accard\Component\Core\Model\Patient:
     table: accard_patient
     repositoryClass: Accard\Bundle\PatientBundle\Doctrine\ORM\PatientRepository
 
+    entityListeners:
+        Accard\Bundle\CoreBundle\EventListener\PatientEntityListener:
+            prePersist: [prePersistHandler]
+            preUpdate: [preUpdateHandler]
+            preRemove: [preRemoveHandler]
+
     oneToOne:
         target:
             targetEntity: Accard\Component\Core\Model\ImportPatientInterface
@@ -34,7 +40,7 @@ Accard\Component\Core\Model\Patient:
 #            orphanRemoval: true
 #            cascade: ["persist", "remove"]
         phases:
-            targetEntity: Accard\Component\Core\Model\PatientPhaseInterface
-            mappedBy: patient
+            targetEntity: Accard\Component\Core\Model\PatientPhaseInstanceInterface
+            mappedBy: target
             orphanRemoval: true
             cascade: ["persist", "remove"]

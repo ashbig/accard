@@ -17,29 +17,4 @@ namespace Accard\Component\Core\Model;
  */
 class PatientPhase extends Phase implements PatientPhaseInterface
 {
-    /**
-     * Patient.
-     *
-     * @var PatientInterface
-     */
-    protected $patient;
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPatient()
-    {
-        return $this->patient;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setPatient(PatientInterface $patient = null)
-    {
-        $this->patient = $patient;
-
-        return $this;
-    }
 }

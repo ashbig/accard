@@ -121,3 +121,44 @@ accard_backend_diagnosis_field_delete:
         _accard:
             template: AccardWebBundle:Backend/Misc:delete.html.twig
             redirect: accard_backend_diagnosis_design
+
+accard_backend_diagnosis_phase_index:
+    pattern: /phase
+    methods: [GET]
+    defaults:
+        _controller: accard.controller.diagnosis_phase:indexAction
+        _accard:
+            template: AccardWebBundle:Backend/DiagnosisPhase:index.html.twig
+            sortable: true
+            paginate: 12
+            sorting:
+                order: asc
+
+accard_backend_diagnosis_phase_create:
+    pattern: /phase/new
+    methods: [GET, POST]
+    defaults:
+        _controller: accard.controller.diagnosis_phase:createAction
+        _accard:
+            template: AccardWebBundle:Backend/DiagnosisPhase:create.html.twig
+            redirect: accard_backend_diagnosis_phase_index
+
+accard_backend_diagnosis_phase_update:
+    pattern: /phase/{id}/edit
+    methods: [GET, PUT, POST]
+    requirements: { id: \d+ }
+    defaults:
+        _controller: accard.controller.diagnosis_phase:updateAction
+        _accard:
+            template: AccardWebBundle:Backend/DiagnosisPhase:update.html.twig
+            redirect: accard_backend_diagnosis_phase_index
+
+accard_backend_diagnosis_phase_delete:
+    pattern: /phase/{id}
+    methods: [DELETE]
+    requirements: { id: \d+ }
+    defaults:
+        _controller: accard.controller.diagnosis_phase:deleteAction
+        _accard:
+            template: AccardWebBundle:Backend/DiagnosisPhase:delete.html.twig
+            redirect: accard_backend_diagnosis_phase_index

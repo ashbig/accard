@@ -42,7 +42,7 @@ class AccardCoreExtension extends AbstractResourceExtension implements PrependEx
      *
      * @var array
      */
-    protected $configFiles = array('services', 'settings', 'import');
+    protected $configFiles = array('services', 'settings', 'forms', 'flows', 'providers');
 
 
     /**
@@ -50,7 +50,7 @@ class AccardCoreExtension extends AbstractResourceExtension implements PrependEx
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        list($config, $loader) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
+        list($config, $loader) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
     }
 
     /**
@@ -65,21 +65,5 @@ class AccardCoreExtension extends AbstractResourceExtension implements PrependEx
                 $container->prependExtensionConfig($name, array('driver' => $config['driver']));
             }
         }
-
-        //$routeClasses = $controllerByClasses = $accardByClasses = array();
-        //foreach ($config['routing'] as $className => $routeConfig) {
-        //    $routeClasses[$className] = array(
-        //        'field' => $routeConfig['field'],
-        //        'prefix' => $routeConfig['prefix'],
-        //    );
-        //    $controllerByClasses[$className] = $routeConfig['defaults']['controller'];
-        //    $accardByClasses[$className] = $routeConfig['defaults']['accard'];
-        //}
-        //
-        //$container->setParameter('accard.route_classes', $routeClasses);
-        //$container->setParameter('accard.controller_by_classes', $controllerByClasses);
-        //$container->setParameter('accard.accard_by_classes', $accardByClasses);
-        //$container->setParameter('accard.route_collection_limit', $config['route_collection_limit']);
-        //$container->setParameter('accard.route_uri_filter_regexp', $config['route_uri_filter_regexp']);
     }
 }

@@ -13,6 +13,7 @@ namespace Accard\Bundle\PDSBundle\Import;
 use DateTime;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\PatientBundle\Import\PatientImporter;
+use Accard\Bundle\PatientBundle\Exception\PatientNotFoundException;
 use Accard\Bundle\CoreBundle\Provider\ImportPatientProvider;
 use Doctrine\DBAL\Connection;
 
@@ -88,9 +89,11 @@ class DiagnosisImporter extends PatientImporter
         foreach ($results as $key => $result) {
             $result = array_change_key_case($result, CASE_LOWER);
 
-            if ($record = $this->provider->getPatientByMRN($result['mrn'])) {
-                $result['previous_record'] = $record;
-            }
+            try {
+                if ($record = $this->provider->getPatientByMRN($result['mrn'])) {
+                    $result['previous_record'] = $record;
+                }
+            } catch (PatientNotFoundException $e) {}
 
             $result['identifier'] = $result['mrn'];
             $result['import_description'] = sprintf('%s diagnosis on %s.', $result['diagnosis'], $result['diagnosis_date']);

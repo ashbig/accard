@@ -154,31 +154,31 @@ interface PatientInterface extends BasePatientInterface,
     /**
      * Get phases.
      *
-     * @return Collection|PatientPhaseInterface[]
+     * @return Collection|PatientPhaseInstanceInterface[]
      */
     public function getPhases();
 
     /**
      * Test for presence of a phase.
      *
-     * @param PatientPhaseInterface $phase
+     * @param PatientPhaseInstanceInterface $phase
      * @return boolean
      */
-    public function hasPhase(PatientPhaseInterface $phase);
+    public function hasPhase(PatientPhaseInstanceInterface $phase);
 
     /**
      * Add phase.
      *
-     * @param PatientPhaseInterface $phase
+     * @param PatientPhaseInstanceInterface $phase
      * @return PatientInterface
      */
-    public function addPhase(PatientPhaseInterface $phase);
+    public function addPhase(PatientPhaseInstanceInterface $phase);
 
     /**
      * Remove phase.
      *
-     * @param PatientPhaseInterface $phase
+     * @param PatientPhaseInstanceInterface $phase
      * @return PatientInterface
      */
-    public function removePhase(PatientPhaseInterface $phase);
+    public function removePhase(PatientPhaseInstanceInterface $phase);
 }

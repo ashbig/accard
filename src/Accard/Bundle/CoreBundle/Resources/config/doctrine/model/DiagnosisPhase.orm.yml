@@ -8,12 +8,3 @@
 Accard\Component\Core\Model\DiagnosisPhase:
     type: mappedSuperclass
     table: accard_diagnosis_phase
-
-    manyToOne:
-        diagnosis:
-            targetEntity: Accard\Component\Diagnosis\Model\DiagnosisInterface
-            inversedBy: phases
-            joinColumn:
-                name: diagnosisId
-                referencedColumnName: id
-                nullable: false

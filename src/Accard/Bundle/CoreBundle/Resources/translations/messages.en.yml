@@ -6,6 +6,38 @@
 # file that was distributed with this source code.
 
 accard:
+    patient_phase:
+        form:
+            label: Label
+            presentation: Presentation
+            order: Order
+        title:
+            index: Patient Phases
+        action:
+            create: Create Patient Phase
+            update: Update Patient Phase
+    patient_phase_instance:
+        form:
+            start_date: Start Date
+            end_date: End Date
+            phase: Phase
+            target: Patient
+    diagnosis_phase:
+        form:
+            label: Label
+            presentation: Presentation
+            order: Order
+        title:
+            index: Diagnosis Phases
+        action:
+            create: Create Diagnosis Phase
+            update: Update Diagnosis Phase
+    diagnosis_phase_instance:
+        form:
+            start_date: Start Date
+            end_date: End Date
+            phase: Phase
+            target: Diagnosis
     form:
         settings:
             general:

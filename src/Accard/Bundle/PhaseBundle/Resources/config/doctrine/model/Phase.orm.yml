@@ -15,13 +15,13 @@ Accard\Component\Phase\Model\Phase:
                 strategy: AUTO
 
     fields:
-        startDate:
-            type: datetime
-            nullable: false
-        endDate:
-            type: datetime
-            nullable: true
         label:
             type: string
-            length: "180"
+            nullable: false
+        presentation:
+            type: string
+            nullable: false
+        order:
+            column: orderNumber
+            type: integer
             nullable: false

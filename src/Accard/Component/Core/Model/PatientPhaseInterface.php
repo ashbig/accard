@@ -17,18 +17,4 @@ namespace Accard\Component\Core\Model;
  */
 interface PatientPhaseInterface extends PhaseInterface
 {
-    /**
-     * Get patient.
-     *
-     * @return PatientInterface
-     */
-    public function getPatient();
-
-    /**
-     * Set patient.
-     *
-     * @param PatientInterface $patient
-     * @return PatientPhaseInterface
-     */
-    public function setPatient(PatientInterface $patient = null);
 }

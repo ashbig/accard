@@ -27,43 +27,6 @@ interface PhaseInterface
     public function getId();
 
     /**
-     * Get start date.
-     *
-     * @return DateTime
-     */
-    public function getStartDate();
-
-    /**
-     * Set start date.
-     *
-     * @param DateTime $startDate
-     * @return PhaseInterface
-     */
-    public function setStartDate(DateTime $startDate);
-
-    /**
-     * Get end date.
-     *
-     * @return DateTime|null $endDate
-     */
-    public function getEndDate();
-
-    /**
-     * Set end date.
-     *
-     * @param DateTime|null $endDate
-     * @return PhaseInterface
-     */
-    public function setEndDate(DateTime $endDate = null);
-
-    /**
-     * Test if phase is ongoing.
-     *
-     * @return boolean
-     */
-    public function isOngoing();
-
-    /**
      * Get label.
      *
      * @var string $label
@@ -77,4 +40,34 @@ interface PhaseInterface
      * @return PhaseInterface
      */
     public function setLabel($label);
+
+    /**
+     * Get presentation.
+     *
+     * @return string
+     */
+    public function getPresentation();
+
+    /**
+     * Set presentation.
+     *
+     * @param string $presentation
+     * @return PhaseInterface
+     */
+    public function setPresentation($presentation);
+
+    /**
+     * Get order.
+     *
+     * @return integer
+     */
+    public function getOrder();
+
+    /**
+     * Set order.
+     *
+     * @param integer $order
+     * @return PhaseInterface
+     */
+    public function setOrder($order);
 }

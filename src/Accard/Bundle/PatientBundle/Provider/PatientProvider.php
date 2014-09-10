@@ -12,6 +12,7 @@ namespace Accard\Bundle\PatientBundle\Provider;
 
 use Accard\Component\Patient\Model\PatientInterface;
 use Accard\Bundle\PatientBundle\Doctrine\ORM\PatientRepository;
+use Accard\Bundle\PatientBundle\Exception\PatientNotFoundException;
 
 /**
  * Patient provider.
@@ -40,11 +41,16 @@ class PatientProvider
     /**
      * Get patient by MRN.
      *
+     * @throws PatientNotFoundException If patient is not found.
      * @param string $mrn
-     * @return PatientInterface|null
+     * @return PatientInterface
      */
     public function getPatientByMRN($mrn)
     {
-        return $this->repository->findOneByMrn($mrn);
+        if (!$patient = $this->repository->findOneByMrn($mrn)) {
+            throw new PatientNotFoundException('MRN', $mrn);
+        }
+
+        return $patient;
     }
 }

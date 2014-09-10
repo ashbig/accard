@@ -11,7 +11,6 @@
 namespace Accard\Component\Core\Model;
 
 use Accard\Component\Phase\Model\Phase as BasePhase;
-use DateTime;
 
 /**
  * Accard phase model.
@@ -20,13 +19,4 @@ use DateTime;
  */
 class Phase extends BasePhase implements PhaseInterface
 {
-    // Traits
-    use \Accard\Component\Resource\Model\BlameableTrait;
-    use \Accard\Component\Resource\Model\TimestampableTrait;
-    use \Accard\Component\Resource\Model\VersionableTrait;
-
-    public function __construct()
-    {
-        $this->createdAt = new DateTime();
-    }
 }

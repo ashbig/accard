@@ -10,8 +10,6 @@
  */
 namespace Accard\Component\Phase\Model;
 
-use DateTime;
-
 /**
  * Accard phase model.
  *
@@ -27,33 +25,26 @@ class Phase implements PhaseInterface
     protected $id;
 
     /**
-     * Start date.
-     *
-     * @var DateTime
-     */
-    protected $startDate;
-
-    /**
-     * End date.
-     *
-     * @var DateTime
-     */
-    protected $endDate;
-
-    /**
      * Label.
      *
      * @var string
      */
     protected $label;
 
+    /**
+     * Presentation.
+     *
+     * @var string
+     */
+    protected $presentation;
 
     /**
-     * Constructor.
+     * Order.
+     *
+     * @var integer
      */
-    public function __construct()
-    {
-    }
+    protected $order = 99;
+
 
     /**
      * {@inheritdoc}
@@ -61,50 +52,6 @@ class Phase implements PhaseInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setStartDate(DateTime $startDate)
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEndDate(DateTime $endDate = null)
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isOngoing()
-    {
-        return null === $this->endDate || new DateTime() < $this->endDate;
     }
 
     /**
@@ -121,6 +68,42 @@ class Phase implements PhaseInterface
     public function setLabel($label)
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
 
         return $this;
     }

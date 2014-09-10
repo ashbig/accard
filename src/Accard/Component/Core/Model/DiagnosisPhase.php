@@ -17,29 +17,4 @@ namespace Accard\Component\Core\Model;
  */
 class DiagnosisPhase extends Phase implements DiagnosisPhaseInterface
 {
-    /**
-     * Diagnosis.
-     *
-     * @var DiagnosisInterface
-     */
-    protected $diagnosis;
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDiagnosis()
-    {
-        return $this->diagnosis;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDiagnosis(DiagnosisInterface $diagnosis = null)
-    {
-        $this->diagnosis = $diagnosis;
-
-        return $this;
-    }
 }

@@ -83,6 +83,11 @@ accard:
         form:
             select_patient: Select a patient
             end_date_help: Leave blank for an ongoing diagnosis
+        action:
+            manage_phases: Manage Phases
+    diagnosis:
+        action:
+            manage_phases: Manage Phases
     form:
         choose: Choose one
         field:
