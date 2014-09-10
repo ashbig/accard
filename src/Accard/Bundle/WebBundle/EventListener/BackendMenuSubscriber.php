@@ -39,13 +39,13 @@ class BackendMenuSubscriber implements EventSubscriberInterface
 
         $patient = $this->createSimpleItem($event, $design, 'patient', 'patient_design', 'patient');
 
-        if (false !== strpos($uri, 'patient/field')) {
+        if (false !== strpos($uri, '/patient/')) {
             $patient->setCurrent(true);
         }
 
         $diagnosis = $this->createSimpleItem($event, $design, 'diagnosis', 'diagnosis_design', 'diagnosis');
 
-        if (false !== strpos($uri, 'diagnosis/field') || false !== strpos($uri, 'diagnosis/code')) {
+        if (false !== strpos($uri, '/diagnosis/') || false !== strpos($uri, 'diagnosis/code')) {
             $diagnosis->setCurrent(true);
         }
 

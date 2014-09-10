@@ -61,7 +61,7 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
     /**
      * Phases.
      *
-     * @var Collection|PatientPhaseInterface[]
+     * @var Collection|PatientPhaseInstanceInterface[]
      */
     protected $phases;
 
@@ -254,7 +254,7 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
     /**
      * {@inheritdoc}
      */
-    public function hasPhase(PatientPhaseInterface $phase)
+    public function hasPhase(PatientPhaseInstanceInterface $phase)
     {
         return $this->phases->contains($phase);
     }
@@ -262,7 +262,7 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
     /**
      * {@inheritdoc}
      */
-    public function addPhase(PatientPhaseInterface $phase)
+    public function addPhase(PatientPhaseInstanceInterface $phase)
     {
         if (!$this->hasPhase($phase)) {
             $phase->setPatient($this);
@@ -275,7 +275,7 @@ class Patient extends BasePatient implements PatientInterface, ImportSubjectInte
     /**
      * {@inheritdoc}
      */
-    public function removePhase(PatientPhaseInterface $phase)
+    public function removePhase(PatientPhaseInstanceInterface $phase)
     {
         if ($this->hasPhase($phase)) {
             $this->phases->removeElement($phase);

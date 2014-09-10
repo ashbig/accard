@@ -47,3 +47,44 @@ accard_backend_patient_field_delete:
         _accard:
             template: AccardWebBundle:Backend/Misc:delete.html.twig
             redirect: accard_backend_patient_design
+
+accard_backend_patient_phase_index:
+    pattern: /phase
+    methods: [GET]
+    defaults:
+        _controller: accard.controller.patient_phase:indexAction
+        _accard:
+            template: AccardWebBundle:Backend/PatientPhase:index.html.twig
+            sortable: true
+            paginate: 12
+            sorting:
+                order: asc
+
+accard_backend_patient_phase_create:
+    pattern: /phase/new
+    methods: [GET, POST]
+    defaults:
+        _controller: accard.controller.patient_phase:createAction
+        _accard:
+            template: AccardWebBundle:Backend/PatientPhase:create.html.twig
+            redirect: accard_backend_patient_phase_index
+
+accard_backend_patient_phase_update:
+    pattern: /phase/{id}/edit
+    methods: [GET, PUT, POST]
+    requirements: { id: \d+ }
+    defaults:
+        _controller: accard.controller.patient_phase:updateAction
+        _accard:
+            template: AccardWebBundle:Backend/PatientPhase:update.html.twig
+            redirect: accard_backend_patient_phase_index
+
+accard_backend_patient_phase_delete:
+    pattern: /phase/{id}
+    methods: [DELETE]
+    requirements: { id: \d+ }
+    defaults:
+        _controller: accard.controller.patient_phase:deleteAction
+        _accard:
+            template: AccardWebBundle:Backend/PatientPhase:delete.html.twig
+            redirect: accard_backend_patient_phase_index

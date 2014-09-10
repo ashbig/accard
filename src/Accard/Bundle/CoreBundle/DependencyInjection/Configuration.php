@@ -37,14 +37,47 @@ class Configuration implements ConfigurationInterface
         ;
 
         $this->addClassesSection($rootNode);
-        //$this->addEmailsSection($rootNode);
-        //$this->addRoutingSection($rootNode);
+        $this->addValidationGroupsSection($rootNode);
 
         return $treeBuilder;
     }
 
     /**
-     * Adds `classes` section.
+     * Adds validation_groups section.
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addValidationGroupsSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('validation_groups')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('patient_phase')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('patient_phase_instance')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('diagnosis_phase')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                        ->arrayNode('diagnosis_phase_instance')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('accard'))
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * Adds classes section.
      *
      * @param ArrayNodeDefinition $node
      */
@@ -55,12 +88,38 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('classes')
                     ->addDefaultsIfNotSet()
                     ->children()
+                        ->arrayNode('patient_phase')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\PatientPhase')->end()
+                                ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('repository')->defaultValue('Accard\Bundle\CoreBundle\Doctrine\ORM\PatientPhaseInstanceRepository')->end()
+                                ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\PatientPhaseType')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('patient_phase_instance')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\PatientPhaseInstance')->end()
+                                ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\PatientPhaseInstanceType')->end()
+                            ->end()
+                        ->end()
                         ->arrayNode('diagnosis_phase')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\DiagnosisPhase')->end()
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('repository')->defaultValue('Accard\Bundle\CoreBundle\Doctrine\ORM\DiagnosisPhaseInstanceRepository')->end()
                                 ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\DiagnosisPhaseType')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('diagnosis_phase_instance')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\DiagnosisPhaseInstance')->end()
+                                ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\DiagnosisPhaseInstanceType')->end()
                             ->end()
                         ->end()
                         ->arrayNode('import_patient')
@@ -72,14 +131,6 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\ImportPatientType')->end()
                             ->end()
                         ->end()
-                        ->arrayNode('patient_phase')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('model')->defaultValue('Accard\Component\Core\Model\PatientPhase')->end()
-                                ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
-                                ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\PatientPhaseType')->end()
-                            ->end()
-                        ->end()
                         ->arrayNode('user')
                             ->addDefaultsIfNotSet()
                             ->children()
@@ -87,33 +138,6 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('controller')->defaultValue('Accard\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                 ->scalarNode('form')->defaultValue('Accard\Bundle\CoreBundle\Form\Type\UserType')->end()
                             ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
-        ;
-    }
-
-    /**
-     * Adds routing section.
-     *
-     * @param ArrayNodeDefinition $node
-     */
-    private function addRoutingSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->scalarNode('route_collection_limit')->defaultValue(0)->info('Limit the number of routes that are fetched when getting a collection, set to false to disable the limit.')->end()
-                ->scalarNode('route_uri_filter_regexp')->defaultValue('')->info('Regular expression filter which is used to skip the Accard dynamic router for any request URI that matches.')->end()
-                ->arrayNode('routing')->isRequired()->cannotBeEmpty()
-                    ->info('Classes for which routes should be generated.')
-                    ->useAttributeAsKey('class_name')
-                    ->prototype('array')
-                    ->children()
-                        ->scalarNode('field')->isRequired()->cannotBeEmpty()->info('Field representing the URI path.')->end()
-                        ->scalarNode('prefix')->defaultValue('')->info('Prefix applied to all routes.')->end()
-                        ->arrayNode('defaults')->isRequired()->cannotBeEmpty()->info('Defaults to add to the generated route.')
-                            ->prototype('variable')
                         ->end()
                     ->end()
                 ->end()

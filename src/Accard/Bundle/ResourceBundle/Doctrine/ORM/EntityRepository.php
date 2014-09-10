@@ -207,4 +207,16 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
     {
         return 'o';
     }
+
+    /**
+     * Get entity count.
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        $countString = sprintf('COUNT(%s.id)', $this->getAlias());
+
+        return $this->getQueryBuilder()->select($countString)->getQuery()->getSingleScalarResult();
+    }
 }

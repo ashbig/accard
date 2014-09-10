@@ -11,18 +11,12 @@
 namespace Accard\Component\Core\Model;
 
 use Accard\Component\Phase\Model\PhaseInterface as BasePhaseInterface;
-use Accard\Component\Resource\Model\BlameableInterface;
-use Accard\Component\Resource\Model\VersionableInterface;
-use Accard\Component\Resource\Model\TimestampableInterface;
 
 /**
  * Accard phase interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-interface PhaseInterface extends BasePhaseInterface,
-                                 TimestampableInterface,
-                                 BlameableInterface,
-                                 VersionableInterface
+interface PhaseInterface extends BasePhaseInterface
 {
 }

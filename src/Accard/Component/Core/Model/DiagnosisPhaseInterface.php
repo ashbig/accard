@@ -17,18 +17,4 @@ namespace Accard\Component\Core\Model;
  */
 interface DiagnosisPhaseInterface extends PhaseInterface
 {
-    /**
-     * Get diagnosis.
-     *
-     * @return DiagnosisInterface
-     */
-    public function getDiagnosis();
-
-    /**
-     * Set diagnosis.
-     *
-     * @param DiagnosisInterface $diagnosis
-     * @return DiagnosisPhaseInterface
-     */
-    public function setDiagnosis(DiagnosisInterface $diagnosis = null);
 }

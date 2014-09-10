@@ -11,7 +11,6 @@
 namespace Accard\Bundle\PhaseBundle;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
-use Accard\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Accard\Bundle\ResourceBundle\AccardResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -40,12 +39,6 @@ class AccardPhaseBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        $interfaces = array(
-            'Accard\Component\Phase\Model\PhaseInterface' => 'accard.model.phase.class',
-        );
-
-        $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('accard_phase', $interfaces));
-
         $mappings = array(
             realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Accard\Component\Phase\Model',
         );

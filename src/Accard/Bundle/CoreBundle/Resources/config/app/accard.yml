@@ -7,14 +7,10 @@
 
 accard_core:
     driver: doctrine/orm
-    classes:
-        patient_phase:
-            model: Accard\Component\Core\Model\PatientPhase
-        diagnosis_phase:
-            model: Accard\Component\Core\Model\DiagnosisPhase
 
 accard_resource: ~
 accard_settings: ~
+accard_phase: ~
 
 accard_patient:
     classes:
@@ -45,12 +41,6 @@ accard_behavior:
             controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
         education_behavior:
             controller: Accard\Bundle\CoreBundle\Controller\BehaviorController
-
-
-accard_phase:
-    classes:
-        phase:
-            model: Accard\Component\Core\Model\Phase
 
 accard_attribute:
     classes:
