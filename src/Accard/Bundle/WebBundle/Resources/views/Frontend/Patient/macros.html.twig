@@ -5,8 +5,19 @@
 {# For the full copyright and license information, please view the LICENSE #}
 {# file that was distributed with this source code. #}
 
+{% macro abstractable(patient) %}
+{% spaceless %}
+    {% for phase in patient.phases %}
+        {% if 'ready_for_abstraction' == phase.phase.label %}
+            {{ 'success' }}
+        {% endif %}
+    {% endfor %}
+{% endspaceless %}
+{% endmacro %}
+
 {% macro list(patients) %}
 
+{% from _self import abstractable %}
 {% from 'AccardWebBundle:Common/Macros:alerts.html.twig' import info %}
 {% from 'AccardWebBundle:Common/Macros:buttons.html.twig' import edit, delete, show %}
 {% from 'AccardWebBundle:Common/Macros:misc.html.twig' import label, icon %}
@@ -26,7 +37,7 @@
         </thead>
         <tbody>
         {% for patient in patients %}
-            <tr id="{{ patient.id }}">
+            <tr id="{{ patient.id }}" class="{{ abstractable(patient) }}">
                 <td class="mrn">{{ patient.mrn }}</td>
                 <td class="first-name">{{ patient.firstName }}</td>
                 <td class="last-name">{{ patient.lastName }}</td>

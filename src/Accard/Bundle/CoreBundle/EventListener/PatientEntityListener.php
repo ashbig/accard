@@ -12,7 +12,7 @@ namespace Accard\Bundle\CoreBundle\EventListener;
 
 use DateTime;
 use Accard\Component\Core\Model\PatientInterface;
-use Accard\Component\Core\Model\PatientPhase;
+use Accard\Component\Core\Model\PatientPhaseInstance;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
@@ -31,11 +31,6 @@ class PatientEntityListener
      */
     public function prePersistHandler(PatientInterface $patient, LifecycleEventArgs $event)
     {
-        $phase = new PatientPhase();
-        $phase->setStartDate(new DateTime());
-        $phase->setLabel('created');
-
-        $patient->addPhase($phase);
     }
 
     /**
