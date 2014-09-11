@@ -47,7 +47,7 @@ class AccardFieldBundle extends Bundle
             DoctrineOrmMappingsPass::createYamlMappingDriver(
                 $mappings,
                 array('doctrine.orm.entity_manager'),
-                'accard_patient.driver.doctrine/orm'
+                'accard_field.driver.doctrine/orm'
             )
         );
     }
