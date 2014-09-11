@@ -16,6 +16,7 @@ use Accard\Component\Patient\Model\PatientInterface as BasePatientInterface;
 use Accard\Component\Resource\Model\BlameableInterface;
 use Accard\Component\Resource\Model\VersionableInterface;
 use Accard\Component\Resource\Model\TimestampableInterface;
+use Accard\Component\Phase\Model\PhaseTargetInterface;
 
 /**
  * Accard patient interface.
@@ -25,7 +26,8 @@ use Accard\Component\Resource\Model\TimestampableInterface;
 interface PatientInterface extends BasePatientInterface,
                                    TimestampableInterface,
                                    BlameableInterface,
-                                   VersionableInterface
+                                   VersionableInterface,
+                                   PhaseTargetInterface
 {
     /**
      * Get diagnoses.

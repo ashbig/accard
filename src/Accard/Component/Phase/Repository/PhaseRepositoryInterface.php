@@ -10,7 +10,7 @@
  */
 namespace Accard\Component\Phase\Repository;
 
-use Accard\Component\Resource\Respository\RepositoryInterface;
+use Accard\Component\Resource\Repository\RepositoryInterface;
 
 /**
  * Phase repository interface.

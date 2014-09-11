@@ -10,6 +10,7 @@
  */
 namespace Accard\Component\Core\Model;
 
+use DateTime;
 use Accard\Component\Phase\Model\PhaseTargetInterface;
 use Accard\Component\Phase\Model\PhaseInterface as BasePhaseInterface;
 

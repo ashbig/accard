@@ -42,10 +42,11 @@ class PhaseProvider implements PhaseProviderInterface
     /**
      * Constructor.
      *
-     * @param PhaseRepository $phaseRepository
-     * @param PhaseIntanceRepository $phaseInstanceRepository
+     * @param PhaseRepositoryInterface $phaseRepository
+     * @param PhaseIntanceRepositoryInterface $phaseInstanceRepository
      */
-    public function __construct(PhaseRepository $phaseRepository, PhaseInstanceRepository $phaseInstanceRepository)
+    public function __construct(PhaseRepositoryInterface $phaseRepository,
+                                PhaseInstanceRepositoryInterface $phaseInstanceRepository)
     {
         $this->phaseRepository = $phaseRepository;
         $this->phaseInstanceRepository = $phaseInstanceRepository;
