@@ -106,10 +106,6 @@ class DiagnosisType extends AbstractType
             ->add('startDate', 'date', array(
                 'label' => 'accard.diagnosis.form.start_date',
             ))
-            ->add('endDate', 'date', array(
-                'label' => 'accard.diagnosis.form.end_date',
-                'required' => false,
-            ))
             ->add('fields', 'collection', array(
                 'required'     => false,
                 'type'         => 'accard_diagnosis_field_value',
@@ -121,6 +117,13 @@ class DiagnosisType extends AbstractType
                 new DefaultDiagnosisFieldListener($builder->getFormFactory(), $this->builder)
             )
         ;
+
+        if ($options['show_end_date']) {
+            $builder->add('endDate', 'date', array(
+                'label' => 'accard.diagnosis.form.end_date',
+                'required' => false,
+            ));
+        }
     }
 
     /**
@@ -133,6 +136,7 @@ class DiagnosisType extends AbstractType
                 'data_class' => $this->dataClass,
                 'validation_groups' => $this->validationGroups,
                 'code_group' => 'main',
+                'show_end_date' => true,
             ))
         ;
     }

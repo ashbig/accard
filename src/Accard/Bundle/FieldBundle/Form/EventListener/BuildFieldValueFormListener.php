@@ -62,10 +62,15 @@ class BuildFieldValueFormListener implements EventSubscriberInterface
         }
 
         $form = $event->getForm();
-        $options = array('label' => $fieldValue->getPresentation(), 'auto_initialize' => false);
+        $options = array(
+            'label' => $fieldValue->getPresentation(),
+            'auto_initialize' => false,
+            'attr' => array(
+                'data-field-name' => $fieldValue->getName(),
+            ));
 
         if (is_array($fieldValue->getConfiguration())) {
-            $options = array_merge($options, $fieldValue->getConfiguration());
+            $options = array_merge_recursive($options, $fieldValue->getConfiguration());
         }
 
         if (FieldTypes::CHOICE === $fieldValue->getType()) {
