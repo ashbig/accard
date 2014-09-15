@@ -15,15 +15,23 @@
 	
 	<div class="row">
 		<ul id="diagnoses" class="diagnoses" data-prototype="
-											<hr>
 												<div class='row'>
+                          <div class='col-md-6'>
+                            Diagnosis
+                          </div>
 													<div class='col-md-6'>
 													  {{ form_widget(form.diagnoses.vars.prototype.code)|e }}
 													</div>
+                        </div>
+                        <div class='row'>
+                          <div class='col-md-6'>
+                            Start Date
+                          </div>
 													<div class='col-md-6'>
 													  {{ form_widget(form.diagnoses.vars.prototype.startDate)|e }}
 													</div>
 												</div>	
+                        <hr>
 											  ">
 
 		</ul>
