@@ -12,4 +12,6 @@
 
 {% block content %}
     {{ page_title('accard.interface.frontend.titles.show_patient'|trans({ '%patient%': patient.firstName })) }}
+
+    {% include 'AccardWebBundle:Frontend/Patient:detail.html.twig' %}
 {% endblock %}

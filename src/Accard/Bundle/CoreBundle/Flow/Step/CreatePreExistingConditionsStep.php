@@ -18,11 +18,11 @@ use Accard\Bundle\DiagnosisBundle\Doctrine\ORM\DiagnosisRepository;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Create diagnosis step.
+ * Create pre existing conditions step.
  *
- * @author Frank Bardon Jr. <bardonf@upenn.edu>
+ * @author Dylan Pierce
  */
-class CreateDiagnosisStep extends ControllerStep
+class CreatePreExistingConditionsStep extends ControllerStep
 {
     /**
      * Diagnosis repository.
@@ -39,15 +39,34 @@ class CreateDiagnosisStep extends ControllerStep
     private $diagnosisModelClass;
 
     /**
+     * Patient model class.
+     *
+     * @var string
+     */
+    private $patientModelClass;
+
+    /**
+     * Diagnosis form type
+     *
+     * @var DiagnosisFormType
+     */
+    private $diagnosisFormType;
+
+    /**
      * Constructor.
      *
      * @param DiagnosisRepository $diagnosisRepository
      * @param string $diagnosisModelClass
      */
-    public function __construct(DiagnosisRepository $diagnosisRepository, $diagnosisModelClass)
+    public function __construct(DiagnosisRepository $diagnosisRepository, 
+                                $diagnosisModelClass, 
+                                $patientModelClass,
+                                $diagnosisFormType)
     {
         $this->diagnosisRepository = $diagnosisRepository;
         $this->diagnosisModelClass = $diagnosisModelClass;
+        $this->patientModelClass = $patientModelClass;
+        $this->diagnosisFormType = $diagnosisFormType;
     }
 
     /**
@@ -56,7 +75,7 @@ class CreateDiagnosisStep extends ControllerStep
     public function display(FlowContextInterface $context)
     {
         $diagnosis = new $this->diagnosisModelClass();
-        $form = $this->createDiagnosisForm($diagnosis);
+        $form = $this->createDiagnosisCollectionForm($diagnosis);
 
         if ($context->hasStepData()) {
             $form->submit($context->getStepData(), false);
@@ -71,12 +90,12 @@ class CreateDiagnosisStep extends ControllerStep
     public function complete(FlowContextInterface $context)
     {
         $diagnosis = new $this->diagnosisModelClass();
-        $form = $this->createDiagnosisForm($diagnosis);
+        $form = $this->createDiagnosisCollectionForm($diagnosis);
         $form->handleRequest($context->getRequest());
 
         if ($form->isValid()) {
             $data = $context->getRequest()->request->all();
-            $context->setStepData($data['accard_diagnosis']);
+            $context->setStepData($data['accard_diagnosis_collection']);
 
             return parent::complete($context);
         }
@@ -85,22 +104,18 @@ class CreateDiagnosisStep extends ControllerStep
     }
 
     /**
-     * Create diagnosis form.
+     * Create diagnosis collection form.
      *
      * @param DiagnosisInterface|null $diagnosisModel
      * @return FormInterface
      */
-    public function createDiagnosisForm(DiagnosisInterface $diagnosisModel = null)
+    public function createDiagnosisCollectionForm(DiagnosisInterface $diagnosisModel = null)
     {
         if (!$diagnosisModel) {
             $diagnosisModel = new $this->diagnosisModelClass();
         }
 
-        return $this->createForm('accard_diagnosis', new $diagnosisModel, array(
-            'csrf_protection' => false,
-            'use_patient' => false,
-            'show_end_date' => false,
-        ));
+        return $this->createForm('accard_diagnosis_collection');
     }
 
     /**
@@ -109,7 +124,7 @@ class CreateDiagnosisStep extends ControllerStep
      */
     private function renderStep(FlowContextInterface $context, FormInterface $form)
     {
-        return $this->render('AccardWebBundle:Frontend\Flow:create_diagnosis.html.twig', array(
+        return $this->render('AccardWebBundle:Frontend\Flow:create_pre_existing_conditions.html.twig', array(
             'context' => $context,
             'form' => $form->createView(),
         ));
