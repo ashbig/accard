@@ -51,6 +51,7 @@ class BasicPatientScenario extends FlowScenario
             ->add('create_patient')
             ->add('create_diagnosis')
             ->add('create_pre_existing_conditions')
+            ->add('finalize_patient')
             ->setSaveCallback(array($this, 'saveBasicPatient'))
         ;
     }
@@ -67,7 +68,6 @@ class BasicPatientScenario extends FlowScenario
         $diagnosisData = $context->getStepData($diagnosisStep);
 
         $preExistingConditionsStep = $flow->getStep('create_pre_existing_conditions');
-
         $diagnosisCollectionsData = $context->getStepData($preExistingConditionsStep);
 
         $diagnosisForm->submit($diagnosisData);
@@ -78,12 +78,14 @@ class BasicPatientScenario extends FlowScenario
 
         $patient->addDiagnosis($diagnosis);
 
-        foreach($diagnosisCollectionsData['diagnoses'] as $preExistingConditionData) {
-            
-            $preExistingConditionsForm = $diagnosisStep->createDiagnosisForm();
-            $preExistingConditionsForm->submit($preExistingConditionData);
-            $preExistingCondition = $preExistingConditionsForm->getData();
-            $patient->addDiagnosis($preExistingCondition);
+        if(array_key_exists('diagnoses', $diagnosisCollectionsData)) {
+            foreach($diagnosisCollectionsData['diagnoses'] as $preExistingConditionData) {
+
+                $preExistingConditionsForm = $diagnosisStep->createDiagnosisForm();
+                $preExistingConditionsForm->submit($preExistingConditionData);
+                $preExistingCondition = $preExistingConditionsForm->getData();
+                $patient->addDiagnosis($preExistingCondition);
+            }
         }
 
         $this->objectManager->persist($patient);

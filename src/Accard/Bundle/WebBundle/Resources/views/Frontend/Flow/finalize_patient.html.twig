@@ -11,25 +11,41 @@
 
 {% block flow_content %}
 
-    {% if create_patient is defined %}
+    {% if patient is defined %}
     <div class="row">
         <div class="col-md-4">
             <h3>Patient</h3>
             <p>A patient with the following details will be created.</p>
         </div>
         <div class="col-md-8">
-            {{ dump(create_patient) }}
+            {% include 'AccardWebBundle:Frontend/Patient:detail.html.twig' %}
         </div>
     </div>
     {% endif %}
 
-    {% if create_diagnosis is defined %}
+    {% if diagnosis is defined %}
+    <div class="row">
         <div class="col-md-4">
             <h3>Diagnosis</h3>
             <p>A patient with the following details will be created.</p>
         </div>
         <div class="col-md-8">
-            {{ dump(create_patient) }}
+            {% include 'AccardWebBundle:Frontend/Diagnosis:detail.html.twig' %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if create_pre_existing_conditions.diagnoses is defined %}
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Pre-existing Conditions</h3>
+                <p>A paitent with the following details will be created.</p>
+            </div>
+            {% for diagnosis in create_pre_existing_conditions.diagnoses %}
+                <div class="col-md-8">
+                    {% include 'AccardWebBundle:Frontend/Diagnosis:detail.html.twig' %}
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
 
