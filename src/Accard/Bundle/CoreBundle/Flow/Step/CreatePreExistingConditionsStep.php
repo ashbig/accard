@@ -96,7 +96,7 @@ class CreatePreExistingConditionsStep extends ControllerStep
 
         if ($form->isValid()) {
             $data = $context->getRequest()->request->all();
-            $context->setStepData($data['accard_diagnosis_collection']);
+            $context->setStepData($data['accard_patient_diagnoses']);
 
             return parent::complete($context);
         }
@@ -116,7 +116,7 @@ class CreatePreExistingConditionsStep extends ControllerStep
             $diagnosisModel = new $this->diagnosisModelClass();
         }
 
-        return $this->createForm('accard_diagnosis_collection');
+        return $this->createForm('accard_patient_diagnoses');
     }
 
     /**

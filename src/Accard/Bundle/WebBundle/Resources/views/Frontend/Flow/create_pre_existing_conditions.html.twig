@@ -9,70 +9,35 @@
 
 {% from 'AccardWebBundle:Common/Macros:misc.html.twig' import page_title %}
 
+{% macro diagnosis_form(diagnosis) %}
+{% spaceless %}
+
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_widget(diagnosis.code) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_widget(diagnosis.startDate) }}
+        </div>
+    </div>
+
+{% endspaceless %}
+{% endmacro %}
+
 {% block flow_content %}
     {{ page_title('accard.flow.pre_existing_conditions.action.create'|trans) }}
     {{ form_errors(form) }}    
 
-{% if form.diagnoses.vars.value is not null %}
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>
-        #
-      </th>
-      <th>
-        Code
-      </th>
-      <th>
-        Start Date
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-
-{% for pre_existing_condition in form.diagnoses.vars.value %}
-    <tr>
-      <td>
-          {{ loop.index }}
-      </td>
-      <td>
-          {{ pre_existing_condition.code.description }}
-      </td>
-      <td>
-          {{ pre_existing_condition.startDate|date('m-d-Y')}}
-      </td>
-    </tr>
-{% endfor %}
-
-  </tbody>
-</table>
-{% endif %}
-	<div class="row">
-		<ul id="diagnoses" class="diagnoses" data-prototype="
-												<div class='row'>
-                          <div class='col-md-6'>
-                            Diagnosis
-                          </div>
-													<div class='col-md-6'>
-													  {{ form_widget(form.diagnoses.vars.prototype.code)|e }}
-													</div>
-                        </div>
-                        <div class='row'>
-                          <div class='col-md-6'>
-                            Start Date
-                          </div>
-													<div class='col-md-6'>
-													  {{ form_widget(form.diagnoses.vars.prototype.startDate)|e }}
-													</div>
-												</div>	
-                        <hr>
-											  ">
-
-		</ul>
-	</div>
-	<div class="row pull-right">
-		<button id="add_pre_exisiting_condition" class="btn btn-success"><i class = 'glyphicon glyphicon-plus'></i> Add Pre-existing Condition</button>
-	</div>
+    <div class="row">
+        <div id="diagnoses" class="diagnoses" data-prototype="{{ _self.diagnosis_form(form.diagnoses.vars.prototype)|e }}">
+        {% for diagnosis in form.diagnoses %}
+            {{ _self.diagnosis_form(diagnosis) }}
+        {% endfor %}
+        </div>
+    </div>
+    <div class="row pull-right">
+        <button id="add_pre_exisiting_condition" class="btn btn-success"><i class = 'glyphicon glyphicon-plus'></i> Add Pre-existing Condition</button>
+    </div>
 
 {% endblock %}
 
@@ -87,29 +52,7 @@ var manager = new formClass('form');
     .collection("#diagnoses", {
       adder: $("#add_pre_exisiting_condition"),
       startup: function(collection) {
-        var common = this.find("select")
-          , icd9 = this.find("[data-accard=typeahead]")
-         
-        collection.form
-          .bindGroup("risk-factor")
-          .plugin("typeahead", icd9)
-          .behavior(common, {
-            init: false,
-            target: icd9,
-            condition: "changed",
-            action: ["callback", function(result) {
-              var widget = icd9.data("accard.form.typeahead_widget")
-                , value = common.val()
-              
-              icd9.val(value)
-              widget.typeahead("val", value)
-              widget.off("keydown.typeahead")
-              widget.on("keydown.typeahead", function() {
-                common.val("")
-              })
-            }]
-          })
-        .bindAll()
+        console.log(collection);
       }
     })
 

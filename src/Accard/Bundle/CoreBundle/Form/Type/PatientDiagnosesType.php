@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
  */
-namespace Accard\Bundle\DiagnosisBundle\Form\Type;
+namespace Accard\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,11 +16,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Accard\Bundle\DiagnosisBundle\Form\Type\DiagnosisType;
 
 /**
- * Diagnosis collection form type.
+ * Patient diagnosis form type.
  * 
  * @author Dylan Pierce <piercedy@upenn.edu>
  */
-class DiagnosisCollectionType extends AbstractType
+class PatientDiagnosesType extends AbstractType
 {
     /**
      * Data class.
@@ -78,6 +78,6 @@ class DiagnosisCollectionType extends AbstractType
      */
     public function getName()
     {
-        return 'accard_diagnoses_collection';
+        return 'accard_patient_diagnoses';
     }
 }

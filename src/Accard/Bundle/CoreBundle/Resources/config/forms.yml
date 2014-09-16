@@ -14,6 +14,7 @@ parameters:
     accard.form.extension.accard_attribute.class: Accard\Bundle\CoreBundle\Form\Extension\AttributeTypeExtension
     accard.form.extension.accard_diagnosis.class: Accard\Bundle\CoreBundle\Form\Extension\DiagnosisTypeExtension
     accard.form.extension.accard_behavior.class: Accard\Bundle\CoreBundle\Form\Extension\BehaviorTypeExtension
+    accard.form.type.patient_diagnoses.class: Accard\Bundle\CoreBundle\Form\Type\PatientDiagnosesType
 
 services:
 
@@ -74,3 +75,12 @@ services:
             - %accard.model.diagnosis_phase.class%
         tags:
             - { name: form.type_extension, alias: accard_diagnosis }
+
+
+    accard.form.type.patient_diagnoses:
+        class: %accard.form.type.patient_diagnoses.class%
+        arguments:
+            - %accard.model.patient.class%
+            - @accard.form.type.diagnosis
+        tags:
+            - { name: form.type, alias: accard_patient_diagnoses }
