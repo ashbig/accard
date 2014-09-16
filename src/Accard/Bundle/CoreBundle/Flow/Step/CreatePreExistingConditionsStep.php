@@ -78,6 +78,7 @@ class CreatePreExistingConditionsStep extends ControllerStep
         $form = $this->createDiagnosisCollectionForm($diagnosis);
 
         if ($context->hasStepData()) {
+
             $form->submit($context->getStepData(), false);
         }
 

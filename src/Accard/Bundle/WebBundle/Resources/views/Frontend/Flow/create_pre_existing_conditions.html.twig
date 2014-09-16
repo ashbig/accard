@@ -12,7 +12,41 @@
 {% block flow_content %}
     {{ page_title('accard.flow.pre_existing_conditions.action.create'|trans) }}
     {{ form_errors(form) }}    
-	
+
+{% if form.diagnoses.vars.value is not null %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Code
+      </th>
+      <th>
+        Start Date
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for pre_existing_condition in form.diagnoses.vars.value %}
+    <tr>
+      <td>
+          {{ loop.index }}
+      </td>
+      <td>
+          {{ pre_existing_condition.code.description }}
+      </td>
+      <td>
+          {{ pre_existing_condition.startDate|date('m-d-Y')}}
+      </td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+{% endif %}
 	<div class="row">
 		<ul id="diagnoses" class="diagnoses" data-prototype="
 												<div class='row'>

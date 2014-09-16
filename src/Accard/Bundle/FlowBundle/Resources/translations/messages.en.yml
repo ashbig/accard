@@ -15,5 +15,4 @@ accard.flow:
         action:
             create: Create Pre-Existing Conditions
     finalize_patient:
-        action:
-            show: Finalize Patient
+        title: Finalize Patient 
