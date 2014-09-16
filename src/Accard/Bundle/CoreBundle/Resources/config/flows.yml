@@ -6,15 +6,20 @@
 # file that was distributed with this source code.
 
 parameters:
-
     accard.flow.scenario.basic_patient.class: Accard\Bundle\CoreBundle\Flow\Scenario\BasicPatientScenario
     accard.flow.step.create_patient.class: Accard\Bundle\CoreBundle\Flow\Step\CreatePatientStep
     accard.flow.step.create_diagnosis.class: Accard\Bundle\CoreBundle\Flow\Step\CreateDiagnosisStep
+    accard.flow.step.create_pre_existing_conditions.class : Accard\Bundle\CoreBundle\Flow\Step\CreatePreExistingConditionsStep
+    accard.flow.step.finalize_patient.class: Accard\Bundle\CoreBundle\Flow\Step\FinalizePatientStep
+    accard.form.extension.accard_diagnosis.class: Accard\Bundle\CoreBundle\Form\Extension\DiagnosisTypeExtension
+    accard.form.extension.accard_behavior.class: Accard\Bundle\CoreBundle\Form\Extension\BehaviorTypeExtension
 
 services:
 
     accard.flow.scenario.basic_patient:
         class: %accard.flow.scenario.basic_patient.class%
+        arguments:
+            - "@accard.manager.patient"
         tags:
             - { name: accard.flow.scenario, alias: basic_patient }
 
@@ -33,3 +38,21 @@ services:
             - %accard.model.diagnosis.class%
         tags:
             - { name: accard.flow.step, alias: create_diagnosis }
+
+    accard.flow.step.finalize_patient:
+        class: %accard.flow.step.finalize_patient.class%
+        arguments:
+            - %accard.model.patient.class%
+            - %accard.model.diagnosis.class%
+        tags:
+            - { name: accard.flow.step, alias: finalize_patient }
+
+    accard.flow.step.create_pre_existing_conditions:
+        class: %accard.flow.step.create_pre_existing_conditions.class%
+        arguments:
+            - @accard.repository.diagnosis
+            - %accard.model.diagnosis.class%
+            - %accard.model.patient.class%
+            - @accard.form.type.diagnosis
+        tags:
+            - { name: accard.flow.step, alias: create_pre_existing_conditions }

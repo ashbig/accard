@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormInterface;
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class CreateDiagnosisStep extends ControllerStep
+class CreateFirstPresentationStep extends ControllerStep
 {
     /**
      * Diagnosis repository.
@@ -99,7 +99,6 @@ class CreateDiagnosisStep extends ControllerStep
         return $this->createForm('accard_diagnosis', new $diagnosisModel, array(
             'csrf_protection' => false,
             'use_patient' => false,
-            'show_end_date' => false,
         ));
     }
 
@@ -109,7 +108,7 @@ class CreateDiagnosisStep extends ControllerStep
      */
     private function renderStep(FlowContextInterface $context, FormInterface $form)
     {
-        return $this->render('AccardWebBundle:Frontend\Flow:create_diagnosis.html.twig', array(
+        return $this->render('AccardWebBundle:Frontend\Flow:create_first_presentation.html.twig', array(
             'context' => $context,
             'form' => $form->createView(),
         ));

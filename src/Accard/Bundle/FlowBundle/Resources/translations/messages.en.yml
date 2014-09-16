@@ -10,3 +10,9 @@ accard.flow:
     next: Next
     finish: Finish
     reset: Start Over
+
+    pre_existing_conditions:
+        action:
+            create: Create Pre-Existing Conditions
+    finalize_patient:
+        title: Finalize Patient 

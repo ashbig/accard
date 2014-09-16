@@ -15,3 +15,24 @@
     {% include 'AccardWebBundle:Frontend/Diagnosis:form.html.twig' %}
 {% endblock %}
 
+{% block page_javascripts %}
+
+<script>
+var formClass = Accard.get('form');
+var manager = new formClass('form');
+console.log(manager);
+manager
+	.behavior($('[data-field-name=diagnosed_at_UPHS]').first(), {
+		target: function() {
+			console.log($('[data-field-name=diagnosed_at_').parents('.field-hider'));
+			return $('[data-field-name=diagnosed_at_').parents('.field-hider');
+		},
+		condition: 'checked',
+		action: 'hide'
+	})
+	.bindAll()
+;
+
+</script>
+
+{% endblock %}

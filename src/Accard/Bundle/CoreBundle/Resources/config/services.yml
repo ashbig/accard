@@ -7,6 +7,7 @@
 
 parameters:
 
+    accard.form.extension.accard_attribute.class: Accard\Bundle\CoreBundle\Form\Extension\AttributeTypeExtension
     accard.provider.import_patient.class: Accard\Bundle\CoreBundle\Provider\ImportPatientProvider
 
 services:
