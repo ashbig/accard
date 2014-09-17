@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "216c14908d345161229f1d4510f2d7e1",
+    "hash": "216ef037633eb71af7f8d6caf1de4870",
     "packages": [
         {
             "name": "accard/patient-repository",
@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "1d17bb671ebd08a8f32e3af9445478014fd0d976"
+                "reference": "1ecff8db03829930af3b0bb0971b529f941687ce"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -40,9 +40,6 @@
                 "white-october/pagerfanta-bundle": "1.0.*@dev",
                 "winzou/state-machine-bundle": "~0.2"
             },
-            "require-dev": {
-                "sensio/generator-bundle": "~2.3"
-            },
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -53,7 +50,7 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2014-09-17 14:44:03"
+            "time": "2014-09-17 15:13:49"
         },
         {
             "name": "doctrine/annotations",
@@ -396,12 +393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "0d99f152573c2da1a4884cc90a9fdfc038f47f7b"
+                "reference": "acbc6da4d562b87bfe8abedabb85d7e1641dd7b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d99f152573c2da1a4884cc90a9fdfc038f47f7b",
-                "reference": "0d99f152573c2da1a4884cc90a9fdfc038f47f7b",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/acbc6da4d562b87bfe8abedabb85d7e1641dd7b6",
+                "reference": "acbc6da4d562b87bfe8abedabb85d7e1641dd7b6",
                 "shasum": ""
             },
             "require": {
@@ -459,7 +456,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-09-12 11:47:41"
+            "time": "2014-09-17 15:33:22"
         },
         {
             "name": "doctrine/doctrine-bundle",
