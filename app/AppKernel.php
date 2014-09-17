@@ -26,9 +26,6 @@ class AppKernel extends Kernel
         $bundles = array(
             new \Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
-            new \Accard\Bundle\FlowBundle\AccardFlowBundle(),
-            new \Accard\Bundle\ActivityBundle\AccardActivityBundle(),
-
             new \Application\Bundle\WebBundle\ApplicationWebBundle(),
         );
 
