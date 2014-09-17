@@ -28,6 +28,7 @@ class AccardCoreExtension extends AbstractResourceExtension implements PrependEx
         'accard_resource',
         'accard_settings',
         'accard_field',
+        'accard_prototype',
         'accard_option',
         'accard_patient',
         'accard_diagnosis',

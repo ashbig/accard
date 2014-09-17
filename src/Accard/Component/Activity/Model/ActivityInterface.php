@@ -11,33 +11,34 @@
 namespace Accard\Component\Activity\Model;
 
 use DateTime;
+use Accard\Component\Prototype\Model\PrototypeSubjectInterface;
 
 /**
  * Basic activity interface.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-interface ActivityInterface
+interface ActivityInterface extends PrototypeSubjectInterface
 {
     /**
      * Get activity id.
-     * 
+     *
      * @return integer
      */
     public function getId();
 
     /**
      * Get activity date.
-     * 
+     *
      * @return DateTime
      */
     public function getActivityDate();
 
     /**
      * Set activity date.
-     * 
+     *
      * @param DateTime $activityDate
      * @return ActivityInterface
      */
-    public function setactivityDate(DateTime $activityDate);
+    public function setActivityDate(DateTime $activityDate);
 }

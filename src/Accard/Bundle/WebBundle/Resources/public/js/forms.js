@@ -432,7 +432,13 @@
       enable: function(event, result) { $(this).prop('disabled', !result) },
       disable: function(event, result) { $(this).prop('disabled', result) },
       set: function(event, result, value) { if (result) $(this).val(value) },
-      copy: function(event, result) { if (result) $(this).val(event.source.val()) }, 
+      copy: function(event, result) { if (result) $(this).val(event.source.val()) },
+
+      // Slug behavior
+      slug: function(event, result) {
+        event.target.val(event.source.val().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'));
+        event.target.prop('readonly', true);
+      },
 
       // Callback is provided with the FormItem directly
       callback: function(event, result, callback) { if (result) callback.call($(this).data("accard.form.item"), result) }
@@ -454,7 +460,9 @@
   $.fn.accardForm.Constructor = Form
 
   if (Accard) {
-    Accard.register("form", Form)
+    Accard.register("form", Form);
+    Accard.register("form-behavior", FormBehaviorEvent);
+    Accard.register("form-collection", FormCollectionEvent);
   }
 
 }(jQuery, window.Accard);

@@ -11,6 +11,7 @@
 namespace Accard\Component\Activity\Model;
 
 use DateTime;
+use Accard\Component\Prototype\Model\PrototypeInterface as BasePrototypeInterface;
 
 /**
  * Accard activity model.
@@ -27,6 +28,13 @@ class Activity implements ActivityInterface
     protected $id;
 
     /**
+     * Prototype.
+     *
+     * @var PrototypeInterface
+     */
+    protected $prototype;
+
+    /**
      * Activity date.
      *
      * @var DateTime
@@ -40,6 +48,24 @@ class Activity implements ActivityInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrototype()
+    {
+        return $this->prototype;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPrototype(BasePrototypeInterface $prototype = null)
+    {
+        $this->prototype = $prototype;
+
+        return $this;
     }
 
     /**
