@@ -17,18 +17,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Accard field type.
+ * Accard prototype type.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
 class FieldType extends AbstractType
 {
-    /**
-     * Subject name.
-     *
-     * @var string
-     */
-    protected $subjectName;
+	/**
+	 * Subject name.
+	 * 
+	 * @var string
+	 */
+	protected $subjectName;
 
     /**
      * Data class.
@@ -36,6 +36,13 @@ class FieldType extends AbstractType
      * @var string
      */
     protected $dataClass;
+
+    /**
+     * Prototype class.
+     * 
+     * @var string
+     */
+    protected $prototypeClass;
 
     /**
      * Validation groups.
@@ -50,12 +57,14 @@ class FieldType extends AbstractType
      *
      * @param string $subjectName
      * @param string $dataClass
+     * @param string $prototypeClass
      * @param array  $validationGroups
      */
-    public function __construct($subjectName, $dataClass, array $validationGroups)
+    public function __construct($subjectName, $dataClass, $prototypeClass, array $validationGroups)
     {
-        $this->subjectName = $subjectName;
+    	$this->subjectName = $subjectName;
         $this->dataClass = $dataClass;
+        $this->prototypeClass = $prototypeClass;
         $this->validationGroups = $validationGroups;
     }
 
@@ -65,19 +74,12 @@ class FieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
-                'label' => 'accard.form.field.name'
-            ))
-            ->add('presentation', 'text', array(
-                'label' => 'accard.form.field.presentation'
-            ))
-            ->add('type', 'choice', array(
-                'label' => 'accard.form.field.type',
-                'choices' => FieldTypes::getChoices()
-            ))
-            ->add('option', 'accard_option_choice', array(
-                'label' => 'accard.form.field.option',
-                'required' => false
+        	->add('prototype', 'entity', array(
+        		'class' => $options['prototype_class'],
+        		'property' => 'presentation',
+        	))
+            ->add('activityDate', 'date', array(
+                'label' => 'accard.form.prototype.activity_date'
             ))
         ;
     }
@@ -90,7 +92,8 @@ class FieldType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'data_class'        => $this->dataClass,
-                'validation_groups' => $this->validationGroups
+                'prototype_class'   => $this->prototypeClass,
+                'validation_groups' => $this->validationGroups,
             ))
         ;
     }
@@ -100,6 +103,6 @@ class FieldType extends AbstractType
      */
     public function getName()
     {
-        return sprintf('accard_%s_field', $this->subjectName);
+        return sprintf('accard_%s_prototype', $this->subjectName);
     }
 }

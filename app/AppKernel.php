@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
             new \Accard\Bundle\ApplicationBundle\AccardApplicationBundle(),
             new \Accard\Bundle\FlowBundle\AccardFlowBundle(),
+            new Accard\Bundle\ActivityBundle\AccardActivityBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);

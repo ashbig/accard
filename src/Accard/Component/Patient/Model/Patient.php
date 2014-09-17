@@ -350,7 +350,5 @@ class Patient implements PatientInterface
                 return $field;
             }
         }
-
-        return null;
     }
 }

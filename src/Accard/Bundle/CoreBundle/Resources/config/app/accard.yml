@@ -26,6 +26,11 @@ accard_diagnosis:
         diagnosis_code_group:
             controller: Accard\Bundle\CoreBundle\Controller\DiagnosisCodeGroupController
 
+accard_activity:
+    classes:
+        activity:
+            controller: Accard\Bundle\CoreBundle\Controller\ActivityController
+
 accard_behavior:
     classes:
         behavior:

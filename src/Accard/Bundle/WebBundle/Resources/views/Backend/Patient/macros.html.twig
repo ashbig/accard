@@ -14,15 +14,15 @@
 {% if fields|length > 0 %}
     <table class="table table-bordered">
         <tbody>
-        {% for fields in fields %}
-            <tr id="{{ fields.id }}">
-                <td>{{ fields.presentation }}</td>
-                <td>{{ fields.name }}</td>
-                <td>{{ label(fields.type) }}</td>
+        {% for field in fields %}
+            <tr id="{{ field.id }}">
+                <td>{{ field.presentation }}</td>
+                <td>{{ field.name }}</td>
+                <td>{{ label(field.type) }}</td>
                 <td>
                     <div class="pull-right">
-                        {{ edit(path('accard_backend_patient_field_update', {'id': fields.id}), null, 'xs') }}
-                        {{ delete(path('accard_backend_patient_field_delete', {'id': fields.id}), null, 'xs') }}
+                        {{ edit(path('accard_backend_patient_field_update', {'id': field.id}), null, 'xs') }}
+                        {{ delete(path('accard_backend_patient_field_delete', {'id': field.id}), null, 'xs') }}
                     </div>
                 </td>
             </tr>

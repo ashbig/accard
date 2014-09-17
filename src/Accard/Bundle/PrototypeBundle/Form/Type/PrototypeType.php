@@ -8,20 +8,18 @@
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
  */
-namespace Accard\Bundle\FieldBundle\Form\Type;
+namespace Accard\Bundle\PrototypeBundle\Form\Type;
 
-use Accard\Bundle\FieldBundle\Form\EventListener\BuildFieldFormChoicesListener;
-use Accard\Component\Field\Model\FieldTypes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Accard field type.
+ * Accard prototype type.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class FieldType extends AbstractType
+class PrototypeType extends AbstractType
 {
     /**
      * Subject name.
@@ -66,18 +64,10 @@ class FieldType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'accard.form.field.name'
+                'label' => 'accard.form.prototype.name'
             ))
             ->add('presentation', 'text', array(
-                'label' => 'accard.form.field.presentation'
-            ))
-            ->add('type', 'choice', array(
-                'label' => 'accard.form.field.type',
-                'choices' => FieldTypes::getChoices()
-            ))
-            ->add('option', 'accard_option_choice', array(
-                'label' => 'accard.form.field.option',
-                'required' => false
+                'label' => 'accard.form.prototype.presentation'
             ))
         ;
     }
@@ -100,6 +90,6 @@ class FieldType extends AbstractType
      */
     public function getName()
     {
-        return sprintf('accard_%s_field', $this->subjectName);
+        return sprintf('accard_%s_prototype', $this->subjectName);
     }
 }

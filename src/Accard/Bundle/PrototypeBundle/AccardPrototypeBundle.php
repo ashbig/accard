@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
  */
-namespace Accard\Bundle\FieldBundle;
+namespace Accard\Bundle\PrototypeBundle;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Accard\Bundle\ResourceBundle\AccardResourceBundle;
@@ -16,11 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Accard patient bundle.
+ * Accard prototype bundle.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class AccardFieldBundle extends Bundle
+class AccardPrototypeBundle extends Bundle
 {
     /**
      * Return array with currently supported drivers.
@@ -40,14 +40,14 @@ class AccardFieldBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $mappings = array(
-            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Accard\Component\Field\Model',
+            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'Accard\Component\Prototype\Model',
         );
 
         $container->addCompilerPass(
             DoctrineOrmMappingsPass::createYamlMappingDriver(
                 $mappings,
                 array('doctrine.orm.entity_manager'),
-                'accard_field.driver.doctrine/orm'
+                'accard_prototype.driver.doctrine/orm'
             )
         );
     }
