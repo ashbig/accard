@@ -69,9 +69,7 @@
                 Diagnosis
             </h3>
         </div>
-        <div class="panel-body">
             {% include 'AccardWebBundle:Frontend/Diagnosis:detail.html.twig' %}
-        </div>
     </div>
     <hr>
     {% endif %}
@@ -82,9 +80,49 @@
             <h3 class="panel-title">Pre-existing Conditions</h3>
         </div>
         <div class="panel-body">
-            {% for diagnosis in create_pre_existing_conditions.diagnoses %}
-                {% include 'AccardWebBundle:Frontend/Diagnosis:detail.html.twig' %}
-            {% endfor %}
+        {% for diagnosis in create_pre_existing_conditions.diagnoses %}
+        <div class="col-md-2">
+            Condition #{{loop.index}}
+        </div>
+        <div class="col-md-10">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>
+                        Code
+                    </th>
+                    <td>
+                        {{diagnosis.code.code}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Description
+                    </th>
+                    <td>
+                        {{diagnosis.code.description}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Start date
+                    </th>
+                    <td>
+                        {{diagnosis.startDate|date('m-d-Y')}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        End date
+                    </th>
+                    <td>
+                        {{diagnosis.endDate|date('m-d-Y')}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>  
+        </div>  
+        {% endfor %}
         </div>
     </div>
     <hr>
