@@ -1,7 +1,3 @@
-accard_behavior:
-    resource: "@AccardBehaviorBundle/Resources/config/routing.yml"
-    prefix:   /
-
 accard_web:
     resource: "@AccardWebBundle/Resources/config/routing.yml"
     prefix:   /
