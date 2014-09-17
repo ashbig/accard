@@ -27,6 +27,10 @@ class AppKernel extends Kernel
             new \Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
             new \Accard\Bundle\ApplicationBundle\AccardApplicationBundle(),
+            new \Accard\Bundle\FlowBundle\AccardFlowBundle(),
+            new \Accard\Bundle\ActivityBundle\AccardActivityBundle(),
+
+            new \Application\Bundle\WebBundle\ApplicationWebBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);
