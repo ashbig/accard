@@ -5,7 +5,7 @@
     "description": "The Accard Application",
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": { "Application\\": "src/", "SymfonyStandard\\": "app/" }
+        "psr-4": { "Application\\": "src/" }
     },
     "require": {
         "accard/patient-repository": "dev-develop"
