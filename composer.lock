@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "0cdf2a87adec3b87f5de7c2541e8579f6380b613"
+                "reference": "5c1128f90486568a83db4fb2243cae44a5c5d0ca"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -50,7 +50,7 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2014-10-01 19:46:59"
+            "time": "2014-10-02 11:31:07"
         },
         {
             "name": "doctrine/annotations",
