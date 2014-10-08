@@ -8,7 +8,7 @@
         "psr-4": { "Application\\": "src/" }
     },
     "require": {
-        "accard/patient-repository": "dev-develop"
+        "accard/patient-repository": "~0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
