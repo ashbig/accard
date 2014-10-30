@@ -96,3 +96,7 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+accard_resource:
+    import:
+        signals: %accard_import_signals%

@@ -389,12 +389,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d8a96fcfbe8fcdc3572a6110ddf67151bd7b3001"
+                "reference": "d12672808124e711c2cb78a82d4461ba2e89c7ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d8a96fcfbe8fcdc3572a6110ddf67151bd7b3001",
-                "reference": "d8a96fcfbe8fcdc3572a6110ddf67151bd7b3001",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d12672808124e711c2cb78a82d4461ba2e89c7ef",
+                "reference": "d12672808124e711c2cb78a82d4461ba2e89c7ef",
                 "shasum": ""
             },
             "require": {
@@ -452,7 +452,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-10-23 22:19:26"
+            "time": "2014-10-29 16:12:22"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1454,12 +1454,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d"
+                "reference": "d6f3cc426c949d9a41925db2be5ffa0e5833f15a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/2b9043dc1396967ca57b26de113f2e946f6c533d",
-                "reference": "2b9043dc1396967ca57b26de113f2e946f6c533d",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/d6f3cc426c949d9a41925db2be5ffa0e5833f15a",
+                "reference": "d6f3cc426c949d9a41925db2be5ffa0e5833f15a",
                 "shasum": ""
             },
             "require": {
@@ -1510,7 +1510,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-09-25 16:22:18"
+            "time": "2014-10-28 08:40:35"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1646,12 +1646,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d0a9acbad0643726453e901d9d49c14e13de9f86"
+                "reference": "53c6cf358bf50a3d31a003639245dac1d4de694b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d0a9acbad0643726453e901d9d49c14e13de9f86",
-                "reference": "d0a9acbad0643726453e901d9d49c14e13de9f86",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/53c6cf358bf50a3d31a003639245dac1d4de694b",
+                "reference": "53c6cf358bf50a3d31a003639245dac1d4de694b",
                 "shasum": ""
             },
             "require": {
@@ -1710,7 +1710,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-10-21 20:10:18"
+            "time": "2014-10-29 06:32:01"
         },
         {
             "name": "mopa/bootstrap-bundle",
@@ -2428,12 +2428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "0f4993bd2a41a32d83655523f29f146837b8a52c"
+                "reference": "b56c2b4a8f60d71fd31900b3a0ce769f76c5a62c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/0f4993bd2a41a32d83655523f29f146837b8a52c",
-                "reference": "0f4993bd2a41a32d83655523f29f146837b8a52c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/b56c2b4a8f60d71fd31900b3a0ce769f76c5a62c",
+                "reference": "b56c2b4a8f60d71fd31900b3a0ce769f76c5a62c",
                 "shasum": ""
             },
             "require": {
@@ -2533,7 +2533,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-10-24 08:21:46"
+            "time": "2014-10-26 07:55:05"
         },
         {
             "name": "twbs/bootstrap",
@@ -2794,12 +2794,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "65bd9471d9f4f5cd856a3acd34f44f87b911d60d"
+                "reference": "17b357c97175840200699012c8c536b4f6d43034"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/65bd9471d9f4f5cd856a3acd34f44f87b911d60d",
-                "reference": "65bd9471d9f4f5cd856a3acd34f44f87b911d60d",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/17b357c97175840200699012c8c536b4f6d43034",
+                "reference": "17b357c97175840200699012c8c536b4f6d43034",
                 "shasum": ""
             },
             "require": {
@@ -2835,7 +2835,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2014-10-03 07:35:29"
+            "time": "2014-10-29 23:21:49"
         },
         {
             "name": "winzou/state-machine",
@@ -2889,16 +2889,16 @@
         },
         {
             "name": "winzou/state-machine-bundle",
-            "version": "v0.2",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/winzou/StateMachineBundle.git",
-                "reference": "6fa894a370f9424080bf798a6f98bb5648917386"
+                "reference": "5bae2f05c330ec26c0065caf7e6ee5f4873e3356"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/winzou/StateMachineBundle/zipball/6fa894a370f9424080bf798a6f98bb5648917386",
-                "reference": "6fa894a370f9424080bf798a6f98bb5648917386",
+                "url": "https://api.github.com/repos/winzou/StateMachineBundle/zipball/5bae2f05c330ec26c0065caf7e6ee5f4873e3356",
+                "reference": "5bae2f05c330ec26c0065caf7e6ee5f4873e3356",
                 "shasum": ""
             },
             "require": {
@@ -2931,7 +2931,7 @@
                 "statemachine",
                 "symfony"
             ],
-            "time": "2014-07-31 07:48:15"
+            "time": "2014-10-29 05:25:26"
         }
     ],
     "packages-dev": [
