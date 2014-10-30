@@ -8,7 +8,11 @@
         "psr-4": { "Application\\": "src/" }
     },
     "require": {
-        "accard/patient-repository": "~0.1"
+        "accard/patient-repository": "~0.1",
+        "ext-ldap": "*",
+        "guzzlehttp/guzzle": "~4.0",
+        "prototype/penn-directory-client": "*",
+        "prototype/penngroups-client": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -50,6 +54,8 @@
         }
     },
     "repositories": [
-        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git" }
+        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git" },
+        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/penn-directory-client.git" },
+        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/penngroups-client.git" }
     ]
 }
