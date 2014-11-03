@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "accard/patient-repository",
-            "version": "0.2",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "ba9506705941d9785718bea5b28d344632f44a80"
+                "reference": "ca5514fa4bbdaf5303a515886b51261448a381e0"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -51,7 +51,7 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2014-11-03 20:05:26"
+            "time": "2014-11-03 21:25:16"
         },
         {
             "name": "doctrine/annotations",
@@ -2224,12 +2224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "3d7b900225882063cf179ce1d41bb8b1450a5a17"
+                "reference": "bc5e96bb4faf6bee7121085951d11b89488952f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/3d7b900225882063cf179ce1d41bb8b1450a5a17",
-                "reference": "3d7b900225882063cf179ce1d41bb8b1450a5a17",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/bc5e96bb4faf6bee7121085951d11b89488952f5",
+                "reference": "bc5e96bb4faf6bee7121085951d11b89488952f5",
                 "shasum": ""
             },
             "require": {
@@ -2268,7 +2268,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2014-10-01 06:52:36"
+            "time": "2014-11-03 21:16:34"
         },
         {
             "name": "sensio/framework-extra-bundle",
