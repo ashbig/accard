@@ -4,15 +4,15 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40b63eee84bc5b6a015f92ae5f25f203",
+    "hash": "d74a7142335905c24dcb431734ca19e3",
     "packages": [
         {
             "name": "accard/patient-repository",
-            "version": "0.1.2",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "d057fc6bc5e4b7b7f9b6f744e961672b7bd790c6"
+                "reference": "ba9506705941d9785718bea5b28d344632f44a80"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -51,7 +51,7 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2014-10-09 14:57:53"
+            "time": "2014-11-03 20:05:26"
         },
         {
             "name": "doctrine/annotations",
@@ -2608,12 +2608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "318ad052d24a61c39feeb99070c1a45be2449b83"
+                "reference": "1bba7995df136c1f225f26385bed804154131345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/318ad052d24a61c39feeb99070c1a45be2449b83",
-                "reference": "318ad052d24a61c39feeb99070c1a45be2449b83",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/1bba7995df136c1f225f26385bed804154131345",
+                "reference": "1bba7995df136c1f225f26385bed804154131345",
                 "shasum": ""
             },
             "require": {
@@ -2713,7 +2713,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-11-03 13:43:52"
+            "time": "2014-11-03 19:48:45"
         },
         {
             "name": "twbs/bootstrap",
