@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new \Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
             new \Application\Bundle\WebBundle\ApplicationWebBundle(),
+            new \DAG\Bundle\SecurityBundle\DAGSecurityBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);

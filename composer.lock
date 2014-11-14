@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d74a7142335905c24dcb431734ca19e3",
+    "hash": "a6b288ff594e194e83b85f9240cacecf",
     "packages": [
         {
             "name": "accard/patient-repository",
@@ -52,6 +52,30 @@
             ],
             "description": "Accard Patient Repository",
             "time": "2014-11-13 18:53:59"
+        },
+        {
+            "name": "dag/components",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.med.upenn.edu:prototype/DAGComponents.git",
+                "reference": "529bd41c3c7f647e7e5d21ffaf50cbc6e80f5c01"
+            },
+            "require": {
+                "ext-ldap": "*",
+                "tiesa/ldap": "1.0.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DAG\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Various DAG components",
+            "time": "2014-11-14 23:14:21"
         },
         {
             "name": "doctrine/annotations",
@@ -1121,124 +1145,6 @@
             "time": "2014-11-07 06:06:56"
         },
         {
-            "name": "guzzlehttp/guzzle",
-            "version": "4.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "66fd916e9f9130bc22c51450476823391cb2f67c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/66fd916e9f9130bc22c51450476823391cb2f67c",
-                "reference": "66fd916e9f9130bc22c51450476823391cb2f67c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/streams": "~2.1",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0",
-                "psr/log": "~1.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2014-10-05 19:29:14"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/f91b721d73f0e561410903b3b3c90a5d0e40b534",
-                "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-08-17 21:15:53"
-        },
-        {
             "name": "incenteev/composer-parameter-handler",
             "version": "dev-master",
             "target-dir": "Incenteev/ParameterHandler",
@@ -2115,68 +2021,6 @@
             "time": "2014-01-09 22:37:17"
         },
         {
-            "name": "prototype/penn-directory-client",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.med.upenn.edu:prototype/penn-directory-client.git",
-                "reference": "8d9eb85afceffed19d036a80cbe578d8e6ef3252"
-            },
-            "require": {
-                "ext-ldap": "*",
-                "php": ">=5.4.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "DAG\\": "src/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Mike Woods",
-                    "email": "micwoods@mail.med.upenn.edu"
-                }
-            ],
-            "description": "Penn personnel (faculty, staff, etc.) directory lookup client",
-            "time": "2014-10-31 13:55:40"
-        },
-        {
-            "name": "prototype/penngroups-client",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.med.upenn.edu:prototype/penngroups-client.git",
-                "reference": "164e494eee180faf48308716d2f386a836dbd941"
-            },
-            "require": {
-                "ext-ldap": "*",
-                "guzzlehttp/guzzle": "~4.0",
-                "php": ">=5.4.4",
-                "prototype/penn-directory-client": "dev-master"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "DAG\\": "src/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Mike Woods",
-                    "email": "micwoods@mail.med.upenn.edu"
-                }
-            ],
-            "description": "PennGroups lookup client",
-            "time": "2014-10-30 18:19:28"
-        },
-        {
             "name": "psr/log",
             "version": "dev-master",
             "source": {
@@ -2718,6 +2562,56 @@
             "time": "2014-11-12 08:14:41"
         },
         {
+            "name": "tiesa/ldap",
+            "version": "dev-master",
+            "target-dir": "Toyota/Component/Ldap",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccottet/ldap.git",
+                "reference": "0759f17996fbb434ee5155dc527b95d8059c6d41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccottet/ldap/zipball/0759f17996fbb434ee5155dc527b95d8059c6d41",
+                "reference": "0759f17996fbb434ee5155dc527b95d8059c6d41",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ldap": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7.13"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Toyota\\Component\\Ldap\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cyril Cottet",
+                    "email": "cyril.cottet@gmail.com"
+                }
+            ],
+            "description": "LDAP made easy & practical to use in PHP",
+            "homepage": "https://github.com/ccottet/ldap",
+            "keywords": [
+                "ldap"
+            ],
+            "time": "2013-02-04 07:37:38"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "v3.2.0",
             "source": {
@@ -3170,8 +3064,6 @@
     "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
-    "platform": {
-        "ext-ldap": "*"
-    },
+    "platform": [],
     "platform-dev": []
 }

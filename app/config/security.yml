@@ -8,12 +8,8 @@ security:
         ROLE_SUPERUSER: ROLE_ADMIN
 
     providers:
-        development:
-            memory:
-                users:
-                    user:  { password: password, roles: ['ROLE_USER'] }
-                    admin: { password: password, roles: ['ROLE_ADMIN'] }
-                    super: { password: password, roles: ['ROLE_SUPERUSER'] }
+        penn:
+            id: dag.security.user_provider
 
     firewalls:
         login:
@@ -30,12 +26,11 @@ security:
 
         main:
             pattern: ^/
-            form_login:
-                provider: development
-                always_use_default_target_path: true
-                default_target_path: accard_frontend_homepage
+            stateless: true
+            simple_preauth:
+                authenticator: dag.security.cosign_authenticator
+                provider: penn
             anonymous: false
-            logout: ~
             switch_user:
                 role: ROLE_SUPERUSER
                 parameter: _switch

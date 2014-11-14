@@ -13,6 +13,7 @@ parameters:
     accard_database_user:     ~
     accard_database_password: ~
 
+    dag_development_user: ~
     accard_app_name: change-me-to-something-unique
     accard_import_signals: []
 
