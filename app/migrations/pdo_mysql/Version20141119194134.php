@@ -31,10 +31,10 @@ class Version20141119194134 extends AbstractMigration
         $this->addSql('ALTER TABLE accard_regimen ADD drugId INT DEFAULT NULL');
         $this->addSql('ALTER TABLE accard_regimen ADD CONSTRAINT FK_7E8EF59EDBA88346 FOREIGN KEY (drugId) REFERENCES accard_drug (id)');
         $this->addSql('CREATE INDEX IDX_7E8EF59EDBA88346 ON accard_regimen (drugId)');
-        $this->addSql('ALTER TABLE accard_regimen_prototype ADD allowDrug TINYINT(1) NOT NULL, ADD drugGroupId INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE accard_regimen_prototype ADD allowDrug TINYINT(1) NULL, ADD drugGroupId INT DEFAULT NULL');
         $this->addSql('ALTER TABLE accard_regimen_prototype ADD CONSTRAINT FK_1713F9E8A67C4099 FOREIGN KEY (drugGroupId) REFERENCES accard_drug_group (id)');
         $this->addSql('CREATE INDEX IDX_1713F9E8A67C4099 ON accard_regimen_prototype (drugGroupId)');
-        $this->addSql('ALTER TABLE accard_activity_prototype ADD allowDrug TINYINT(1) NOT NULL, ADD drugGroupId INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE accard_activity_prototype ADD allowDrug TINYINT(1) NULL, ADD drugGroupId INT DEFAULT NULL');
         $this->addSql('ALTER TABLE accard_activity_prototype ADD CONSTRAINT FK_703C8C1CA67C4099 FOREIGN KEY (drugGroupId) REFERENCES accard_drug_group (id)');
         $this->addSql('CREATE INDEX IDX_703C8C1CA67C4099 ON accard_activity_prototype (drugGroupId)');
     }
