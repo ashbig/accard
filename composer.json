@@ -9,7 +9,8 @@
     },
     "require": {
         "accard/patient-repository": "~0.2",
-        "dag/components": "~0.1"
+        "dag/components": "~0.1",
+        "infinite-networks/form-bundle": "~1.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

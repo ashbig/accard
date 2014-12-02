@@ -28,6 +28,7 @@ twig:
     form:
         resources:
             - 'form_div_layout.html.twig'
+            - 'InfiniteFormBundle::form_theme.html.twig'
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
