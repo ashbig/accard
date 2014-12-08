@@ -67,7 +67,7 @@ class Version20141204172642 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_359EDC715E697A44 ON ACCARD_ACTIVITY_PROTO_FLD_OPT_ (fieldId)');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ ADD PRIMARY KEY (fieldId, optionvalueinterface_id)');
-        $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTOTYPE MODIFY (allowDrug NUMBER(1) DEFAULT NULL NULL)');
+        //$this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTOTYPE MODIFY (allowDrug NUMBER(1) DEFAULT NULL NULL)');
     }
 
     public function down(Schema $schema)
@@ -127,6 +127,6 @@ class Version20141204172642 extends AbstractMigration
         $this->addSql('CREATE INDEX idx_359edc71ce78b7cc ON accard_activity_proto_fld_opt_ (OPTIONID)');
         $this->addSql('ALTER TABLE accard_activity_proto_fld_opt_ DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE accard_activity_proto_fld_opt_ ADD PRIMARY KEY (OPTIONID, OPTIONVALUEINTERFACE_ID)');
-        $this->addSql('ALTER TABLE accard_activity_prototype MODIFY (ALLOWDRUG NUMBER(1) NOT NULL)');
+        //$this->addSql('ALTER TABLE accard_activity_prototype MODIFY (ALLOWDRUG NUMBER(1) NOT NULL)');
     }
 }
