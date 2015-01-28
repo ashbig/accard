@@ -68,6 +68,7 @@ doctrine:
             default:
                 connection: default
                 mappings:
+                    AccardCanvasBundle: ~
                     AccardCoreBundle: ~
                     AccardDiagnosisBundle: ~
                     AccardOptionBundle: ~
