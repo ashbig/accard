@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "accard/patient-repository",
-            "version": "0.3.0",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "7fb6bd9625730822fbeee043bb66f8d0d2336bdf"
+                "reference": "ea5968c2035a30805427f03ef1baed89c6709f3f"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -50,7 +50,7 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2015-01-28 16:09:15"
+            "time": "2015-01-28 17:58:15"
         },
         {
             "name": "dag/components",
