@@ -68,16 +68,23 @@ doctrine:
             default:
                 connection: default
                 mappings:
+                    AccardActivityBundle: ~
+                    AccardAttributeBundle: ~
+                    AccardBehaviorBundle: ~
                     AccardCanvasBundle: ~
                     AccardCoreBundle: ~
                     AccardDiagnosisBundle: ~
-                    AccardOptionBundle: ~
+                    AccardDrugBundle: ~
                     AccardFieldBundle: ~
+                    AccardOptionBundle: ~
                     AccardPatientBundle: ~
                     AccardPhaseBundle: ~
+                    AccardRegimenBundle: ~
                     AccardResourceBundle: ~
+                    AccardSampleBundle: ~
                     AccardSettingsBundle: ~
                     AccardWebBundle: ~
+                    LexikTranslationBundle: ~
             accard:
                 connection: accard
                 mappings:
@@ -91,6 +98,10 @@ doctrine:
 #                connection: accard
 #                mappings:
 #                    AccardVelosBundle: ~
+
+# Wire in lexik translations GUI
+lexik_translation:
+    base_layout: AccardWebBundle:Backend:layout.html.twig
 
 # Swiftmailer Configuration
 swiftmailer:
