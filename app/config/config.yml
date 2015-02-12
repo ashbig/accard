@@ -83,6 +83,7 @@ doctrine:
                     AccardResourceBundle: ~
                     AccardSampleBundle: ~
                     AccardSettingsBundle: ~
+                    AccardTemplateBundle: ~
                     AccardWebBundle: ~
                     LexikTranslationBundle: ~
             accard:
