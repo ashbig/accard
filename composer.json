@@ -8,11 +8,10 @@
         "psr-4": { "Application\\": "src/" }
     },
     "require": {
-        "accard/patient-repository": "~0.3",
+        "accard/patient-repository": "~0.4",
         "dag/components": "~0.1",
         "infinite-networks/form-bundle": "~1.0@dev",
-        "friendsofsymfony/elastica-bundle": "~3.1@dev",
-        "lexik/translation-bundle": "~2.0"
+        "friendsofsymfony/elastica-bundle": "~3.1@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -4,15 +4,15 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0739430867b304515a63ffae8c6bde14",
+    "hash": "e49205e741f6cbb1de0111233bed2a74",
     "packages": [
         {
             "name": "accard/patient-repository",
-            "version": "0.3.1",
+            "version": "0.4",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "ea5968c2035a30805427f03ef1baed89c6709f3f"
+                "reference": "27b2bbb2b77b5ec9c819baf722e89ed1d2ae7927"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.3@dev",
@@ -22,10 +22,12 @@
                 "doctrine/orm": "~2.4",
                 "friendsofsymfony/elastica-bundle": "~3.1@dev",
                 "friendsofsymfony/rest-bundle": "~1.0",
+                "gedmo/doctrine-extensions": "2.3.11",
                 "incenteev/composer-parameter-handler": "~2.0",
                 "jms/serializer-bundle": "0.12.*",
                 "knplabs/knp-menu": "2.0.*@dev",
                 "knplabs/knp-menu-bundle": "2.0.*@dev",
+                "lexik/translation-bundle": "~2.0",
                 "mopa/bootstrap-bundle": "~3.0@dev",
                 "pagerfanta/pagerfanta": "1.0.*@dev",
                 "php": ">=5.3.3",
@@ -50,7 +52,47 @@
                 "MIT"
             ],
             "description": "Accard Patient Repository",
-            "time": "2015-01-28 17:58:15"
+            "time": "2015-02-13 17:58:23"
+        },
+        {
+            "name": "behat/transliterator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "2fd406df003d18fc53eb5fa3e89da52068fad6c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/2fd406df003d18fc53eb5fa3e89da52068fad6c6",
+                "reference": "2fd406df003d18fc53eb5fa3e89da52068fad6c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Transliterator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "time": "2014-09-04 13:06:40"
         },
         {
             "name": "dag/components",
@@ -150,12 +192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "15334410a781da60f861df536b460f24c8f01eeb"
+                "reference": "6c5c32eb6c596993d04e13b95d0c1e8153783d7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/15334410a781da60f861df536b460f24c8f01eeb",
-                "reference": "15334410a781da60f861df536b460f24c8f01eeb",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/6c5c32eb6c596993d04e13b95d0c1e8153783d7a",
+                "reference": "6c5c32eb6c596993d04e13b95d0c1e8153783d7a",
                 "shasum": ""
             },
             "require": {
@@ -212,7 +254,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-02-01 04:40:53"
+            "time": "2015-02-16 12:24:01"
         },
         {
             "name": "doctrine/collections",
@@ -286,12 +328,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "56360cc13bfd13893731c6c4d1d82005a61d7694"
+                "reference": "f1004b8b336465fafd498ee6539cc2502d16f98f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/56360cc13bfd13893731c6c4d1d82005a61d7694",
-                "reference": "56360cc13bfd13893731c6c4d1d82005a61d7694",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/f1004b8b336465fafd498ee6539cc2502d16f98f",
+                "reference": "f1004b8b336465fafd498ee6539cc2502d16f98f",
                 "shasum": ""
             },
             "require": {
@@ -351,7 +393,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-01-23 18:43:22"
+            "time": "2015-02-16 02:14:17"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -703,12 +745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "81575a4316951125ce408c70f30547c77d98f78a"
+                "reference": "6a1bd731dbdd4ad952a3b246a8f38c9c12f52e62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/81575a4316951125ce408c70f30547c77d98f78a",
-                "reference": "81575a4316951125ce408c70f30547c77d98f78a",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/6a1bd731dbdd4ad952a3b246a8f38c9c12f52e62",
+                "reference": "6a1bd731dbdd4ad952a3b246a8f38c9c12f52e62",
                 "shasum": ""
             },
             "require": {
@@ -753,7 +795,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2014-08-17 07:53:47"
+            "time": "2015-02-16 13:24:46"
         },
         {
             "name": "doctrine/inflector",
@@ -994,12 +1036,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "4c68a38bd6b7d590dbfa90b2bb116129381935ce"
+                "reference": "38c819ae04c3b4aa10addff8d026fb64634f92fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/4c68a38bd6b7d590dbfa90b2bb116129381935ce",
-                "reference": "4c68a38bd6b7d590dbfa90b2bb116129381935ce",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/38c819ae04c3b4aa10addff8d026fb64634f92fa",
+                "reference": "38c819ae04c3b4aa10addff8d026fb64634f92fa",
                 "shasum": ""
             },
             "require": {
@@ -1063,7 +1105,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-02-04 21:42:55"
+            "time": "2015-02-16 21:35:28"
         },
         {
             "name": "friendsofsymfony/elastica-bundle",
@@ -1161,12 +1203,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "869cb22e73859bc32ebce23e009b4831da3bc900"
+                "reference": "6c016e3556c0e1a8418efda1be1f7da66df236ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/869cb22e73859bc32ebce23e009b4831da3bc900",
-                "reference": "869cb22e73859bc32ebce23e009b4831da3bc900",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/6c016e3556c0e1a8418efda1be1f7da66df236ad",
+                "reference": "6c016e3556c0e1a8418efda1be1f7da66df236ad",
                 "shasum": ""
             },
             "require": {
@@ -1230,7 +1272,85 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-02-11 07:37:04"
+            "time": "2015-02-16 15:25:15"
+        },
+        {
+            "name": "gedmo/doctrine-extensions",
+            "version": "v2.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
+                "shasum": ""
+            },
+            "require": {
+                "behat/transliterator": "~1.0",
+                "doctrine/common": "~2.4",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/mongodb-odm": ">=1.0.0-BETA11",
+                "doctrine/orm": "~2.4",
+                "phpunit/phpunit": "~4.4",
+                "phpunit/phpunit-mock-objects": "~2.3",
+                "symfony/yaml": "~2.3"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "to use the extensions with the MongoDB ODM",
+                "doctrine/orm": "to use the extensions with the ORM"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Gedmo\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Buchmann",
+                    "email": "david@liip.ch"
+                },
+                {
+                    "name": "Gediminas Morkevicius",
+                    "email": "gediminas.morkevicius@gmail.com"
+                },
+                {
+                    "name": "Gustavo Falco",
+                    "email": "comfortablynumb84@gmail.com"
+                }
+            ],
+            "description": "Doctrine2 behavioral extensions",
+            "homepage": "http://gediminasm.org/",
+            "keywords": [
+                "Blameable",
+                "behaviors",
+                "doctrine2",
+                "extensions",
+                "gedmo",
+                "loggable",
+                "nestedset",
+                "sluggable",
+                "sortable",
+                "timestampable",
+                "translatable",
+                "tree",
+                "uploadable"
+            ],
+            "time": "2015-01-28 09:12:46"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1812,12 +1932,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lexik/LexikTranslationBundle.git",
-                "reference": "0882fe7544abd9a4a146aeb58d23b48c6557c25a"
+                "reference": "88526bbdd11fccb9ddfe791f8b8e3b63a5933ef9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikTranslationBundle/zipball/0882fe7544abd9a4a146aeb58d23b48c6557c25a",
-                "reference": "0882fe7544abd9a4a146aeb58d23b48c6557c25a",
+                "url": "https://api.github.com/repos/lexik/LexikTranslationBundle/zipball/88526bbdd11fccb9ddfe791f8b8e3b63a5933ef9",
+                "reference": "88526bbdd11fccb9ddfe791f8b8e3b63a5933ef9",
                 "shasum": ""
             },
             "require": {
@@ -1871,7 +1991,7 @@
                 "i18n",
                 "translation"
             ],
-            "time": "2015-02-12 08:43:38"
+            "time": "2015-02-17 08:15:28"
         },
         {
             "name": "monolog/monolog",
@@ -2285,7 +2405,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0",
+                "php": ">=5.3.3",
                 "psr/log": "~1.0"
             },
             "require-dev": {
@@ -2723,12 +2843,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "2cca8617b966e99d6d27d7700a6b727d9b28ff44"
+                "reference": "69f901fd89b4c5bf065a7544537aa680d046c480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/2cca8617b966e99d6d27d7700a6b727d9b28ff44",
-                "reference": "2cca8617b966e99d6d27d7700a6b727d9b28ff44",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/69f901fd89b4c5bf065a7544537aa680d046c480",
+                "reference": "69f901fd89b4c5bf065a7544537aa680d046c480",
                 "shasum": ""
             },
             "require": {
@@ -2831,7 +2951,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-02-12 11:03:23"
+            "time": "2015-02-17 16:18:28"
         },
         {
             "name": "tiesa/ldap",
@@ -2940,12 +3060,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "8cf4b9fe04077bd54fc73f4fde83347040c3b8cd"
+                "reference": "33e07209c9f4ee07d688b4d1d49770a244d5bb5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/8cf4b9fe04077bd54fc73f4fde83347040c3b8cd",
-                "reference": "8cf4b9fe04077bd54fc73f4fde83347040c3b8cd",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/33e07209c9f4ee07d688b4d1d49770a244d5bb5d",
+                "reference": "33e07209c9f4ee07d688b4d1d49770a244d5bb5d",
                 "shasum": ""
             },
             "require": {
@@ -2984,7 +3104,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2014-10-30 14:30:03"
+            "time": "2015-02-16 09:42:44"
         },
         {
             "name": "twig/twig",
@@ -2992,12 +3112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "74a8bddec4e8fbea8b3f497bc7cc4bdf1a498330"
+                "reference": "fb8b04ef1537301b889dd6a404f8f62a7ac8a720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/74a8bddec4e8fbea8b3f497bc7cc4bdf1a498330",
-                "reference": "74a8bddec4e8fbea8b3f497bc7cc4bdf1a498330",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fb8b04ef1537301b889dd6a404f8f62a7ac8a720",
+                "reference": "fb8b04ef1537301b889dd6a404f8f62a7ac8a720",
                 "shasum": ""
             },
             "require": {
@@ -3041,7 +3161,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-01-30 11:04:23"
+            "time": "2015-02-16 10:15:51"
         },
         {
             "name": "white-october/pagerfanta-bundle",
