@@ -59,7 +59,6 @@ class Version20141204172642 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_CCCE7B635E697A44 ON ACCARD_REGIMEN_PROTO_FLD_OPT_M (fieldId)');
         $this->addSql('ALTER TABLE ACCARD_REGIMEN_PROTO_FLD_OPT_M DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE ACCARD_REGIMEN_PROTO_FLD_OPT_M ADD PRIMARY KEY (fieldId, optionvalueinterface_id)');
-        $this->addSql('ALTER TABLE ACCARD_REGIMEN_PROTOTYPE MODIFY (allowDrug NUMBER(1) DEFAULT NULL NULL)');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ DROP CONSTRAINT FK_359EDC71CE78B7CC');
         $this->addSql('DROP INDEX idx_359edc71ce78b7cc');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ RENAME COLUMN optionid TO fieldId');
@@ -67,7 +66,6 @@ class Version20141204172642 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_359EDC715E697A44 ON ACCARD_ACTIVITY_PROTO_FLD_OPT_ (fieldId)');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTO_FLD_OPT_ ADD PRIMARY KEY (fieldId, optionvalueinterface_id)');
-        //$this->addSql('ALTER TABLE ACCARD_ACTIVITY_PROTOTYPE MODIFY (allowDrug NUMBER(1) DEFAULT NULL NULL)');
     }
 
     public function down(Schema $schema)

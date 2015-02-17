@@ -15,10 +15,6 @@ class Version20150128172248 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'oracle', 'Migration can only be executed safely on \'oracle\'.');
 
-        $this->addSql('CREATE SEQUENCE accard_canvas_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE TABLE accard_canvas (id NUMBER(10) NOT NULL, route VARCHAR2(255) NOT NULL, grid CLOB NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('COMMENT ON COLUMN accard_canvas.grid IS \'(DC2Type:json_array)\'');
-        $this->addSql('ALTER TABLE ACCARD_ACTIVITY MODIFY (activityDate DATE DEFAULT NULL)');
         $this->addSql('ALTER TABLE ACCARD_PATIENT_FIELD ADD (addable NUMBER(1) DEFAULT \'0\' NOT NULL)');
         $this->addSql('ALTER TABLE ACCARD_DIAGNOSIS_FIELD ADD (addable NUMBER(1) DEFAULT \'0\' NOT NULL)');
         $this->addSql('ALTER TABLE ACCARD_BHVR_PROTO_FLD ADD (addable NUMBER(1) DEFAULT \'0\' NOT NULL)');
@@ -38,8 +34,6 @@ class Version20150128172248 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'oracle', 'Migration can only be executed safely on \'oracle\'.');
 
-        $this->addSql('DROP SEQUENCE accard_canvas_id_seq');
-        $this->addSql('DROP TABLE accard_canvas');
         $this->addSql('ALTER TABLE accard_patient_field DROP (addable)');
         $this->addSql('ALTER TABLE accard_diagnosis_field DROP (addable)');
         $this->addSql('ALTER TABLE accard_bhvr_proto_fld DROP (addable)');
