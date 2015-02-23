@@ -71,7 +71,6 @@ doctrine:
                     AccardActivityBundle: ~
                     AccardAttributeBundle: ~
                     AccardBehaviorBundle: ~
-                    AccardCanvasBundle: ~
                     AccardCoreBundle: ~
                     AccardDiagnosisBundle: ~
                     AccardDrugBundle: ~
