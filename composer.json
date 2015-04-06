@@ -4,9 +4,6 @@
     "type": "project",
     "description": "The Accard Application",
     "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": { "Application\\": "src/" }
-    },
     "require": {
         "accard/patient-repository": "~0.4",
         "dag/components": "~0.1",
