@@ -27,8 +27,8 @@ framework:
 twig:
     form:
         resources:
-            - 'form_div_layout.html.twig'
-            #- 'InfiniteFormBundle::form_theme.html.twig'
+            - 'AccardWebBundle::forms.html.twig'
+            #- 'form_div_layout.html.twig'
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
@@ -108,13 +108,13 @@ doctrine:
 lexik_translation:
     base_layout: AccardWebBundle:Backend:layout.html.twig
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
-    spool:     { type: memory }
+# Swiftmailer Configuration - DISABLED in 1.0
+# swiftmailer:
+#     transport: %mailer_transport%
+#     host:      %mailer_host%
+#     username:  %mailer_user%
+#     password:  %mailer_password%
+#     spool:     { type: memory }
 
 accard_resource:
     import:

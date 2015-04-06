@@ -5,10 +5,8 @@
     "description": "The Accard Application",
     "minimum-stability": "dev",
     "require": {
-        "accard/patient-repository": "~0.4",
-        "dag/components": "~0.1",
-        "infinite-networks/form-bundle": "~1.0@dev",
-        "friendsofsymfony/elastica-bundle": "~3.1@dev"
+        "accard/patient-repository": "dev-single",
+        "dag/components": "~0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -42,9 +40,6 @@
         "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.5-dev"
         }
     },
     "repositories": [
