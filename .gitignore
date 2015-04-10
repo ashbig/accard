@@ -1,6 +1,7 @@
 /web/bundles/
 /web/assets/compiled/
 /app/config/parameters.yml
+/app/config/config_*.local.yml
 /var/bootstrap.php.cache
 /var/cache/*
 /var/logs/*
