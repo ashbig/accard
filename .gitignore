@@ -14,3 +14,4 @@
 /composer.phar
 core
 /.idea/*
+tests/_output/*
