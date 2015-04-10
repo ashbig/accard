@@ -26,6 +26,8 @@ class AppKernel extends Kernel
         $bundles = array(
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
             new \DAG\Bundle\SecurityBundle\DAGSecurityBundle(),
+            new \Accard\Bundle\CPDBundle\AccardCPDBundle(),
+            new \Accard\Bundle\HMTBBundle\AccardHMTBBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);
