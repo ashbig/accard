@@ -20,6 +20,20 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
+    public function __construct($environment, $debug)
+    {
+        parent::__construct($environment, $debug);
+
+        // We do not want deprecation warnings on the command line while
+        // we are transitioning... Remove me later.
+        if ($this->debug && php_sapi_name() == 'cli') {
+            error_reporting(E_ALL & ~E_USER_DEPRECATED);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function registerBundles()
     {
         // Add extra bundles
