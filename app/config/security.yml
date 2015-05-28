@@ -22,7 +22,11 @@ security:
 
         api:
             pattern: ^/api
-            anonymous: ~
+            stateless: true
+            simple_preauth:
+                authenticator: dag.security.cosign_authenticator
+                provider: penn
+            anonymous: false
 
         main:
             pattern: ^/

@@ -6,7 +6,8 @@
     "minimum-stability": "dev",
     "require": {
         "accard/patient-repository": "dev-develop",
-        "dag/components": "~0.1"
+        "dag/components": "~0.1",
+        "willdurand/hateoas-bundle": "~0.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
