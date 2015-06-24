@@ -2,7 +2,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     accard
     database_user:     root
     database_password: ~
 
@@ -14,7 +14,7 @@ parameters:
     accard_database_password: ~
 
     dag_development_user: ~
-    accard_app_name: change-me-to-something-unique
+    accard_app_name: accard
     accard_import_signals: []
 
     elasticsearch_host: 127.0.0.1
@@ -29,6 +29,6 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    debug_toolbar:          true
+    debug_toolbar:          false
     debug_redirects:        false
-    use_assetic_controller: true
+    use_assetic_controller: false

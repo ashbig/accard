@@ -38,10 +38,15 @@ class AppKernel extends Kernel
     {
         // Add extra bundles
         $bundles = array(
+            new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new \Accard\Bundle\PDSBundle\AccardPDSBundle(),
             new \DAG\Bundle\SecurityBundle\DAGSecurityBundle(),
             new \Accard\Bundle\CPDBundle\AccardCPDBundle(),
             new \Accard\Bundle\HMTBBundle\AccardHMTBBundle(),
+            new \FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new \Accard\Bundle\UIBundle\AccardUIBundle(),
+            new \Accard\Bundle\WebBundle\AccardWebBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);

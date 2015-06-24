@@ -1,7 +1,10 @@
-accard_web:
-    resource: "@AccardWebBundle/Resources/config/routing.yml"
+accard_ui:
+    resource: "@AccardUIBundle/Resources/config/routing.yml"
     prefix:   /
 
 accard_api:
     resource: @AccardApiBundle/Resources/config/routing.yml
     prefix: /api
+
+accard_backend:
+    resource: @AccardWebBundle/Resources/config/routing.yml
