@@ -13,6 +13,7 @@ parameters:
     accard_database_user:     ~
     accard_database_password: ~
 
+    dag_development_mode: false
     dag_development_user: ~
     accard_app_name: accard
     accard_import_signals: []
