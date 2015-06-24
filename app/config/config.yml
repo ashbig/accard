@@ -13,7 +13,10 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: false }
-    templating:      { engines: ['twig'] }
+    templating:
+        engines: ['twig']
+        assets_version: %accard.core_version.id%
+        assets_version_format: %%s?release=%%s
     default_locale:  %locale%
     trusted_hosts:   ~
     trusted_proxies: ~
