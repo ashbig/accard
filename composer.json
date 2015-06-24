@@ -50,7 +50,6 @@
         }
     },
     "repositories": [
-        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git" },
-        { "type": "vcs", "url": "git@gitlab.med.upenn.edu:prototype/DAGComponents.git" }
+        { "type": "composer", "url": "http://accard-dev.med.upenn.edu/satis" }
     ]
 }
