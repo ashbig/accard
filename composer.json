@@ -6,11 +6,7 @@
     "minimum-stability": "dev",
     "require": {
         "accard/patient-repository": "dev-develop",
-        "dag/components": "~0.1",
-        "willdurand/hateoas-bundle": "~0.5",
-        "friendsofsymfony/jsrouting-bundle": "^2.0@dev",
-        "knplabs/knp-menu-bundle": "~2.0",
-        "symfony/assetic-bundle": "~2.3"
+        "dag/components": "~0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
