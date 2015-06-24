@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "19ca8e3d22f2f6c321fd1a93627b0cf25924c5c0"
+                "reference": "aabcaec4c0db13bcb5157a8193f5b0a0d214bdc1"
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.4",
@@ -83,7 +83,7 @@
                 }
             ],
             "description": "Accard Patient Repository",
-            "time": "2015-06-24 20:27:31"
+            "time": "2015-06-24 20:39:40"
         },
         {
             "name": "behat/transliterator",
