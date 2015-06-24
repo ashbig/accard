@@ -23,6 +23,7 @@ To install Accard, the following steps must be taken. Below, you will find a sam
     - accard_database_name (accdev11g): Only required for external data access
     - accard_database_user (null): Only required for external data access
     - accard_database_password (null): Only required for external data access
+    - dag_development_mode (false): True to simulate PennKey login
     - dag_development_user (null): Your PennKey
     - accard_app_name (change-me-to-something-unique): Typically, application name
     - accard_import_signals ({  }): Data import signals
