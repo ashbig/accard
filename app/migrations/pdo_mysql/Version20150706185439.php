@@ -43,7 +43,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
      */
     public function getDescription()
     {
-        return 'Upgrade from 0.0.0 to 1.0.0 (%s)';
+        return 'Upgrade from 0.0.0 to 1.0.0';
     }
 
     /**
