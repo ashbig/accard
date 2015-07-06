@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Accard\Component\Diagnosis\Model\CodeGroup;
+use DAG\Bundle\SecurityBundle\Model\User;
 
 /**
  * Accard 1.0.0 migration.
@@ -59,6 +60,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
             return;
         }
 
+        $this->addUsers();
         $this->addDiagnosisGroups();
     }
 
@@ -418,6 +420,32 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $mainGroup->setPresentation('Main');
 
         $em->persist($mainGroup);
+        $em->flush();
+    }
+
+    /**
+     * Insert default users into tables.
+     */
+    private function addUsers()
+    {
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $roles = array('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERUSER');
+        $users = array(
+            '10209669' => 'bardonf',
+            '76165519' => 'wormleyw',
+            '10074769' => 'vasur',
+            '79888556' => 'kzipser',
+        );
+
+        foreach ($users as $id => $pennkey) {
+            $user = new User();
+            $user->setId($id);
+            $user->setUsername($pennkey);
+            $user->setRoles($roles);
+
+            $em->persist($user);
+        }
+
         $em->flush();
     }
 
