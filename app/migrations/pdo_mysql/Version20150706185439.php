@@ -46,6 +46,11 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         return 'Upgrade from 0.0.0 to 1.0.0 (%s)';
     }
 
+    /**
+     * Add data after the migration has run.
+     *
+     * @param Schema $schema
+     */
     public function postUp(Schema $schema)
     {
         // Do not add post data without migration being actually run.
