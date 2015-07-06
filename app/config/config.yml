@@ -43,6 +43,12 @@ assetic:
     filters:
         cssrewrite: ~
 
+# Doctrine Migrations
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/migrations/%database_driver%
+    name: Accard Migrations
+    namespace: Accard\Migrations
+
 # Doctrine Configuration
 doctrine:
     dbal:

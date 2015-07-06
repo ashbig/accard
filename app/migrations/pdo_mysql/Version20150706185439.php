@@ -8,32 +8,72 @@
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
  */
-namespace Application\Migrations;
+namespace Accard\Migrations;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
+use Accard\Component\Diagnosis\Model\CodeGroup;
 
 /**
- * Accard 1.0 migration.
+ * Accard 1.0.0 migration.
  *
  * @author Frank Bardon Jr. <bardonf@upenn.edu>
  */
-class Version20150410145732 extends AbstractMigration
+class Version20150706185439 extends AbstractMigration implements ContainerAwareInterface
 {
+    /**
+     * Service container.
+     *
+     * @param ContainerInterface
+     */
+    private $container;
+
     /**
      * {@inheritdoc}
      */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription()
+    {
+        return 'Upgrade from 0.0.0 to 1.0.0 (%s)';
+    }
+
+    public function postUp(Schema $schema)
+    {
+        // Do not add post data without migration being actually run.
+        if (!$this->version->isMigrated()) {
+            $this->warnIf(true, 'Post up data not run, migration has not been executed.');
+            return;
+        }
+
+        $this->addDiagnosisGroups();
+    }
+
+    /**
+     * From 0.0.0 to 1.0.0.
+     *
+     * @param Schema $schema
+     */
     public function up(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->assertPlatform();
+
         $this->addSql('CREATE TABLE accard_template (id INT AUTO_INCREMENT NOT NULL, parent VARCHAR(180) DEFAULT NULL, name VARCHAR(200) NOT NULL, location VARCHAR(200) NOT NULL, content LONGTEXT NOT NULL, UNIQUE INDEX UNIQ_FD8FA09C5E237E06 (name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lexik_translation_file (id INT AUTO_INCREMENT NOT NULL, domain VARCHAR(255) NOT NULL, locale VARCHAR(10) NOT NULL, extention VARCHAR(10) NOT NULL, path VARCHAR(255) NOT NULL, hash VARCHAR(255) NOT NULL, UNIQUE INDEX hash_idx (hash), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lexik_trans_unit_translation (id INT AUTO_INCREMENT NOT NULL, file_id INT DEFAULT NULL, trans_unit_id INT DEFAULT NULL, locale VARCHAR(10) NOT NULL, content LONGTEXT NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, INDEX IDX_75CB162F93CB796C (file_id), INDEX IDX_75CB162FC3C583C9 (trans_unit_id), UNIQUE INDEX trans_unit_locale_idx (trans_unit_id, locale), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lexik_trans_unit (id INT AUTO_INCREMENT NOT NULL, key_name VARCHAR(255) NOT NULL, domain VARCHAR(255) NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX key_domain_idx (key_name, domain), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ext_log_entries (id INT AUTO_INCREMENT NOT NULL, action VARCHAR(8) NOT NULL, logged_at DATETIME NOT NULL, object_id VARCHAR(64) DEFAULT NULL, object_class VARCHAR(255) NOT NULL, version INT NOT NULL, data LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:array)\', username VARCHAR(255) DEFAULT NULL, INDEX log_class_lookup_idx (object_class), INDEX log_date_lookup_idx (logged_at), INDEX log_user_lookup_idx (username), INDEX log_version_lookup_idx (object_id, object_class, version), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE accard_setting (id INT AUTO_INCREMENT NOT NULL, namespace VARCHAR(120) NOT NULL, name VARCHAR(120) NOT NULL, value LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:object)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_import (id INT AUTO_INCREMENT NOT NULL, active TINYINT(1) NOT NULL, startTimestamp NUMERIC(13, 3) NOT NULL, endTimestamp NUMERIC(13, 3) NOT NULL, importer VARCHAR(36) NOT NULL, criteria LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_log (id INT AUTO_INCREMENT NOT NULL, logDate DATETIME NOT NULL, action VARCHAR(16) NOT NULL, resourceName VARCHAR(32) NOT NULL, resourceId INT DEFAULT NULL, route VARCHAR(100) NOT NULL, uriAttributes LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriQuery LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriRequest LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', userId INT NOT NULL, INDEX IDX_2AC893464B64DCC (userId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE accard_setting (id INT AUTO_INCREMENT NOT NULL, namespace VARCHAR(120) NOT NULL, name VARCHAR(120) NOT NULL, value LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:object)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_activity (id INT AUTO_INCREMENT NOT NULL, activityDate DATE NOT NULL, drugId INT DEFAULT NULL, prototypeId INT NOT NULL, patientId INT NOT NULL, diagnosisId INT DEFAULT NULL, regimenId INT DEFAULT NULL, INDEX IDX_C69BB645DBA88346 (drugId), INDEX IDX_C69BB6459B116E9A (prototypeId), INDEX IDX_C69BB6458F803478 (patientId), INDEX IDX_C69BB645D0EA680C (diagnosisId), INDEX IDX_C69BB64585CA7E31 (regimenId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_attribute (id INT AUTO_INCREMENT NOT NULL, prototypeId INT NOT NULL, patientId INT NOT NULL, INDEX IDX_77180DB19B116E9A (prototypeId), INDEX IDX_77180DB18F803478 (patientId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_behavior (id INT AUTO_INCREMENT NOT NULL, startDate DATETIME NOT NULL, endDate DATETIME DEFAULT NULL, prototypeId INT NOT NULL, patientId INT NOT NULL, INDEX IDX_51441FAF9B116E9A (prototypeId), INDEX IDX_51441FAF8F803478 (patientId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
@@ -190,11 +230,14 @@ class Version20150410145732 extends AbstractMigration
     }
 
     /**
-     * {@inheritdoc}
+     * Down from 1.0.0 to 0.0.0.
+     *
+     * @param Schema $schema
      */
     public function down(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->assertPlatform();
+
         $this->addSql('ALTER TABLE lexik_trans_unit_translation DROP FOREIGN KEY FK_75CB162F93CB796C');
         $this->addSql('ALTER TABLE lexik_trans_unit_translation DROP FOREIGN KEY FK_75CB162FC3C583C9');
         $this->addSql('ALTER TABLE accard_activity_proto_fldval DROP FOREIGN KEY FK_182C8B0F1335E2FC');
@@ -297,9 +340,9 @@ class Version20150410145732 extends AbstractMigration
         $this->addSql('DROP TABLE lexik_trans_unit_translation');
         $this->addSql('DROP TABLE lexik_trans_unit');
         $this->addSql('DROP TABLE ext_log_entries');
-        $this->addSql('DROP TABLE accard_setting');
         $this->addSql('DROP TABLE accard_import');
         $this->addSql('DROP TABLE accard_log');
+        $this->addSql('DROP TABLE accard_setting');
         $this->addSql('DROP TABLE accard_activity');
         $this->addSql('DROP TABLE accard_attribute');
         $this->addSql('DROP TABLE accard_behavior');
@@ -356,5 +399,33 @@ class Version20150410145732 extends AbstractMigration
         $this->addSql('DROP TABLE accard_activity_prototype');
         $this->addSql('DROP TABLE accard_activity_prototype_map');
         $this->addSql('DROP TABLE dag_user');
+    }
+
+    /**
+     * Inserts default data into required tables.
+     */
+    private function addDiagnosisGroups()
+    {
+        $em = $this->container->get('accard.manager.diagnosis_code_group');
+
+        $mainGroup = new CodeGroup();
+        $mainGroup->setName('main');
+        $mainGroup->setPresentation('Main');
+
+        $em->persist($mainGroup);
+        $em->flush();
+    }
+
+
+    /**
+     * Kill migration if playform is not MySQL.
+     *
+     * @throws Exception If platform doesn't match.
+     */
+    private function assertPlatform()
+    {
+        $platform = $this->platform->getName();
+
+        $this->abortIf($platform != 'mysql', 'Migration can only be executed safely on mysql.');
     }
 }
