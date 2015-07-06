@@ -32,5 +32,11 @@ monolog:
 assetic:
     use_controller: %use_assetic_controller%
 
+# Doctrine Migrations
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/migrations/%database_driver%
+    name: Accard Migrations
+    namespace: Accard\Migrations
+
 #swiftmailer:
 #    delivery_address: me@example.com
