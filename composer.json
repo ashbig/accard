@@ -5,7 +5,7 @@
     "description": "The Accard Application",
     "minimum-stability": "dev",
     "require": {
-        "accard/patient-repository": "1.0.0-beta1",
+        "accard/patient-repository": "~1.0",
         "dag/components": "~0.1"
     },
     "require-dev": {
