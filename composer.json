@@ -22,6 +22,7 @@
             "Accard\\ScriptHandler::buildBootstrap",
             "Accard\\ScriptHandler::clearCache",
             "Accard\\ScriptHandler::installAssets",
+            "Accard\\ScriptHandler::showMigrationStatus",
             "bash app/contrib/setup.sh"
         ],
         "post-update-cmd": [

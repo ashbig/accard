@@ -11,6 +11,9 @@
 namespace Accard;
 
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as BaseScriptHandler;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
+use Composer\Script\CommandEvent;
 
 /**
  * Extensions to Symfony's standard composer hooks.
@@ -19,4 +22,11 @@ use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as BaseScriptHandler
  */
 class ScriptHandler extends BaseScriptHandler
 {
+    public static function showMigrationStatus(CommandEvent $event)
+    {
+        $options = static::getOptions($event);
+        $consoleDir = static::getConsoleDir($event, 'show migration status');
+
+        static::executeCommand($event, $consoleDir, 'doctrine:migrations:status');
+    }
 }
