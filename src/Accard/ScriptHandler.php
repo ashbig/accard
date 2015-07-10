@@ -28,5 +28,11 @@ class ScriptHandler extends BaseScriptHandler
         $consoleDir = static::getConsoleDir($event, 'show migration status');
 
         static::executeCommand($event, $consoleDir, 'doctrine:migrations:status');
+
+        if (!$event->getIO()->askConfirmation('Would you like to run migrations at this time? ', false)) {
+            return;
+        }
+
+        static::executeCommand($event, $consoleDir, 'doctrine:migrations:migrate -n');
     }
 }
