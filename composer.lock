@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9cbd07ec2344800d1ee31acf43d91c64",
+    "hash": "2e41e743e460dad62c0f0ea0a7c8eb19",
     "packages": [
         {
             "name": "accard/patient-repository",
@@ -1115,12 +1115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "fd7b5682f3e2c51660ca8964745eec3ed83c6654"
+                "reference": "cdfe95db80e55f01718b6cb309c7565da4c11e21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/fd7b5682f3e2c51660ca8964745eec3ed83c6654",
-                "reference": "fd7b5682f3e2c51660ca8964745eec3ed83c6654",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/cdfe95db80e55f01718b6cb309c7565da4c11e21",
+                "reference": "cdfe95db80e55f01718b6cb309c7565da4c11e21",
                 "shasum": ""
             },
             "require": {
@@ -1186,7 +1186,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-07-07 08:17:38"
+            "time": "2015-07-10 10:20:02"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1643,12 +1643,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "b17bd13759a7c63b16a6bb88b9e84e4ff767dfaf"
+                "reference": "0023c5e18f4a03c6ba72706dea6514d45c7136d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/b17bd13759a7c63b16a6bb88b9e84e4ff767dfaf",
-                "reference": "b17bd13759a7c63b16a6bb88b9e84e4ff767dfaf",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/0023c5e18f4a03c6ba72706dea6514d45c7136d7",
+                "reference": "0023c5e18f4a03c6ba72706dea6514d45c7136d7",
                 "shasum": ""
             },
             "require": {
@@ -1709,7 +1709,65 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-06-16 13:36:43"
+            "time": "2015-07-08 20:36:44"
+        },
+        {
+            "name": "lexik/maintenance-bundle",
+            "version": "dev-master",
+            "target-dir": "Lexik/Bundle/MaintenanceBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lexik/LexikMaintenanceBundle.git",
+                "reference": "db730c0109cd1c7601815e354a5eba10f74f3fa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lexik/LexikMaintenanceBundle/zipball/db730c0109cd1c7601815e354a5eba10f74f3fa8",
+                "reference": "db730c0109cd1c7601815e354a5eba10f74f3fa8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/dependency-injection": "~2.1",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Lexik\\Bundle\\MaintenanceBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dev Lexik",
+                    "email": "dev@lexik.fr"
+                },
+                {
+                    "name": "Gilles Gauthier",
+                    "email": "g.gauthier@lexik.fr"
+                },
+                {
+                    "name": "Djuri Baars",
+                    "email": "info@djurict.nl"
+                }
+            ],
+            "description": "This bundle allows you to place your website in maintenance mode by calling two commands from your console.",
+            "homepage": "https://github.com/lexik/LexikMaintenanceBundle",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "maintenance"
+            ],
+            "time": "2015-06-22 11:54:37"
         },
         {
             "name": "lexik/translation-bundle",
@@ -2358,12 +2416,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b2fddecde9725674d0da1a2ae5d9d0d9784e1b6c"
+                "reference": "c104bc291a2b691abd4408f8d5f9595c93a689ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b2fddecde9725674d0da1a2ae5d9d0d9784e1b6c",
-                "reference": "b2fddecde9725674d0da1a2ae5d9d0d9784e1b6c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/c104bc291a2b691abd4408f8d5f9595c93a689ae",
+                "reference": "c104bc291a2b691abd4408f8d5f9595c93a689ae",
                 "shasum": ""
             },
             "require": {
@@ -2472,7 +2530,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-07-08 06:12:51"
+            "time": "2015-07-09 16:32:09"
         },
         {
             "name": "tiesa/ldap",

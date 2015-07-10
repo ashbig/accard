@@ -5,6 +5,7 @@
 /var/bootstrap.php.cache
 /var/cache/*
 /var/logs/*
+/var/maintaining
 !var/cache/.gitkeep
 !var/logs/.gitkeep
 /build/

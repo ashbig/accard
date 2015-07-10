@@ -112,6 +112,17 @@ doctrine:
 lexik_translation:
     base_layout: AccardUIBundle:Backend:layout.html.twig
 
+lexik_maintenance:
+    authorized:
+        path: /administration
+    driver:
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'
+        options:
+            file_path: %kernel.root_dir%/../var/maintaining
+    response:
+        code: 503
+        status: "This website is temporarily down for maintenance."
+
 # Swiftmailer Configuration - DISABLED in 1.0
 # swiftmailer:
 #     transport: %mailer_transport%

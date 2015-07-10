@@ -27,7 +27,7 @@ class AppKernel extends Kernel
         // We do not want deprecation warnings on the command line while
         // we are transitioning... Remove me later.
         if ($this->debug && php_sapi_name() == 'cli') {
-            error_reporting(E_ALL & ~E_USER_DEPRECATED);
+            //error_reporting(E_ALL & ~E_USER_DEPRECATED);
         }
     }
 
@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new \FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \Accard\Bundle\UIBundle\AccardUIBundle(),
             new \Accard\Bundle\WebBundle\AccardWebBundle(),
+            new \Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
         );
 
         return array_merge(parent::registerBundles(), $bundles);

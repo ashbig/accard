@@ -2,11 +2,15 @@
     "name": "accard/accard",
     "license": "MIT",
     "type": "project",
-    "description": "The Accard Application",
+    "description": "The Accard Patient Repository Application",
     "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "": "src/", "SymfonyStandard\\": "app/SymfonyStandard" }
+    },
     "require": {
         "accard/patient-repository": "~1.0",
-        "dag/components": "~0.1"
+        "dag/components": "~0.1",
+        "lexik/maintenance-bundle": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -21,6 +25,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-update-cmd": [
@@ -29,6 +34,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
@@ -43,6 +49,9 @@
         "symfony-assets-install": "symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
         }
     },
     "repositories": [
