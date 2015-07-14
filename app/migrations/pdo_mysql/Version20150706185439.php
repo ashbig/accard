@@ -432,7 +432,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $roles = array('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERUSER');
         $users = array(
             '10209669' => 'bardonf',
-            '76165519' => 'wormleyw',
+            '76165519' => 'wwormley',
             '10074769' => 'vasur',
             '79888556' => 'kzipser',
         );
