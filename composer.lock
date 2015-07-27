@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d597a4ffb8f9e0bbd306c6943070b627",
+    "hash": "4713071d1c7d83adfbc8c0b3b2f6116c",
     "packages": [
         {
             "name": "accard/patient-repository",
@@ -12,29 +12,13 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/PatientRepository.git",
-                "reference": "3a694fba6cfa394c5919f0e4035f3ea5fcfc4de5"
+                "reference": "72fdd4832841d0028bac57d1d278902e971286d3"
             },
             "require": {
-                "doctrine/doctrine-bundle": "~1.4",
-                "doctrine/doctrine-cache-bundle": "~1.0",
-                "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
-                "doctrine/orm": "~2.4.0",
+                "dag/framework": "~1.0@dev",
                 "friendsofsymfony/jsrouting-bundle": "~2.0@dev",
-                "friendsofsymfony/rest-bundle": "~1.5",
-                "gedmo/doctrine-extensions": "~2.4",
-                "incenteev/composer-parameter-handler": "~2.0",
-                "jms/serializer-bundle": "0.13.*",
                 "knplabs/knp-menu-bundle": "~2.0",
-                "lexik/translation-bundle": "~2.1",
-                "php": ">=5.4.0",
-                "sensio/distribution-bundle": "~3.0",
-                "sensio/framework-extra-bundle": "~3.0",
-                "symfony/assetic-bundle": "~2.3",
-                "symfony/monolog-bundle": "~2.7",
-                "symfony/symfony": "~2.7.0",
-                "twig/extensions": "~1.2",
-                "white-october/pagerfanta-bundle": "~1.0",
-                "willdurand/hateoas-bundle": "~0.5"
+                "php": ">=5.4.0"
             },
             "replace": {
                 "accard/activity": "self.version",
@@ -43,13 +27,9 @@
                 "accard/core": "self.version",
                 "accard/diagnosis": "self.version",
                 "accard/drug": "self.version",
-                "accard/field": "self.version",
-                "accard/option": "self.version",
                 "accard/patient": "self.version",
                 "accard/phase": "self.version",
-                "accard/prototype": "self.version",
                 "accard/regimen": "self.version",
-                "accard/resource": "self.version",
                 "accard/sample": "self.version"
             },
             "require-dev": {
@@ -83,7 +63,7 @@
                 }
             ],
             "description": "Accard Patient Repository",
-            "time": "2015-07-15 21:36:04"
+            "time": "2015-07-27 18:45:06"
         },
         {
             "name": "behat/transliterator",
@@ -127,11 +107,11 @@
         },
         {
             "name": "dag/components",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.med.upenn.edu:prototype/DAGComponents.git",
-                "reference": "24d808c09db031284e9baded7a6e11dd5aa21800"
+                "reference": "84e47a42a300c2f8dc8e41ae79e987ac572aeeea"
             },
             "require": {
                 "ext-ldap": "*",
@@ -147,7 +127,77 @@
                 "MIT"
             ],
             "description": "Various DAG components",
-            "time": "2015-06-24 17:35:38"
+            "time": "2015-07-22 18:17:30"
+        },
+        {
+            "name": "dag/framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.med.upenn.edu:dag-framework/Framework.git",
+                "reference": "251d4053bfe1f2c4bed3fdabd6dce0417f1775a8"
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.4",
+                "doctrine/doctrine-cache-bundle": "~1.0",
+                "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
+                "doctrine/orm": "~2.4.0",
+                "friendsofsymfony/rest-bundle": "~1.5",
+                "gedmo/doctrine-extensions": "~2.4",
+                "jms/serializer-bundle": "0.13.*",
+                "lexik/translation-bundle": "~2.1",
+                "php": ">=5.4.0",
+                "sensio/distribution-bundle": "~3.0",
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony/assetic-bundle": "~2.6",
+                "symfony/monolog-bundle": "~2.7",
+                "symfony/symfony": "~2.7.0",
+                "twig/extensions": "~1.2",
+                "white-october/pagerfanta-bundle": "~1.0",
+                "willdurand/hateoas-bundle": "~0.5"
+            },
+            "replace": {
+                "dag/field": "self.version",
+                "dag/field-bundle": "self.version",
+                "dag/option": "self.version",
+                "dag/option-bundle": "self.version",
+                "dag/prototype": "self.version",
+                "dag/prototype-bundle": "self.version",
+                "dag/resource": "self.version",
+                "dag/resource-bundle": "self.version",
+                "dag/settings-bundle": "self.version"
+            },
+            "require-dev": {
+                "codeception/codeception": "dev-master",
+                "codeception/mockery-module": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DAG\\Bundle\\": "src/Bundle/",
+                    "DAG\\Component\\": "src/Component/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Bardon Jr.",
+                    "homepage": "http://frankbardon.me"
+                },
+                {
+                    "name": "Database and Applications Group",
+                    "homepage": "http://dag.med.upenn.edu"
+                }
+            ],
+            "description": "DAG Framework Tools",
+            "time": "2015-07-22 16:16:44"
         },
         {
             "name": "doctrine/annotations",
@@ -495,12 +545,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "2f28f691d8bba2aedb3537d12917d92ba3f63cb8"
+                "reference": "e0e7b9ea3592c2c8140a92b61e065add7ee182d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/2f28f691d8bba2aedb3537d12917d92ba3f63cb8",
-                "reference": "2f28f691d8bba2aedb3537d12917d92ba3f63cb8",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/e0e7b9ea3592c2c8140a92b61e065add7ee182d3",
+                "reference": "e0e7b9ea3592c2c8140a92b61e065add7ee182d3",
                 "shasum": ""
             },
             "require": {
@@ -565,7 +615,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-06-15 18:00:22"
+            "time": "2015-07-20 11:58:52"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -1115,12 +1165,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "cdfe95db80e55f01718b6cb309c7565da4c11e21"
+                "reference": "98a8df191fb7fa6660093ac236903b5974c1bd39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/cdfe95db80e55f01718b6cb309c7565da4c11e21",
-                "reference": "cdfe95db80e55f01718b6cb309c7565da4c11e21",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/98a8df191fb7fa6660093ac236903b5974c1bd39",
+                "reference": "98a8df191fb7fa6660093ac236903b5974c1bd39",
                 "shasum": ""
             },
             "require": {
@@ -1186,58 +1236,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-07-10 10:20:02"
-        },
-        {
-            "name": "incenteev/composer-parameter-handler",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Incenteev/ParameterHandler.git",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/84a205fe80a46101607bafbc423019527893ddd0",
-                "reference": "84a205fe80a46101607bafbc423019527893ddd0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/yaml": "~2.0"
-            },
-            "require-dev": {
-                "composer/composer": "1.0.*@dev",
-                "phpspec/prophecy-phpunit": "~1.0",
-                "symfony/filesystem": "~2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Incenteev\\ParameterHandler\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                }
-            ],
-            "description": "Composer script handling your ignored parameter file",
-            "homepage": "https://github.com/Incenteev/ParameterHandler",
-            "keywords": [
-                "parameters management"
-            ],
-            "time": "2015-06-03 08:27:03"
+            "time": "2015-07-23 11:25:48"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1523,12 +1522,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "03badd49d673de25e5119a797030777642172a9f"
+                "reference": "c3578e1dd4230f1827e37699e7ca4012341f0696"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/03badd49d673de25e5119a797030777642172a9f",
-                "reference": "03badd49d673de25e5119a797030777642172a9f",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/c3578e1dd4230f1827e37699e7ca4012341f0696",
+                "reference": "c3578e1dd4230f1827e37699e7ca4012341f0696",
                 "shasum": ""
             },
             "require": {
@@ -1579,7 +1578,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2015-06-30 19:06:17"
+            "time": "2015-07-17 20:59:47"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1843,12 +1842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4"
+                "reference": "e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
-                "reference": "c5b08724f4b11fd90a2c36a64d4868bcee7ba6a4",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81",
+                "reference": "e4f45be5dcfeb54c45f85b50cdbb3ef8a2bfbd81",
                 "shasum": ""
             },
             "require": {
@@ -1911,7 +1910,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-07-14 09:27:59"
+            "time": "2015-07-20 18:31:46"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -2189,12 +2188,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "0616fd568da051adc19ca63006cc808531ba2da4"
+                "reference": "28265b487cf2ef664db13c1ebcf94140b22ba854"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/0616fd568da051adc19ca63006cc808531ba2da4",
-                "reference": "0616fd568da051adc19ca63006cc808531ba2da4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/28265b487cf2ef664db13c1ebcf94140b22ba854",
+                "reference": "28265b487cf2ef664db13c1ebcf94140b22ba854",
                 "shasum": ""
             },
             "require": {
@@ -2236,7 +2235,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2015-06-05 13:59:21"
+            "time": "2015-07-16 12:03:59"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2244,12 +2243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "9b41e0bf923aa1860bc3acc7d53105c2afd74a13"
+                "reference": "2a894b9baf1e18eba7e50dd8ad1e5b1097e0cadc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/9b41e0bf923aa1860bc3acc7d53105c2afd74a13",
-                "reference": "9b41e0bf923aa1860bc3acc7d53105c2afd74a13",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/2a894b9baf1e18eba7e50dd8ad1e5b1097e0cadc",
+                "reference": "2a894b9baf1e18eba7e50dd8ad1e5b1097e0cadc",
                 "shasum": ""
             },
             "require": {
@@ -2281,7 +2280,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2015-06-15 16:04:58"
+            "time": "2015-07-16 20:51:54"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2416,12 +2415,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "bb54d8ce33ebafb505872061b591ecc17d943fa4"
+                "reference": "0252e4e2e44e308b88eed89993d8263db3abfbdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/bb54d8ce33ebafb505872061b591ecc17d943fa4",
-                "reference": "bb54d8ce33ebafb505872061b591ecc17d943fa4",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/0252e4e2e44e308b88eed89993d8263db3abfbdb",
+                "reference": "0252e4e2e44e308b88eed89993d8263db3abfbdb",
                 "shasum": ""
             },
             "require": {
@@ -2530,7 +2529,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-07-14 15:28:36"
+            "time": "2015-07-26 18:11:56"
         },
         {
             "name": "tiesa/ldap",
@@ -2588,12 +2587,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "a155ec01555ffa3aab3e7e042d55aab549c83b75"
+                "reference": "e0ff377e7583264026cbcf515aed770b8b517d58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/a155ec01555ffa3aab3e7e042d55aab549c83b75",
-                "reference": "a155ec01555ffa3aab3e7e042d55aab549c83b75",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/e0ff377e7583264026cbcf515aed770b8b517d58",
+                "reference": "e0ff377e7583264026cbcf515aed770b8b517d58",
                 "shasum": ""
             },
             "require": {
@@ -2632,7 +2631,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2015-04-27 12:00:01"
+            "time": "2015-07-20 22:59:42"
         },
         {
             "name": "twig/twig",
@@ -2907,12 +2906,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "540434b453473e48d0c12de9db4607cbca8e112b"
+                "reference": "05ab7f3f6c88cfa1634b2dbf80c325ac30cf14bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/540434b453473e48d0c12de9db4607cbca8e112b",
-                "reference": "540434b453473e48d0c12de9db4607cbca8e112b",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/05ab7f3f6c88cfa1634b2dbf80c325ac30cf14bf",
+                "reference": "05ab7f3f6c88cfa1634b2dbf80c325ac30cf14bf",
                 "shasum": ""
             },
             "require": {
@@ -2925,8 +2924,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Negotiation": "src/"
+                "psr-4": {
+                    "Negotiation\\": "src/Negotiation"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2948,10 +2947,61 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2015-06-25 14:39:05"
+            "time": "2015-07-27 06:50:40"
         }
     ],
     "packages-dev": [
+        {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Incenteev/ParameterHandler.git",
+                "reference": "84a205fe80a46101607bafbc423019527893ddd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/84a205fe80a46101607bafbc423019527893ddd0",
+                "reference": "84a205fe80a46101607bafbc423019527893ddd0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": "~2.0"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpspec/prophecy-phpunit": "~1.0",
+                "symfony/filesystem": "~2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Incenteev\\ParameterHandler\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Composer script handling your ignored parameter file",
+            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "keywords": [
+                "parameters management"
+            ],
+            "time": "2015-06-03 08:27:03"
+        },
         {
             "name": "sensio/generator-bundle",
             "version": "dev-master",
