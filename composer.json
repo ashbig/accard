@@ -8,7 +8,8 @@
         "psr-4": { "": "src/" }
     },
     "require": {
-        "accard/patient-repository": "~1.0",
+        "accard/patient-repository": "1.0.0-RC1",
+        "dag/framework": "1.0.0-RC1",
         "dag/components": "~0.1",
         "lexik/maintenance-bundle": "~1.0"
     },
