@@ -75,7 +75,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
 
         $this->addSql('CREATE SEQUENCE accard_template_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE ext_log_entries_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE SEQUENCE accard_import_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_log_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_setting_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_activity_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
@@ -84,9 +83,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE SEQUENCE accard_diagnosis_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_diagnosis_phase_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_diagnosis_phase_instanc START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE SEQUENCE accard_import_activity_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE SEQUENCE accard_import_patient_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE SEQUENCE accard_import_sample_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_patient_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_patient_phase_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_patient_phase_instance_ START WITH 1 MINVALUE 1 INCREMENT BY 1');
@@ -219,8 +215,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE INDEX log_user_lookup_idx ON ext_log_entries (username)');
         $this->addSql('CREATE INDEX log_version_lookup_idx ON ext_log_entries (object_id, object_class, version)');
         $this->addSql('COMMENT ON COLUMN ext_log_entries.data IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE accard_import (id NUMBER(10) NOT NULL, active NUMBER(1) NOT NULL, startTimestamp NUMERIC(13, 3) NOT NULL, endTimestamp NUMERIC(13, 3) NOT NULL, importer VARCHAR2(36) NOT NULL, criteria CLOB NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('COMMENT ON COLUMN accard_import.criteria IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE accard_log (id NUMBER(10) NOT NULL, logDate TIMESTAMP(0) NOT NULL, action VARCHAR2(16) NOT NULL, resourceName VARCHAR2(32) NOT NULL, resourceId NUMBER(10) DEFAULT NULL, route VARCHAR2(100) NOT NULL, uriAttributes CLOB DEFAULT NULL, uriQuery CLOB DEFAULT NULL, uriRequest CLOB DEFAULT NULL, userId NUMBER(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_2AC893464B64DCC ON accard_log (userId)');
         $this->addSql('COMMENT ON COLUMN accard_log.uriAttributes IS \'(DC2Type:json_array)\'');
@@ -249,18 +243,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE TABLE accard_diagnosis_phase_inst (id NUMBER(10) NOT NULL, target_id NUMBER(10) DEFAULT NULL, phase_id NUMBER(10) DEFAULT NULL, startDate TIMESTAMP(0) NOT NULL, endDate TIMESTAMP(0) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_F09D7DB9158E0B66 ON accard_diagnosis_phase_inst (target_id)');
         $this->addSql('CREATE INDEX IDX_F09D7DB999091188 ON accard_diagnosis_phase_inst (phase_id)');
-        $this->addSql('CREATE TABLE accard_import_activity (id NUMBER(10) NOT NULL, activityDate DATE NOT NULL, descriptions CLOB NOT NULL, status NUMBER(10) NOT NULL, drugId NUMBER(10) DEFAULT NULL, patientId NUMBER(10) NOT NULL, diagnosisId NUMBER(10) DEFAULT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_81CEBD4EDBA88346 ON accard_import_activity (drugId)');
-        $this->addSql('CREATE INDEX IDX_81CEBD4E8F803478 ON accard_import_activity (patientId)');
-        $this->addSql('CREATE INDEX IDX_81CEBD4ED0EA680C ON accard_import_activity (diagnosisId)');
-        $this->addSql('COMMENT ON COLUMN accard_import_activity.descriptions IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE accard_import_patient (id NUMBER(10) NOT NULL, mrn VARCHAR2(36) DEFAULT NULL, firstName VARCHAR2(36) NOT NULL, lastName VARCHAR2(36) NOT NULL, dateOfBirth TIMESTAMP(0) NOT NULL, dateOfDeath TIMESTAMP(0) DEFAULT NULL, gender VARCHAR2(255) DEFAULT NULL, race VARCHAR2(255) DEFAULT NULL, descriptions CLOB NOT NULL, status NUMBER(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_A2814E1484DD64A ON accard_import_patient (mrn)');
-        $this->addSql('COMMENT ON COLUMN accard_import_patient.descriptions IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE accard_import_sample (id NUMBER(10) NOT NULL, amount NUMBER(10) NOT NULL, descriptions CLOB NOT NULL, status NUMBER(10) NOT NULL, sourceId NUMBER(10) DEFAULT NULL, patientId NUMBER(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_173786F4EE155AE0 ON accard_import_sample (sourceId)');
-        $this->addSql('CREATE INDEX IDX_173786F48F803478 ON accard_import_sample (patientId)');
-        $this->addSql('COMMENT ON COLUMN accard_import_sample.descriptions IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE accard_patient (id NUMBER(10) NOT NULL, mrn VARCHAR2(36) DEFAULT NULL, firstName VARCHAR2(36) NOT NULL, lastName VARCHAR2(36) NOT NULL, dateOfBirth TIMESTAMP(0) NOT NULL, dateOfDeath TIMESTAMP(0) DEFAULT NULL, gender VARCHAR2(255) DEFAULT NULL, race VARCHAR2(255) DEFAULT NULL, targetId NUMBER(10) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_45453AFA84DD64A ON accard_patient (mrn)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_45453AFA39659675 ON accard_patient (targetId)');
@@ -420,12 +402,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_diagnosis ADD CONSTRAINT FK_F3B3ED778F803478 FOREIGN KEY (patientId) REFERENCES accard_patient (id)');
         $this->addSql('ALTER TABLE accard_diagnosis_phase_inst ADD CONSTRAINT FK_F09D7DB9158E0B66 FOREIGN KEY (target_id) REFERENCES accard_diagnosis (id)');
         $this->addSql('ALTER TABLE accard_diagnosis_phase_inst ADD CONSTRAINT FK_F09D7DB999091188 FOREIGN KEY (phase_id) REFERENCES accard_diagnosis_phase (id)');
-        $this->addSql('ALTER TABLE accard_import_activity ADD CONSTRAINT FK_81CEBD4EDBA88346 FOREIGN KEY (drugId) REFERENCES accard_drug (id)');
-        $this->addSql('ALTER TABLE accard_import_activity ADD CONSTRAINT FK_81CEBD4E8F803478 FOREIGN KEY (patientId) REFERENCES accard_patient (id)');
-        $this->addSql('ALTER TABLE accard_import_activity ADD CONSTRAINT FK_81CEBD4ED0EA680C FOREIGN KEY (diagnosisId) REFERENCES accard_diagnosis (id)');
-        $this->addSql('ALTER TABLE accard_import_sample ADD CONSTRAINT FK_173786F4EE155AE0 FOREIGN KEY (sourceId) REFERENCES accard_sample_source (id)');
-        $this->addSql('ALTER TABLE accard_import_sample ADD CONSTRAINT FK_173786F48F803478 FOREIGN KEY (patientId) REFERENCES accard_patient (id)');
-        $this->addSql('ALTER TABLE accard_patient ADD CONSTRAINT FK_45453AFA39659675 FOREIGN KEY (targetId) REFERENCES accard_import_patient (id)');
         $this->addSql('ALTER TABLE accard_patient_phase_inst ADD CONSTRAINT FK_450F421158E0B66 FOREIGN KEY (target_id) REFERENCES accard_patient (id)');
         $this->addSql('ALTER TABLE accard_patient_phase_inst ADD CONSTRAINT FK_450F42199091188 FOREIGN KEY (phase_id) REFERENCES accard_patient_phase (id)');
         $this->addSql('ALTER TABLE accard_regimen ADD CONSTRAINT FK_7E8EF59EDBA88346 FOREIGN KEY (drugId) REFERENCES accard_drug (id)');
@@ -519,7 +495,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_diagnosis DROP CONSTRAINT FK_F3B3ED7710EE4CEE');
         $this->addSql('ALTER TABLE accard_diagnosis DROP CONSTRAINT FK_F3B3ED777BB601C');
         $this->addSql('ALTER TABLE accard_diagnosis_phase_inst DROP CONSTRAINT FK_F09D7DB9158E0B66');
-        $this->addSql('ALTER TABLE accard_import_activity DROP CONSTRAINT FK_81CEBD4ED0EA680C');
         $this->addSql('ALTER TABLE accard_regimen DROP CONSTRAINT FK_7E8EF59ED0EA680C');
         $this->addSql('ALTER TABLE accard_diagnosis_field_value DROP CONSTRAINT FK_1EA4358FD0EA680C');
         $this->addSql('ALTER TABLE accard_diagnosis_phase_inst DROP CONSTRAINT FK_F09D7DB999091188');
@@ -528,8 +503,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_attribute DROP CONSTRAINT FK_77180DB18F803478');
         $this->addSql('ALTER TABLE accard_behavior DROP CONSTRAINT FK_51441FAF8F803478');
         $this->addSql('ALTER TABLE accard_diagnosis DROP CONSTRAINT FK_F3B3ED778F803478');
-        $this->addSql('ALTER TABLE accard_import_activity DROP CONSTRAINT FK_81CEBD4E8F803478');
-        $this->addSql('ALTER TABLE accard_import_sample DROP CONSTRAINT FK_173786F48F803478');
         $this->addSql('ALTER TABLE accard_patient_phase_inst DROP CONSTRAINT FK_450F421158E0B66');
         $this->addSql('ALTER TABLE accard_regimen DROP CONSTRAINT FK_7E8EF59E8F803478');
         $this->addSql('ALTER TABLE accard_sample DROP CONSTRAINT FK_6B6E6FFA8F803478');
@@ -540,7 +513,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_regimen_proto_fldval DROP CONSTRAINT FK_5378E08E85CA7E31');
         $this->addSql('ALTER TABLE accard_sample_source DROP CONSTRAINT FK_5530F9C68C7A1510');
         $this->addSql('ALTER TABLE accard_sample_proto_fldval DROP CONSTRAINT FK_FD68D330730CE27D');
-        $this->addSql('ALTER TABLE accard_import_sample DROP CONSTRAINT FK_173786F4EE155AE0');
         $this->addSql('ALTER TABLE accard_sample DROP CONSTRAINT FK_6B6E6FFAEE155AE0');
         $this->addSql('ALTER TABLE accard_option_value DROP CONSTRAINT FK_96657CDDCE78B7CC');
         $this->addSql('ALTER TABLE accard_patient_field DROP CONSTRAINT FK_54CED4B8CE78B7CC');
@@ -565,7 +537,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_activity_proto_fldval DROP CONSTRAINT FK_182C8B0F81F9A87C');
         $this->addSql('ALTER TABLE accard_activity_proto_fld_opt_ DROP CONSTRAINT FK_359EDC71E8ED26A9');
         $this->addSql('ALTER TABLE accard_activity DROP CONSTRAINT FK_C69BB645DBA88346');
-        $this->addSql('ALTER TABLE accard_import_activity DROP CONSTRAINT FK_81CEBD4EDBA88346');
         $this->addSql('ALTER TABLE accard_regimen DROP CONSTRAINT FK_7E8EF59EDBA88346');
         $this->addSql('ALTER TABLE accard_drug DROP CONSTRAINT FK_89DC2B552179D01F');
         $this->addSql('ALTER TABLE accard_drugs_groups DROP CONSTRAINT FK_DAB9D6E4DBA88346');
@@ -609,7 +580,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_log DROP CONSTRAINT FK_2AC893464B64DCC');
         $this->addSql('DROP SEQUENCE accard_template_id_seq');
         $this->addSql('DROP SEQUENCE ext_log_entries_id_seq');
-        $this->addSql('DROP SEQUENCE accard_import_id_seq');
         $this->addSql('DROP SEQUENCE accard_log_id_seq');
         $this->addSql('DROP SEQUENCE accard_setting_id_seq');
         $this->addSql('DROP SEQUENCE accard_activity_id_seq');
@@ -618,9 +588,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('DROP SEQUENCE accard_diagnosis_id_seq');
         $this->addSql('DROP SEQUENCE accard_diagnosis_phase_id_seq');
         $this->addSql('DROP SEQUENCE accard_diagnosis_phase_instanc');
-        $this->addSql('DROP SEQUENCE accard_import_activity_id_seq');
-        $this->addSql('DROP SEQUENCE accard_import_patient_id_seq');
-        $this->addSql('DROP SEQUENCE accard_import_sample_id_seq');
         $this->addSql('DROP SEQUENCE accard_patient_id_seq');
         $this->addSql('DROP SEQUENCE accard_patient_phase_id_seq');
         $this->addSql('DROP SEQUENCE accard_patient_phase_instance_');
@@ -658,7 +625,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('DROP TABLE lexik_trans_unit_translation');
         $this->addSql('DROP TABLE lexik_trans_unit');
         $this->addSql('DROP TABLE ext_log_entries');
-        $this->addSql('DROP TABLE accard_import');
         $this->addSql('DROP TABLE accard_log');
         $this->addSql('DROP TABLE accard_setting');
         $this->addSql('DROP TABLE accard_activity');
@@ -667,9 +633,6 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('DROP TABLE accard_diagnosis');
         $this->addSql('DROP TABLE accard_diagnosis_phase');
         $this->addSql('DROP TABLE accard_diagnosis_phase_inst');
-        $this->addSql('DROP TABLE accard_import_activity');
-        $this->addSql('DROP TABLE accard_import_patient');
-        $this->addSql('DROP TABLE accard_import_sample');
         $this->addSql('DROP TABLE accard_patient');
         $this->addSql('DROP TABLE accard_patient_phase');
         $this->addSql('DROP TABLE accard_patient_phase_inst');

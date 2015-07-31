@@ -15,8 +15,7 @@ parameters:
 
     dag_development_mode: false
     dag_development_user: ~
-    accard_app_name: accard
-    accard_import_signals: []
+    dag_app_name: accard
 
     elasticsearch_host: 127.0.0.1
     elasticsearch_port: 9200

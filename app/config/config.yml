@@ -21,7 +21,7 @@ framework:
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        name: %accard_app_name%
+        name: %dag_app_name%
         handler_id:  ~
     fragments:       ~
     http_method_override: true
@@ -77,14 +77,14 @@ doctrine:
                     AccardCoreBundle: ~
                     AccardDiagnosisBundle: ~
                     AccardDrugBundle: ~
-                    AccardFieldBundle: ~
-                    AccardOptionBundle: ~
+                    DAGFieldBundle: ~
+                    DAGOptionBundle: ~
                     AccardPatientBundle: ~
                     AccardPhaseBundle: ~
                     AccardRegimenBundle: ~
-                    AccardResourceBundle: ~
+                    DAGResourceBundle: ~
                     AccardSampleBundle: ~
-                    AccardSettingsBundle: ~
+                    DAGSettingsBundle: ~
                     AccardTemplateBundle: ~
                     AccardUIBundle: ~
                     AccardWebBundle: ~
@@ -130,7 +130,3 @@ lexik_maintenance:
 #     username:  %mailer_user%
 #     password:  %mailer_password%
 #     spool:     { type: memory }
-
-accard_resource:
-    import:
-        signals: %accard_import_signals%
