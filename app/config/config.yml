@@ -31,7 +31,6 @@ twig:
     form:
         resources:
             - 'AccardUIBundle::forms.html.twig'
-            #- 'form_div_layout.html.twig'
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
@@ -96,17 +95,8 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
             accard:
                 connection: accard
-                mappings:
-                    AccardPDSBundle: ~
-#                    AccardVelosBundle: ~
             pds:
                 connection: accard
-                mappings:
-                    AccardPDSBundle: ~
-#            velos:
-#                connection: accard
-#                mappings:
-#                    AccardVelosBundle: ~
 
 # Wire in lexik translations GUI
 lexik_translation:
