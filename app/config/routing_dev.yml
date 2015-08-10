@@ -12,3 +12,7 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+_info:
+    resource: "@AccardCoreBundle/Resources/config/routing/info.yml"
+    prefix: /_info
