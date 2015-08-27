@@ -78,7 +78,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE TABLE lexik_trans_unit_translation (id INT AUTO_INCREMENT NOT NULL, file_id INT DEFAULT NULL, trans_unit_id INT DEFAULT NULL, locale VARCHAR(10) NOT NULL, content LONGTEXT NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, INDEX IDX_75CB162F93CB796C (file_id), INDEX IDX_75CB162FC3C583C9 (trans_unit_id), UNIQUE INDEX trans_unit_locale_idx (trans_unit_id, locale), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE lexik_trans_unit (id INT AUTO_INCREMENT NOT NULL, key_name VARCHAR(255) NOT NULL, domain VARCHAR(255) NOT NULL, created_at DATETIME DEFAULT NULL, updated_at DATETIME DEFAULT NULL, UNIQUE INDEX key_domain_idx (key_name, domain), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ext_log_entries (id INT AUTO_INCREMENT NOT NULL, action VARCHAR(8) NOT NULL, logged_at DATETIME NOT NULL, object_id VARCHAR(64) DEFAULT NULL, object_class VARCHAR(255) NOT NULL, version INT NOT NULL, data LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:array)\', username VARCHAR(255) DEFAULT NULL, INDEX log_class_lookup_idx (object_class), INDEX log_date_lookup_idx (logged_at), INDEX log_user_lookup_idx (username), INDEX log_version_lookup_idx (object_id, object_class, version), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE accard_log (id INT AUTO_INCREMENT NOT NULL, logDate DATETIME NOT NULL, action VARCHAR(16) NOT NULL, resourceName VARCHAR(32) NOT NULL, resourceId INT DEFAULT NULL, route VARCHAR(100) NOT NULL, uriAttributes LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriQuery LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriRequest LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', userId INT NOT NULL, INDEX IDX_2AC893464B64DCC (userId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE dag_log (id INT AUTO_INCREMENT NOT NULL, logDate DATETIME NOT NULL, action VARCHAR(16) NOT NULL, resourceName VARCHAR(32) NOT NULL, resourceId INT DEFAULT NULL, route VARCHAR(100) NOT NULL, uriAttributes LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriQuery LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', uriRequest LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:json_array)\', userId INT NOT NULL, INDEX IDX_2AC893464B64DCC (userId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_setting (id INT AUTO_INCREMENT NOT NULL, namespace VARCHAR(120) NOT NULL, name VARCHAR(120) NOT NULL, value LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:object)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_activity (id INT AUTO_INCREMENT NOT NULL, activityDate DATE NOT NULL, drugId INT DEFAULT NULL, prototypeId INT NOT NULL, patientId INT NOT NULL, diagnosisId INT DEFAULT NULL, regimenId INT DEFAULT NULL, INDEX IDX_C69BB645DBA88346 (drugId), INDEX IDX_C69BB6459B116E9A (prototypeId), INDEX IDX_C69BB6458F803478 (patientId), INDEX IDX_C69BB645D0EA680C (diagnosisId), INDEX IDX_C69BB64585CA7E31 (regimenId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE accard_attribute (id INT AUTO_INCREMENT NOT NULL, prototypeId INT NOT NULL, patientId INT NOT NULL, INDEX IDX_77180DB19B116E9A (prototypeId), INDEX IDX_77180DB18F803478 (patientId), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
@@ -135,7 +135,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE TABLE dag_user (id INT NOT NULL, username VARCHAR(255) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:simple_array)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE lexik_trans_unit_translation ADD CONSTRAINT FK_75CB162F93CB796C FOREIGN KEY (file_id) REFERENCES lexik_translation_file (id)');
         $this->addSql('ALTER TABLE lexik_trans_unit_translation ADD CONSTRAINT FK_75CB162FC3C583C9 FOREIGN KEY (trans_unit_id) REFERENCES lexik_trans_unit (id)');
-        $this->addSql('ALTER TABLE accard_log ADD CONSTRAINT FK_2AC893464B64DCC FOREIGN KEY (userId) REFERENCES dag_user (id)');
+        $this->addSql('ALTER TABLE dag_log ADD CONSTRAINT FK_2AC893464B64DCC FOREIGN KEY (userId) REFERENCES dag_user (id)');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB645DBA88346 FOREIGN KEY (drugId) REFERENCES accard_drug (id)');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB6459B116E9A FOREIGN KEY (prototypeId) REFERENCES accard_activity_prototype (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB6458F803478 FOREIGN KEY (patientId) REFERENCES accard_patient (id)');
@@ -326,13 +326,13 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_activity DROP FOREIGN KEY FK_C69BB6459B116E9A');
         $this->addSql('ALTER TABLE accard_regimen_activity_map DROP FOREIGN KEY FK_447DEB5B438AD5F2');
         $this->addSql('ALTER TABLE accard_activity_prototype_map DROP FOREIGN KEY FK_FD0B1419B116E9A');
-        $this->addSql('ALTER TABLE accard_log DROP FOREIGN KEY FK_2AC893464B64DCC');
+        $this->addSql('ALTER TABLE dag_log DROP FOREIGN KEY FK_2AC893464B64DCC');
         $this->addSql('DROP TABLE accard_template');
         $this->addSql('DROP TABLE lexik_translation_file');
         $this->addSql('DROP TABLE lexik_trans_unit_translation');
         $this->addSql('DROP TABLE lexik_trans_unit');
         $this->addSql('DROP TABLE ext_log_entries');
-        $this->addSql('DROP TABLE accard_log');
+        $this->addSql('DROP TABLE dag_log');
         $this->addSql('DROP TABLE accard_setting');
         $this->addSql('DROP TABLE accard_activity');
         $this->addSql('DROP TABLE accard_attribute');

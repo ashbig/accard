@@ -75,7 +75,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
 
         $this->addSql('CREATE SEQUENCE accard_template_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE ext_log_entries_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
-        $this->addSql('CREATE SEQUENCE accard_log_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
+        $this->addSql('CREATE SEQUENCE dag_log_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_setting_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_activity_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE accard_attribute_id_seq START WITH 1 MINVALUE 1 INCREMENT BY 1');
@@ -215,11 +215,11 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('CREATE INDEX log_user_lookup_idx ON ext_log_entries (username)');
         $this->addSql('CREATE INDEX log_version_lookup_idx ON ext_log_entries (object_id, object_class, version)');
         $this->addSql('COMMENT ON COLUMN ext_log_entries.data IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE accard_log (id NUMBER(10) NOT NULL, logDate TIMESTAMP(0) NOT NULL, action VARCHAR2(16) NOT NULL, resourceName VARCHAR2(32) NOT NULL, resourceId NUMBER(10) DEFAULT NULL, route VARCHAR2(100) NOT NULL, uriAttributes CLOB DEFAULT NULL, uriQuery CLOB DEFAULT NULL, uriRequest CLOB DEFAULT NULL, userId NUMBER(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_2AC893464B64DCC ON accard_log (userId)');
-        $this->addSql('COMMENT ON COLUMN accard_log.uriAttributes IS \'(DC2Type:json_array)\'');
-        $this->addSql('COMMENT ON COLUMN accard_log.uriQuery IS \'(DC2Type:json_array)\'');
-        $this->addSql('COMMENT ON COLUMN accard_log.uriRequest IS \'(DC2Type:json_array)\'');
+        $this->addSql('CREATE TABLE dag_log (id NUMBER(10) NOT NULL, logDate TIMESTAMP(0) NOT NULL, action VARCHAR2(16) NOT NULL, resourceName VARCHAR2(32) NOT NULL, resourceId NUMBER(10) DEFAULT NULL, route VARCHAR2(100) NOT NULL, uriAttributes CLOB DEFAULT NULL, uriQuery CLOB DEFAULT NULL, uriRequest CLOB DEFAULT NULL, userId NUMBER(10) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_2AC893464B64DCC ON dag_log (userId)');
+        $this->addSql('COMMENT ON COLUMN dag_log.uriAttributes IS \'(DC2Type:json_array)\'');
+        $this->addSql('COMMENT ON COLUMN dag_log.uriQuery IS \'(DC2Type:json_array)\'');
+        $this->addSql('COMMENT ON COLUMN dag_log.uriRequest IS \'(DC2Type:json_array)\'');
         $this->addSql('CREATE TABLE accard_setting (id NUMBER(10) NOT NULL, namespace VARCHAR2(120) NOT NULL, name VARCHAR2(120) NOT NULL, value CLOB DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN accard_setting.value IS \'(DC2Type:object)\'');
         $this->addSql('CREATE TABLE accard_activity (id NUMBER(10) NOT NULL, activityDate DATE NOT NULL, drugId NUMBER(10) DEFAULT NULL, prototypeId NUMBER(10) NOT NULL, patientId NUMBER(10) NOT NULL, diagnosisId NUMBER(10) DEFAULT NULL, regimenId NUMBER(10) DEFAULT NULL, PRIMARY KEY(id))');
@@ -386,7 +386,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('COMMENT ON COLUMN dag_user.roles IS \'(DC2Type:simple_array)\'');
         $this->addSql('ALTER TABLE lexik_trans_unit_translation ADD CONSTRAINT FK_75CB162F93CB796C FOREIGN KEY (file_id) REFERENCES lexik_translation_file (id)');
         $this->addSql('ALTER TABLE lexik_trans_unit_translation ADD CONSTRAINT FK_75CB162FC3C583C9 FOREIGN KEY (trans_unit_id) REFERENCES lexik_trans_unit (id)');
-        $this->addSql('ALTER TABLE accard_log ADD CONSTRAINT FK_2AC893464B64DCC FOREIGN KEY (userId) REFERENCES dag_user (id)');
+        $this->addSql('ALTER TABLE dag_log ADD CONSTRAINT FK_2AC893464B64DCC FOREIGN KEY (userId) REFERENCES dag_user (id)');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB645DBA88346 FOREIGN KEY (drugId) REFERENCES accard_drug (id)');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB6459B116E9A FOREIGN KEY (prototypeId) REFERENCES accard_activity_prototype (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE accard_activity ADD CONSTRAINT FK_C69BB6458F803478 FOREIGN KEY (patientId) REFERENCES accard_patient (id)');
@@ -577,10 +577,10 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('ALTER TABLE accard_activity DROP CONSTRAINT FK_C69BB6459B116E9A');
         $this->addSql('ALTER TABLE accard_regimen_activity_map DROP CONSTRAINT FK_447DEB5B438AD5F2');
         $this->addSql('ALTER TABLE accard_activity_prototype_map DROP CONSTRAINT FK_FD0B1419B116E9A');
-        $this->addSql('ALTER TABLE accard_log DROP CONSTRAINT FK_2AC893464B64DCC');
+        $this->addSql('ALTER TABLE dag_log DROP CONSTRAINT FK_2AC893464B64DCC');
         $this->addSql('DROP SEQUENCE accard_template_id_seq');
         $this->addSql('DROP SEQUENCE ext_log_entries_id_seq');
-        $this->addSql('DROP SEQUENCE accard_log_id_seq');
+        $this->addSql('DROP SEQUENCE dag_log_id_seq');
         $this->addSql('DROP SEQUENCE accard_setting_id_seq');
         $this->addSql('DROP SEQUENCE accard_activity_id_seq');
         $this->addSql('DROP SEQUENCE accard_attribute_id_seq');
@@ -625,7 +625,7 @@ class Version20150706185439 extends AbstractMigration implements ContainerAwareI
         $this->addSql('DROP TABLE lexik_trans_unit_translation');
         $this->addSql('DROP TABLE lexik_trans_unit');
         $this->addSql('DROP TABLE ext_log_entries');
-        $this->addSql('DROP TABLE accard_log');
+        $this->addSql('DROP TABLE dag_log');
         $this->addSql('DROP TABLE accard_setting');
         $this->addSql('DROP TABLE accard_activity');
         $this->addSql('DROP TABLE accard_attribute');
