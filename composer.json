@@ -8,8 +8,8 @@
         "psr-4": { "": "src/" }
     },
     "require": {
-        "accard/patient-repository": "1.0.0-RC1",
-        "dag/framework": "1.0.0-RC1",
+        "accard/patient-repository": "~1.0",
+        "dag/framework": "~1.0",
         "dag/components": "~0.1",
         "lexik/maintenance-bundle": "~1.0",
         "doctrine/dbal": "~2.5"
@@ -48,7 +48,8 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "1.0-beta"
+            "dev-master": "1.1.x-dev",
+            "1.0": "1.0.x-dev"
         }
     },
     "repositories": [
