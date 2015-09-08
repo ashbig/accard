@@ -31,11 +31,11 @@
         "white-october/pagerfanta-bundle":       "~1.0",
         "lexik/translation-bundle":              "~2.1",
         "gedmo/doctrine-extensions":             "~2.4",
-        "willdurand/hateoas-bundle":             "~0.5"
+        "willdurand/hateoas-bundle":             "~0.5",
+        "incenteev/composer-parameter-handler":  "~2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-        "incenteev/composer-parameter-handler":  "~2.0"
+        "sensio/generator-bundle": "~2.3"
     },
     "scripts": {
         "post-root-package-install": [],
